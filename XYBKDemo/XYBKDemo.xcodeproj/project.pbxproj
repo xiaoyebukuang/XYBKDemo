@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */; };
 		6529D74A209963D10019DC03 /* MJRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D749209963D10019DC03 /* MJRefreshControl.m */; };
+		6529D74E2099970A0019DC03 /* UIAlertViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D74D2099970A0019DC03 /* UIAlertViewTool.m */; };
 		656FB3A42091700600C07A3F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3A32091700600C07A3F /* AppDelegate.m */; };
 		656FB3A72091700600C07A3F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3A62091700600C07A3F /* ViewController.m */; };
 		656FB3AA2091700600C07A3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656FB3A82091700600C07A3F /* Main.storyboard */; };
@@ -26,6 +27,8 @@
 		6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Helper.m"; sourceTree = "<group>"; };
 		6529D748209963D10019DC03 /* MJRefreshControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJRefreshControl.h; sourceTree = "<group>"; };
 		6529D749209963D10019DC03 /* MJRefreshControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJRefreshControl.m; sourceTree = "<group>"; };
+		6529D74C2099970A0019DC03 /* UIAlertViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAlertViewTool.h; sourceTree = "<group>"; };
+		6529D74D2099970A0019DC03 /* UIAlertViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAlertViewTool.m; sourceTree = "<group>"; };
 		656FB39F2091700600C07A3F /* XYBKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYBKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656FB3A22091700600C07A3F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		656FB3A32091700600C07A3F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 		6529D746209963C30019DC03 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				6529D74B209996F60019DC03 /* UIAlertViewTool */,
 				6529D747209963C30019DC03 /* MJRefreshControl */,
 			);
 			path = Tools;
@@ -95,6 +99,15 @@
 				6529D749209963D10019DC03 /* MJRefreshControl.m */,
 			);
 			path = MJRefreshControl;
+			sourceTree = "<group>";
+		};
+		6529D74B209996F60019DC03 /* UIAlertViewTool */ = {
+			isa = PBXGroup;
+			children = (
+				6529D74C2099970A0019DC03 /* UIAlertViewTool.h */,
+				6529D74D2099970A0019DC03 /* UIAlertViewTool.m */,
+			);
+			path = UIAlertViewTool;
 			sourceTree = "<group>";
 		};
 		656FB3962091700600C07A3F = {
@@ -319,6 +332,7 @@
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,
 				656FB3B22091700700C07A3F /* main.m in Sources */,
 				6529D74A209963D10019DC03 /* MJRefreshControl.m in Sources */,
+				6529D74E2099970A0019DC03 /* UIAlertViewTool.m in Sources */,
 				656FB3A42091700600C07A3F /* AppDelegate.m in Sources */,
 				656FB3C020919FF500C07A3F /* NSString+Helper.m in Sources */,
 				656FB3C42091AB6E00C07A3F /* UIView+Helper.m in Sources */,
