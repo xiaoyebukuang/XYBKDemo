@@ -11,7 +11,7 @@
 @implementation UIAlertViewTool
 
 + (void)showAlertViewControllerWithTitle:(NSString *)title withAlertMessage:(NSString *)message withViewController:(UIViewController *)viewController withCompletionBlock:(void (^)(void))block {
-    UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     //取消
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
     }];
