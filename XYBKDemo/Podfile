@@ -2,4 +2,5 @@ platform :ios, '8.0'
 target 'XYBKDemo' do
 pod 'MBProgressHUD', '~> 1.1.0'
 pod 'MJRefresh', '~> 3.1.15.3'
+pod 'AFNetworking', '~> 3.2.0'
 end

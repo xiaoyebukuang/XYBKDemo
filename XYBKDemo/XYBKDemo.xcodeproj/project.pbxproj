@@ -10,6 +10,7 @@
 		6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */; };
 		6529D74A209963D10019DC03 /* MJRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D749209963D10019DC03 /* MJRefreshControl.m */; };
 		6529D74E2099970A0019DC03 /* UIAlertViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D74D2099970A0019DC03 /* UIAlertViewTool.m */; };
+		6529D75B209C29CA0019DC03 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6529D75A209C29CA0019DC03 /* CoreTelephony.framework */; };
 		656FB3A42091700600C07A3F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3A32091700600C07A3F /* AppDelegate.m */; };
 		656FB3A72091700600C07A3F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3A62091700600C07A3F /* ViewController.m */; };
 		656FB3AA2091700600C07A3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656FB3A82091700600C07A3F /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		6529D749209963D10019DC03 /* MJRefreshControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJRefreshControl.m; sourceTree = "<group>"; };
 		6529D74C2099970A0019DC03 /* UIAlertViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAlertViewTool.h; sourceTree = "<group>"; };
 		6529D74D2099970A0019DC03 /* UIAlertViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAlertViewTool.m; sourceTree = "<group>"; };
+		6529D75A209C29CA0019DC03 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		656FB39F2091700600C07A3F /* XYBKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XYBKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656FB3A22091700600C07A3F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		656FB3A32091700600C07A3F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6529D75B209C29CA0019DC03 /* CoreTelephony.framework in Frameworks */,
 				A8E8B5FD2E603588CC0F0F97 /* libPods-XYBKDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,6 +72,7 @@
 		63835DC1EF45B133D8B64489 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6529D75A209C29CA0019DC03 /* CoreTelephony.framework */,
 				7242FDC246F66F43B8C4EDC5 /* libPods-XYBKDemo.a */,
 			);
 			name = Frameworks;
@@ -477,15 +481,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S6WDL2GZYL;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/XYBKDemo/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = XYBKDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xybk.XYBKDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nongfaziran.nongfaziran-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -495,15 +501,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = S6WDL2GZYL;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/XYBKDemo/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = XYBKDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xybk.XYBKDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nongfaziran.nongfaziran-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
