@@ -17,6 +17,7 @@
 #import "NSString+Helper.h"
 #import "UIView+Helper.h"
 #import "NSDate+Helper.h"
+#import "UIColor+Helper.h"
 /** 三方库 */
 #import "MBProgressHUD+Helper.h"
 #import "MJRefreshControl.h"

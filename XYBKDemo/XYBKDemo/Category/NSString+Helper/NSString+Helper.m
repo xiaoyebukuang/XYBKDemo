@@ -34,6 +34,19 @@
 + (NSInteger)safe_integer:(id)obj {
     return [NSString safe_string:obj].integerValue;
 }
+/** 返回bool型 */
++ (BOOL)safe_bool:(id)obj {
+    return [NSString safe_string:obj].boolValue;
+}
+/** 验证手机号码及固定电话 */
++ (BOOL)validatePhoneNumber:(NSString *)mobileNum {
+    NSString *phoneRegex = @"^((17[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
+    NSString *phoneRegex2=@"^1(47[0-9])\\d{7}$";
+    NSPredicate *phoneTest2=[NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex2];
+    return [phoneTest evaluateWithObject:mobileNum]|[phoneTest2 evaluateWithObject:mobileNum];
+}
+
 
 
 @end

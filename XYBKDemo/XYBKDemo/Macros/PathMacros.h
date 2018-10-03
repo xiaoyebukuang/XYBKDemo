@@ -17,8 +17,10 @@
 #define PATH_TEMP                   NSTemporaryDirectory()
 
 /** 强弱引用*/
-#define WEAK_SELF(type)             __weak typeof(type) weak##type = type;
-#define STROONG_SELF(type)          __strong typeof(type) type = weak##type;
+//selfweak
+#define WeakSelf                    __weak typeof(self) weakSelf = self;
+//变量weak
+#define WeakObj(o)                  __weak typeof(o) o##Weak = o;
 
 
 #endif /* PathMacros_h */

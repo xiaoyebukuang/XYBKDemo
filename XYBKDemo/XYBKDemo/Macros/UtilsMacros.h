@@ -24,11 +24,7 @@
 #define IS_IOS_9    floorf([[UIDevice currentDevice].systemVersion floatValue]) >=9.0 ? 1 : 0
 #define IS_IOS_11   floorf([[UIDevice currentDevice].systemVersion floatValue]) >=11.0 ? 1 : 0
 
-/** 获取RGB颜色 */
-#define RGBA(r,g,b,a)                 [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
-#define RGB(r,g,b)                    RGBA(r,g,b,1.0f)
-#define COLOR_RGB_ALPHA(rgbValue,a)   [UIColor colorWithRed:((float)(((rgbValue) & 0xFF0000) >> 16))/255.0 green:((float)(((rgbValue) & 0xFF00)>>8))/255.0 blue: ((float)((rgbValue) & 0xFF))/255.0 alpha:(a)]
-#define COLOR_RGB(rgbValue,a)         [UIColor colorWithRed:((float)(((rgbValue) & 0xFF0000) >> 16))/255.0 green:((float)(((rgbValue) & 0xFF00)>>8))/255.0 blue: ((float)((rgbValue) & 0xFF))/255.0 alpha:(1.0)]
+
 
 
 /** 字体 */

@@ -21,20 +21,34 @@
 #define MAIN_SCREEN_WIDTH       ([UIScreen mainScreen].bounds.size.width)
 #define MAIN_SCREEN_HEIGHT      ([UIScreen mainScreen].bounds.size.height)
 /** iPhoneX顶部多余高度 */
-#define NAV_TOP_HEIGHT          (IS_IPHONE_X ? 24.f : 0.f)
+#define IPHONEX_TOP_HEIGHT      (IS_IPHONE_X ? 24.f : 0.f)
 /** iPhoneX底部多余高度 */
-#define NAV_BOTTOW_HEIGHT       (IS_IPHONE_X ? 34.f : 0.f)
+#define IPHONEX_BOTTOW_HEIGHT   (IS_IPHONE_X ? 34.f : 0.f)
 /** 状态栏高度 */
-#define NAV_STA_HEIGHT          (NAV_TOP_HEIGHT + 20)
+#define NAV_STA_HEIGHT          (IPHONEX_TOP_HEIGHT + 20)
 /** 导航栏高度 */
-#define NAV_BAR_HEIGHT          (NAV_TOP_HEIGHT + 44)
+#define NAV_BAR_HEIGHT          (NAV_STA_HEIGHT + 44)
 /** TABBAR高度 */
-#define NAV_TABBAR_HEIGHT       (NAV_BOTTOW_HEIGHT + 49)
-/** 可视图区域 */
-#define NAV_CONTENT_HEIGHT      (MAIN_SCREEN_HEIGHT - NAV_BAR_HEIGHT - NAV_TABBAR_HEIGHT)
+#define TAB_BAR_HEIGHT          (IPHONEX_BOTTOW_HEIGHT + 49)
+/** 导航栏可视高度 */
+#define NAV_CONTENT_HEIGHT      (MAIN_SCREEN_HEIGHT - NAV_BAR_HEIGHT)
+/** 导航栏TABBAR可视高度 */
+#define NAV_TAB_CONTENT_HEIGHT      (MAIN_SCREEN_HEIGHT - NAV_BAR_HEIGHT - TAB_BAR_HEIGHT)
 /** 横向适配比例 */
 #define WIDTH_ADAPTER(x)        ceilf((x) * (MAIN_SCREEN_WIDTH / 375.0))
 /** 纵向适配比例 */
 #define HEIGHT_ADAPTER(y)       ceilf((y) * (MAIN_SCREEN_HEIGHT / 667.0))
+
+
+#define kApplication            [UIApplication sharedApplication]
+//获取appDelegate
+#define kApplicationDelegate    (AppDelegate *)[UIApplication sharedApplication].delegate
+//获取keyWindow
+#define kKeyWindow              [UIApplication sharedApplication].keyWindow
+//获取本地存储
+#define kUserDefaults           [NSUserDefaults standardUserDefaults]
+//获取通知
+#define kNotificationCenter     [NSNotificationCenter defaultCenter]
+
 
 #endif /* DimensMacros_h */

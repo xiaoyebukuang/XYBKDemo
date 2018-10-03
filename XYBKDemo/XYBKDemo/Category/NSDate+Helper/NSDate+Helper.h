@@ -28,26 +28,53 @@ typedef NS_ENUM(NSInteger, FormatType) {
 
 
 /**
- 获取今天指定格式的日期String
+ 获取今天指定格式的日期Str
  @param type 格式
- @return 返回时间String
+ @return dateStr
  */
-+ (NSString *)getTodayDateStringFormatType:(FormatType)type;
++ (NSString *)getTodayDateStrWithFormatType:(FormatType)type;
 
 /**
- 获取指定格式的日期String
- @param date 时间
- @param type 时间类型
- @return 时间字符串
+ 获取指定格式的日期Str
+ @param date 日期
+ @param type 日期类型
+ @return dateStr
  */
-+ (NSString *)getDateString:(NSDate *)date formatType:(FormatType)type;
++ (NSString *)getDateStrWithDate:(NSDate *)date formatType:(FormatType)type;
 
 /**
- 获取指定格式的时间
- @param dateStr 时间字符串
- @param type 时间类型
- @return 返回转换时间
+ 将字符串转化为指定格式的日期
+ @param dateStr 日期字符串
+ @param type 日期类型
+ @return date
  */
-+ (NSDate *)getDate:(NSString *)dateStr formatType:(FormatType)type;
++ (NSDate *)getDateWithDateStr:(NSString *)dateStr formatType:(FormatType)type;
+
+/**
+ 获取时间戳
+ 
+ @param date 日期
+ @return dateStample
+ */
++ (NSTimeInterval)getDateStampleWithDate:(NSDate *)date;
+
+
+/**
+ 将时间戳转换为日期
+
+ @param dateStample 时间戳
+ @param type 日期类型
+ @return date
+ */
++ (NSDate *)getDateWithDateStample:(NSTimeInterval)dateStample formatType:(FormatType)type;
+
+/**
+ 将时间戳转换为日期Str
+ 
+ @param dateStample 时间戳
+ @param type 日期类型
+ @return date
+ */
++ (NSDate *)getDateStrWithDateStample:(NSTimeInterval)dateStample formatType:(FormatType)type;
 
 @end

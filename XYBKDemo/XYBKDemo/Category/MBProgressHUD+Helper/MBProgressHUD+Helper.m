@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, ProgressHUDType) {
     [self showMessage:@"加载中..." ToView:view];
 }
 + (void)showMessage:(NSString *)message ToView:(UIView *)view {
-    [self showMessage:message ToView:view HUDType:ProgressHUDTypeLoading];
+    [self showMessage:message ToView:view HUDType:ProgressHUDTypeLoading completeBlcok:nil];
 }
 #pragma mark -- 显示错误信息
 + (void)showError:(NSString *)error{
@@ -33,18 +33,24 @@ typedef NS_ENUM(NSInteger, ProgressHUDType) {
 }
 + (void)showError:(NSString *)error ToView:(UIView *)view{
     [self hideHUDForView:view];
-    [self showMessage:error ToView:view HUDType:ProgressHUDTypeError];
+    [self showMessage:error ToView:view HUDType:ProgressHUDTypeError completeBlcok:nil];
 }
 #pragma mark -- 显示正确信息
 + (void)showSuccess:(NSString *)success {
     [self showSuccess:success ToView:nil];
 }
++ (void)showSuccess:(NSString *)success completeBlcok:(MBProgressHUDCompletionBlock)completionBlock {
+    [self showSuccess:success ToView:nil completeBlcok:completionBlock];
+}
 + (void)showSuccess:(NSString *)success ToView:(UIView *)view{
+    [self showSuccess:success ToView:view completeBlcok:nil];
+}
++ (void)showSuccess:(NSString *)success ToView:(UIView *)view completeBlcok:(MBProgressHUDCompletionBlock)completionBlock {
     [self hideHUDForView:view];
-    [self showMessage:success ToView:view HUDType:ProgressHUDTypeSuccess];
+    [self showMessage:success ToView:view HUDType:ProgressHUDTypeSuccess completeBlcok:completionBlock];
 }
 #pragma mark -- 构造
-+ (void)showMessage:(NSString *)message ToView:(UIView *)view HUDType:(ProgressHUDType)HUDType{
++ (void)showMessage:(NSString *)message ToView:(UIView *)view HUDType:(ProgressHUDType)HUDType completeBlcok:(MBProgressHUDCompletionBlock)completionBlock{
     if (view == nil) {
         view = (UIView *)[UIApplication sharedApplication].delegate.window;
     }
@@ -56,12 +62,19 @@ typedef NS_ENUM(NSInteger, ProgressHUDType) {
             break;
         case ProgressHUDTypeError:
             hud.mode = MBProgressHUDModeCustomView;
+            //此处填写错误图标
+            hud.customView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"request_error"]];
             [hud hideAnimated:YES afterDelay:1];
             break;
         case ProgressHUDTypeSuccess:
             hud.mode = MBProgressHUDModeCustomView;
+            //此处填写成功图标
+            hud.customView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"request_success"]];
             [hud hideAnimated:YES afterDelay:1];
             break;
+    }
+    if (completionBlock) {
+        hud.completionBlock = completionBlock;
     }
     hud.label.text = message;
     hud.label.font = [UIFont systemFontOfSize:15];
