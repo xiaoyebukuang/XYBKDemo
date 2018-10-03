@@ -87,7 +87,7 @@
     return [NSDate dateWithTimeIntervalSince1970:dateStample];
 }
 /** 将时间戳转换为日期Str */
-+ (NSDate *)getDateStrWithDateStample:(NSTimeInterval)dateStample formatType:(FormatType)type {
++ (NSString *)getDateStrWithDateStample:(NSTimeInterval)dateStample formatType:(FormatType)type {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:dateStample];
     return [self getDateStrWithDate:date formatType:type];
 }

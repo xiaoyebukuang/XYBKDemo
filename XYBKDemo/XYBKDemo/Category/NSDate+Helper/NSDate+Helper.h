@@ -75,6 +75,6 @@ typedef NS_ENUM(NSInteger, FormatType) {
  @param type 日期类型
  @return date
  */
-+ (NSDate *)getDateStrWithDateStample:(NSTimeInterval)dateStample formatType:(FormatType)type;
++ (NSString *)getDateStrWithDateStample:(NSTimeInterval)dateStample formatType:(FormatType)type;
 
 @end
