@@ -1,17 +1,16 @@
 //
-//  MJRefreshControl.m
+//  MJRefreshTool.m
 //  XYBKDemo
 //
-//  Created by 陈晓 on 2018/5/2.
+//  Created by 陈晓 on 2018/10/8.
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "MJRefreshControl.h"
+#import "MJRefreshTool.h"
 #import <MJRefresh.h>
 
-@implementation MJRefreshControl
-+ (void)addRefreshControlWithScrollView:(UIScrollView *)scroll headerBlock:(void (^)(void))headerBlock footerBlock:(void (^)(void))footerBlock {
-    
+@implementation MJRefreshTool
++ (void)addRefreshToolWithScrollView:(UIScrollView *)scroll headerBlock:(void (^)(void))headerBlock footerBlock:(void (^)(void))footerBlock {
     __weak UIScrollView *temp = scroll;
     MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [temp.mj_footer resetNoMoreData];
@@ -19,15 +18,13 @@
     }];
     mj_header.lastUpdatedTimeLabel.hidden = YES;
     scroll.mj_header = mj_header;
-    
     MJRefreshBackStateFooter *mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         footerBlock();
     }];
     [mj_footer setTitle:@"暂未更多数据" forState:MJRefreshStateNoMoreData];
     scroll.mj_footer = mj_footer;
 }
-
-+ (void)addRefreshControlWithScrollView:(UIScrollView *)scroll headerBlock:(void (^)(void))headerBlock {
++ (void)addRefreshToolWithScrollView:(UIScrollView *)scroll headerBlock:(void (^)(void))headerBlock {
     MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         headerBlock();
     }];
@@ -47,9 +44,7 @@
         [scroll.mj_footer endRefreshing];
     }
 }
-
 + (void)endRefreshNoData:(UIScrollView *)scroll {
     [scroll.mj_footer endRefreshingWithNoMoreData];
 }
-
 @end

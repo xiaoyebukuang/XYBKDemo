@@ -2,25 +2,22 @@
 //  UIAlertViewTool.h
 //  XYBKDemo
 //
-//  Created by 陈晓 on 2018/5/2.
+//  Created by 陈晓 on 2018/10/8.
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 /** 提示类－弹出警告框 */
-@interface UIAlertViewTool : NSObject
+@interface UIAlertViewTool : UIView
 
 /**
- 系统弹出框(确定，取消)
-
+ 系统弹出窗（标题+详情+取消+确定）
+ 
  @param title 标题
  @param message 副标题
- @param viewController 跳转视图
- @param block 点击确定按钮回调
+ @param alertBlock 回调
  */
-+ (void)showAlertViewControllerWithTitle:(NSString *)title withAlertMessage:(NSString *)message withViewController:(UIViewController *)viewController withCompletionBlock:(void(^)(void))block;
-
-
-
-
++ (void)showTitle:(NSString *)title
+          message:(NSString *)message
+       alertBlock:(void(^)(NSInteger index))alertBlock;
 @end
