@@ -21,6 +21,8 @@
 #import "NSString+Helper.h"
 #import "NSDate+Helper.h"
 #import "UIView+Helper.h"
+/** 工具 */
+#import "UIAlertViewTool.h"
 /** 三方库 */
 #import "MJRefreshTool.h"
 #endif /* PrefixHeader_pch */

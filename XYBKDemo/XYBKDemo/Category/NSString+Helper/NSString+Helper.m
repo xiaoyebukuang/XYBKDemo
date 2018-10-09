@@ -38,6 +38,16 @@
 + (BOOL)safe_bool:(id)obj {
     return [NSString safe_string:obj].boolValue;
 }
+/** 判断字符串是否为空 */
++ (BOOL)isEmpty:(id)obj {
+    if (obj == nil) {
+        return YES;
+    }
+    if ([[NSString safe_string:obj] isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
+}
 /** 验证手机号码及固定电话 */
 + (BOOL)validatePhoneNumber:(NSString *)mobileNum {
     NSString *phoneRegex = @"^((17[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";

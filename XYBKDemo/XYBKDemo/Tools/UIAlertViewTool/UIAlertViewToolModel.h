@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 //弹框类型
 typedef NS_ENUM(NSInteger, UIAlertViewType) {
-    UIAlertViewTypeNormal       //普通类型（取消确定）;
+    UIAlertViewTypeNormal,      //普通类型;
+    UIAlertViewTypeCustom       //自定义
 };
 //确定取消回调
 typedef void(^AlertBlock)(NSInteger index);
@@ -27,4 +28,6 @@ typedef void(^AlertBlock)(NSInteger index);
 //回调
 @property (nonatomic, copy) AlertBlock alertBlock;
 
+//自定义View
+@property (nonatomic, strong) UIView *customView;
 @end
