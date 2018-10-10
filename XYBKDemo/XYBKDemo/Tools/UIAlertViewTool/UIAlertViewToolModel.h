@@ -10,10 +10,11 @@
 //弹框类型
 typedef NS_ENUM(NSInteger, UIAlertViewType) {
     UIAlertViewTypeNormal,      //普通类型;
+    UIAlertViewTypeField,       //输入框类型;
     UIAlertViewTypeCustom       //自定义
 };
 //确定取消回调
-typedef void(^AlertBlock)(NSInteger index);
+typedef void(^AlertBlock)(NSString* mes, NSInteger index);
 
 @interface UIAlertViewToolModel : NSObject
 

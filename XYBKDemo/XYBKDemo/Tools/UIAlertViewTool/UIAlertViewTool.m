@@ -41,6 +41,8 @@ static UIAlertViewTool *_alertViewTool = nil;
 @property (nonatomic, strong) UILabel *titleLabel;
 /** 常用副标题 */
 @property (nonatomic, strong) UILabel *messageLabel;
+/** 输入框 */
+@property (nonatomic, strong) UITextField *textField;
 @end
 
 @implementation UIAlertViewTool
@@ -59,7 +61,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     });
     return _alertViewTool ;
 }
-+ (void)showTitle:(NSString *)title message:(NSString *)message alertBlock:(void (^)(NSInteger))alertBlock {
++ (void)showTitle:(NSString *)title message:(NSString *)message alertBlock:(void (^)(NSString *mes, NSInteger index))alertBlock {
     UIAlertViewToolModel *model = [[UIAlertViewToolModel alloc]init];
     model.btnTitles = @[@"取消",@"确定"];
     model.title = title;
@@ -68,7 +70,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     model.alertBlock = alertBlock;
     [[self shareInstance]afterShowWithModel:model];
 }
-+ (void)showTitle:(NSString *)title message:(NSString *)message titlesArr:(NSArray *)titlesArr alertBlock:(void(^)(NSInteger index))alertBlock {
++ (void)showTitle:(NSString *)title message:(NSString *)message titlesArr:(NSArray *)titlesArr alertBlock:(void(^)(NSString *mes, NSInteger index))alertBlock {
     UIAlertViewToolModel *model = [[UIAlertViewToolModel alloc]init];
     model.btnTitles = titlesArr;
     model.title = title;
@@ -77,7 +79,16 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     model.alertBlock = alertBlock;
     [[self shareInstance]afterShowWithModel:model];
 }
-+ (void)showView:(UIView *)view titlesArr:(NSArray *)titlesArr alertBlock:(void(^)(NSInteger index))alertBlock {
++ (void)showFieldTitle:(NSString *)title placeHolder:(NSString *)placeHolder titlesArr:(NSArray *)titlesArr alertBlock:(void (^)(NSString *, NSInteger))alertBlock {
+    UIAlertViewToolModel *model = [[UIAlertViewToolModel alloc]init];
+    model.title = title;
+    model.message = placeHolder;
+    model.btnTitles = titlesArr;
+    model.alertViewType = UIAlertViewTypeField;
+    model.alertBlock = alertBlock;
+    [[self shareInstance]afterShowWithModel:model];
+}
++ (void)showView:(UIView *)view titlesArr:(NSArray *)titlesArr alertBlock:(void(^)(NSString *mes, NSInteger index))alertBlock {
     UIAlertViewToolModel *model = [[UIAlertViewToolModel alloc]init];
     model.customView = view;
     model.btnTitles = titlesArr;
@@ -106,6 +117,9 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         case UIAlertViewTypeNormal:
             [self showNormalAlertView];
             break;
+        case UIAlertViewTypeField:
+            [self showFieldAlertView];
+            break;
         case UIAlertViewTypeCustom:
             [self showCustomAlertView];
             break;
@@ -116,6 +130,25 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
 /** 显示自定义弹窗 */
 - (void)showCustomAlertView {
     self.containerView = self.currectModel.customView;
+    //动画
+    [self showAnimation];
+}
+/** 显示输入框弹窗 */
+- (void)showFieldAlertView {
+    if (self.textField) {
+        self.textField = nil;
+    }
+    self.containerView = [[UIView alloc]init];
+    self.titleLabel.text = self.currectModel.title;
+    self.textField.placeholder = self.currectModel.message;
+    //设置frame
+    CGFloat space = 20.0f;
+    self.titleLabel.frame = CGRectMake(space, space, toolWidth - space*2, 20);
+    self.textField.frame  =CGRectMake(space, space + CGRectGetHeight(self.titleLabel.frame) + space, CGRectGetWidth(self.titleLabel.frame), 40);
+    self.containerView.frame = CGRectMake(0, 0, toolWidth, space + CGRectGetHeight(self.titleLabel.frame) + space + CGRectGetHeight(self.textField.frame) + space);
+    //添加视图
+    [self.containerView addSubview:self.titleLabel];
+    [self.containerView addSubview:self.textField];
     //动画
     [self showAnimation];
 }
@@ -214,7 +247,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         self.dialogView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6f, 0.6f);
     } completion:^(BOOL finished) {
         self.dialogView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
-        self.currectModel.alertBlock(index);
+        self.currectModel.alertBlock(self.textField.text, index);
         [self.toolModelArr removeObject:self.currectModel];
         [self dismissWithRemove];
     }];
@@ -266,6 +299,13 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         _btnView = [[UIView alloc]init];
     }
     return _btnView;
+}
+- (UITextField *)textField {
+    if (!_textField) {
+        _textField = [[UITextField alloc]init];
+        _textField.borderStyle = UITextBorderStyleRoundedRect;
+    }
+    return _textField;
 }
 
 @end

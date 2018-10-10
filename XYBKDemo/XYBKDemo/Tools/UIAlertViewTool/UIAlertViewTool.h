@@ -19,7 +19,7 @@
  */
 + (void)showTitle:(NSString *)title
           message:(NSString *)message
-       alertBlock:(void(^)(NSInteger index))alertBlock;
+       alertBlock:(void(^)(NSString* mes, NSInteger index))alertBlock;
 
 /**
  系统弹出窗（标题+详情+按钮标题）
@@ -32,7 +32,21 @@
 + (void)showTitle:(NSString *)title
           message:(NSString *)message
         titlesArr:(NSArray *)titlesArr
-       alertBlock:(void(^)(NSInteger index))alertBlock;
+       alertBlock:(void(^)(NSString *mes, NSInteger index))alertBlock;
+
+
+/**
+ 输入弹出窗（标题+输入框+按钮标题）
+ 
+ @param title 标题
+ @param placeHolder 输入框提示
+ @param titlesArr 按钮数组
+ @param alertBlock 回调
+ */
++ (void)showFieldTitle:(NSString *)title
+           placeHolder:(NSString *)placeHolder
+             titlesArr:(NSArray *)titlesArr
+            alertBlock:(void(^)(NSString *mes, NSInteger index))alertBlock;
 
 /**
  自定义弹窗
@@ -43,5 +57,5 @@
  */
 + (void)showView:(UIView *)view
        titlesArr:(NSArray *)titlesArr
-      alertBlock:(void(^)(NSInteger index))alertBlock;
+      alertBlock:(void(^)(NSString *mes, NSInteger index))alertBlock;
 @end
