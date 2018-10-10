@@ -23,6 +23,7 @@
 		656FB3C020919FF500C07A3F /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3BF20919FF500C07A3F /* NSString+Helper.m */; };
 		656FB3C42091AB6E00C07A3F /* UIView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C32091AB6E00C07A3F /* UIView+Helper.m */; };
 		656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C82091AEF700C07A3F /* NSDate+Helper.m */; };
+		65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 65708124216D9310002F9AD0 /* UITextFieldTool.m */; };
 		65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */; };
 		A8E8B5FD2E603588CC0F0F97 /* libPods-XYBKDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7242FDC246F66F43B8C4EDC5 /* libPods-XYBKDemo.a */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,8 @@
 		656FB3C62091AC3C00C07A3F /* PathMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathMacros.h; sourceTree = "<group>"; };
 		656FB3C72091AEF700C07A3F /* NSDate+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		656FB3C82091AEF700C07A3F /* NSDate+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
+		65708123216D9310002F9AD0 /* UITextFieldTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextFieldTool.h; sourceTree = "<group>"; };
+		65708124216D9310002F9AD0 /* UITextFieldTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITextFieldTool.m; sourceTree = "<group>"; };
 		65D0CA8B21536FF700A3DB66 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		7242FDC246F66F43B8C4EDC5 /* libPods-XYBKDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XYBKDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +105,7 @@
 		6529D746209963C30019DC03 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				65708122216D92FD002F9AD0 /* UITextFieldTool */,
 				655FA5FE216B2D2A009625B0 /* MJRefreshTool */,
 				6529D74B209996F60019DC03 /* UIAlertViewTool */,
 			);
@@ -234,6 +238,15 @@
 				656FB3C82091AEF700C07A3F /* NSDate+Helper.m */,
 			);
 			path = "NSDate+Helper";
+			sourceTree = "<group>";
+		};
+		65708122216D92FD002F9AD0 /* UITextFieldTool */ = {
+			isa = PBXGroup;
+			children = (
+				65708123216D9310002F9AD0 /* UITextFieldTool.h */,
+				65708124216D9310002F9AD0 /* UITextFieldTool.m */,
+			);
+			path = UITextFieldTool;
 			sourceTree = "<group>";
 		};
 		65D0CA8A21536FF700A3DB66 /* UIColor+Helper */ = {
@@ -378,6 +391,7 @@
 				655FA604216B3BD4009625B0 /* UIAlertViewToolModel.m in Sources */,
 				6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */,
 				655FA607216B4CEB009625B0 /* UIAlertViewTool.m in Sources */,
+				65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */,
 				65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */,
 				656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */,
 				655FA5C321653CCC009625B0 /* UIButton+Helper.m in Sources */,
@@ -537,7 +551,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nongfaziran.nongfaziran-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nongfaziran.nongfaziran;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -557,7 +571,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nongfaziran.nongfaziran-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nongfaziran.nongfaziran;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
