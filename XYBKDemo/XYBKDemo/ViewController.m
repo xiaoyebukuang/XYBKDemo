@@ -25,6 +25,23 @@
     [btn setTitle:@"点击" forState:UIControlStateNormal];
     [self.view addSubview:btn];
     
+    
+    UITextFieldTool *textField01 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumber placeHolder:@"请输入textField01"];
+    textField01.frame = CGRectMake(40, 120, 200, 40);
+    [self.view addSubview:textField01];
+    
+    UITextFieldTool *textField02 = [[UITextFieldTool alloc]initWithType:UITextFieldToolCharacter placeHolder:@"请输入textField02"];
+    textField02.frame = CGRectMake(40, 180, 200, 40);
+    [self.view addSubview:textField02];
+
+    UITextFieldTool *textField03 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumberCharacter placeHolder:@"请输入textField03"];
+    textField03.frame = CGRectMake(40, 240, 200, 40);
+    [self.view addSubview:textField03];
+
+    UITextFieldTool *textField04 = [[UITextFieldTool alloc]initWithType:UITextFieldToolWord placeHolder:@"请输入textField04"];
+    textField04.frame = CGRectMake(40, 300, 200, 40);
+    [self.view addSubview:textField04];
+    
 }
 - (void)btnEvent:(UIButton *)sender {
     

@@ -89,11 +89,10 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     [self.toolModelArr insertObject:model atIndex:0];
     [self show];
 }
-
-/**
- 展示弹窗
- */
+//TODO: 展示
+/** 展示弹窗 */
 - (void)show {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     if (self.toolModelArr.count == 0) {
         return;
     }
@@ -117,27 +116,8 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
 /** 显示自定义弹窗 */
 - (void)showCustomAlertView {
     self.containerView = self.currectModel.customView;
-    CGFloat btn_height = buttonHeight + buttonSpacerHeight;
-    CGFloat dialogWidth = self.containerView.frame.size.width;
-    CGFloat dialogHeight = self.containerView.frame.size.height + btn_height;
-    self.dialogView.frame = CGRectMake((ALERT_TOOL_WIDTH - dialogWidth)/2, (ALERT_TOOL_HEIGHT - dialogHeight)/2, dialogWidth, dialogHeight);
-    self.btnView.frame = CGRectMake(0, CGRectGetHeight(self.dialogView.frame) - btn_height, CGRectGetWidth(self.dialogView.frame), btn_height);
-    //添加按钮
-    [self addButtons];
-    //开始动画
-    self.dialogView.layer.opacity = 0.5f;
-    self.dialogView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.3f, 1.3f);
-    [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4f];
-        self.dialogView.layer.opacity = 1.0f;
-        self.dialogView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
-    } completion:^(BOOL finished) {
-        
-    }];
-    [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
-    [self addSubview:self.dialogView];
-    [self.dialogView addSubview:self.containerView];
-    [self.dialogView addSubview:self.btnView];
+    //动画
+    [self showAnimation];
 }
 /** 显示常规弹框 */
 - (void)showNormalAlertView {
@@ -154,6 +134,14 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     }
     self.messageLabel.frame = CGRectMake(space, space + CGRectGetHeight(self.titleLabel.frame) + space, CGRectGetWidth(self.titleLabel.frame), message_height);
     self.containerView.frame = CGRectMake(0, 0, toolWidth, space + CGRectGetHeight(self.titleLabel.frame) + space + message_height + space);
+    //添加视图
+    [self.containerView addSubview:self.titleLabel];
+    [self.containerView addSubview:self.messageLabel];
+    //动画
+    [self showAnimation];
+}
+/** 开始动画 */
+- (void)showAnimation {
     CGFloat btn_height = buttonHeight + buttonSpacerHeight;
     CGFloat dialogWidth = self.containerView.frame.size.width;
     CGFloat dialogHeight = self.containerView.frame.size.height + btn_height;
@@ -161,6 +149,10 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     self.btnView.frame = CGRectMake(0, CGRectGetHeight(self.dialogView.frame) - btn_height, CGRectGetWidth(self.dialogView.frame), btn_height);
     //添加按钮
     [self addButtons];
+    [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
+    [self addSubview:self.dialogView];
+    [self.dialogView addSubview:self.containerView];
+    [self.dialogView addSubview:self.btnView];
     //开始动画
     self.dialogView.layer.opacity = 0.5f;
     self.dialogView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.3f, 1.3f);
@@ -171,13 +163,6 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     } completion:^(BOOL finished) {
         
     }];
-    //添加视图
-    [self.containerView addSubview:self.titleLabel];
-    [self.containerView addSubview:self.messageLabel];
-    [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
-    [self addSubview:self.dialogView];
-    [self.dialogView addSubview:self.containerView];
-    [self.dialogView addSubview:self.btnView];
 }
 //获取高度
 - (CGFloat)getHeightWithWidth:(CGFloat)width str:(NSString *)str font:(UIFont *)font {
@@ -206,7 +191,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         [self.btnView addSubview:closeButton];
     }
 }
-/** 隐藏 */
+//TODO: 消失
 - (void)dismissWithRemove{
     self.isShow = NO;
     for (UIView *v in [self subviews]) {

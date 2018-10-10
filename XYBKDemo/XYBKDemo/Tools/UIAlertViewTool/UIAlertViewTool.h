@@ -21,7 +21,6 @@
           message:(NSString *)message
        alertBlock:(void(^)(NSInteger index))alertBlock;
 
-
 /**
  系统弹出窗（标题+详情+按钮标题）
 

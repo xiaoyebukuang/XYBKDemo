@@ -27,7 +27,6 @@ typedef void(^AlertBlock)(NSInteger index);
 @property (nonatomic, assign) UIAlertViewType alertViewType;
 //回调
 @property (nonatomic, copy) AlertBlock alertBlock;
-
 //自定义View
 @property (nonatomic, strong) UIView *customView;
 @end

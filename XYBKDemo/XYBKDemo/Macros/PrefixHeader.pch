@@ -23,6 +23,7 @@
 #import "UIView+Helper.h"
 /** 工具 */
 #import "UIAlertViewTool.h"
+#import "UITextFieldTool.h"
 /** 三方库 */
 #import "MJRefreshTool.h"
 #endif /* PrefixHeader_pch */
