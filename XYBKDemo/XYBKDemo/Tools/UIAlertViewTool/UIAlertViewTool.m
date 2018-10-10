@@ -11,7 +11,7 @@
 /** 按钮高度 */
 const static CGFloat kUIAlertViewToolDefaultButtonHeight            = 50;
 /** 线条高度 */
-const static CGFloat kUIAlertViewToolDefaultButtonSpacerHeight      = 1;
+const static CGFloat kUIAlertViewToolDefaultButtonSpacerHeight      = 0.5;
 /** 圆角 */
 const static CGFloat kUIAlertViewToolDefaultCornerRadius            = 7;
 /** 弹窗宽度 */
@@ -142,10 +142,18 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     self.titleLabel.text = self.currectModel.title;
     self.textField.placeholder = self.currectModel.message;
     //设置frame
-    CGFloat space = 20.0f;
-    self.titleLabel.frame = CGRectMake(space, space, toolWidth - space*2, 20);
-    self.textField.frame  =CGRectMake(space, space + CGRectGetHeight(self.titleLabel.frame) + space, CGRectGetWidth(self.titleLabel.frame), 40);
-    self.containerView.frame = CGRectMake(0, 0, toolWidth, space + CGRectGetHeight(self.titleLabel.frame) + space + CGRectGetHeight(self.textField.frame) + space);
+    CGFloat sideMargin = 15.0;
+    CGFloat topBottomMargin = 20.0;
+    CGFloat labelWidth = toolWidth - (sideMargin * 2.0);
+    CGFloat yOffset = topBottomMargin;
+    if (self.currectModel.title) {
+        CGSize sizeThatFits = [self.titleLabel sizeThatFits:CGSizeMake(labelWidth, MAXFLOAT)];
+        self.titleLabel.frame = CGRectMake(sideMargin, topBottomMargin, labelWidth, sizeThatFits.height);
+        yOffset += CGRectGetHeight(self.titleLabel.frame) + topBottomMargin;
+    }
+    self.textField.frame = CGRectMake(sideMargin, yOffset, labelWidth, 40);
+    yOffset += CGRectGetHeight(self.textField.frame) + topBottomMargin;
+    self.containerView.frame = CGRectMake(0, 0, toolWidth, yOffset);
     //添加视图
     [self.containerView addSubview:self.titleLabel];
     [self.containerView addSubview:self.textField];
@@ -156,17 +164,24 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
 - (void)showNormalAlertView {
     self.containerView = [[UIView alloc]init];
     //赋值
-    self.messageLabel.text = self.currectModel.message;
     self.titleLabel.text = self.currectModel.title;
+    self.messageLabel.text = self.currectModel.message;
     //设置frame
-    CGFloat space = 20.0f;
-    self.titleLabel.frame = CGRectMake(space, space, toolWidth - space*2, 20);
-    CGFloat message_height = [self getHeightWithWidth:CGRectGetWidth(self.titleLabel.frame) str:self.messageLabel.text font:self.messageLabel.font];
-    if (message_height <= 60) {
-        message_height = 60;
+    CGFloat sideMargin = 15.0;
+    CGFloat topBottomMargin = 20.0;
+    CGFloat labelWidth = toolWidth - (sideMargin * 2.0);
+    CGFloat yOffset = topBottomMargin;
+    if (self.currectModel.title) {
+        CGSize sizeThatFits = [self.titleLabel sizeThatFits:CGSizeMake(labelWidth, MAXFLOAT)];
+        self.titleLabel.frame = CGRectMake(sideMargin, topBottomMargin, labelWidth, sizeThatFits.height);
+        yOffset += CGRectGetHeight(self.titleLabel.frame) + topBottomMargin;
     }
-    self.messageLabel.frame = CGRectMake(space, space + CGRectGetHeight(self.titleLabel.frame) + space, CGRectGetWidth(self.titleLabel.frame), message_height);
-    self.containerView.frame = CGRectMake(0, 0, toolWidth, space + CGRectGetHeight(self.titleLabel.frame) + space + message_height + space);
+    if (self.currectModel.message) {
+        CGSize sizeThatFits = [self.messageLabel sizeThatFits:CGSizeMake(labelWidth, MAXFLOAT)];
+        self.messageLabel.frame = CGRectMake(sideMargin, yOffset, labelWidth, sizeThatFits.height);
+        yOffset += CGRectGetHeight(self.messageLabel.frame) + topBottomMargin;
+    }
+    self.containerView.frame = CGRectMake(0, 0, toolWidth, yOffset);
     //添加视图
     [self.containerView addSubview:self.titleLabel];
     [self.containerView addSubview:self.messageLabel];
@@ -197,17 +212,13 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         
     }];
 }
-//获取高度
-- (CGFloat)getHeightWithWidth:(CGFloat)width str:(NSString *)str font:(UIFont *)font {
-    return [str boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin  attributes:@{NSFontAttributeName : font} context:nil].size.height;
-}
 /** 添加按钮 */
 - (void)addButtons {
     for (UIView *subView in self.btnView.subviews) {
         [subView removeFromSuperview];
     }
     UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.btnView.frame), buttonSpacerHeight)];
-    lineV.backgroundColor = [UIColor colorWithRed:198.0/255.0 green:198.0/255.0 blue:198.0/255.0 alpha:1.0f];
+    lineV.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
     [self.btnView addSubview:lineV];
     
     CGFloat buttonWidth = CGRectGetWidth(self.btnView.frame)/self.currectModel.btnTitles.count;
@@ -219,9 +230,17 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         [closeButton setTitle:self.currectModel.btnTitles[i] forState:UIControlStateNormal];
         [closeButton setTitleColor:[UIColor colorWithRed:0.0f green:0.5f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
         [closeButton setTitleColor:[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:0.5f] forState:UIControlStateHighlighted];
-        [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
+        [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
         closeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.btnView addSubview:closeButton];
+    }
+    if (self.currectModel.btnTitles.count > 1) {
+        CGFloat space = CGRectGetWidth(self.btnView.frame)/self.currectModel.btnTitles.count;
+        for (int i = 1; i < self.currectModel.btnTitles.count; i++) {
+            UIView *lineVertical = [[UIView alloc]initWithFrame:CGRectMake(i * space, 0, buttonSpacerHeight, CGRectGetHeight(self.btnView.frame))];
+            lineVertical.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
+            [self.btnView addSubview:lineVertical];
+        }
     }
 }
 //TODO: 消失
@@ -278,7 +297,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.font = [UIFont systemFontOfSize:18];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:18];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.textColor = [UIColor blackColor];
     }
@@ -289,7 +308,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         _messageLabel = [[UILabel alloc]init];
         _messageLabel.font = [UIFont systemFontOfSize:15];
         _messageLabel.textAlignment = NSTextAlignmentCenter;
-        _messageLabel.textColor = [UIColor blackColor];
+        _messageLabel.textColor = [UIColor grayColor];
         _messageLabel.numberOfLines = 0;
     }
     return _messageLabel;
