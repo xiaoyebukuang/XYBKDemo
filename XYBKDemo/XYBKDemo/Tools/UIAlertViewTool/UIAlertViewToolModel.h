@@ -11,6 +11,7 @@
 typedef NS_ENUM(NSInteger, UIAlertViewType) {
     UIAlertViewTypeNormal,      //普通类型;
     UIAlertViewTypeField,       //输入框类型;
+    UIAlertViewTypeScroll,      //可滑动详情的弹框
     UIAlertViewTypeCustom       //自定义
 };
 //确定取消回调

@@ -23,7 +23,7 @@
 
 /**
  系统弹出窗（标题+详情+按钮标题）
-
+ 
  @param title 标题
  @param message 副标题
  @param titlesArr 按钮数组
@@ -34,6 +34,18 @@
         titlesArr:(NSArray *)titlesArr
        alertBlock:(void(^)(NSString *mes, NSInteger index))alertBlock;
 
+/**
+ 系统弹出窗（标题+滑动详情+按钮标题）
+ 
+ @param title 标题
+ @param message 副标题
+ @param titlesArr 按钮数组
+ @param alertBlock 回调
+ */
++ (void)showScrollTitle:(NSString *)title
+                message:(NSString *)message
+              titlesArr:(NSArray *)titlesArr
+             alertBlock:(void(^)(NSString *mes, NSInteger index))alertBlock;
 
 /**
  输入弹出窗（标题+输入框+按钮标题）

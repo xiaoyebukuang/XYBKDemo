@@ -16,6 +16,9 @@ const static CGFloat kUIAlertViewToolDefaultButtonSpacerHeight      = 0.5;
 const static CGFloat kUIAlertViewToolDefaultCornerRadius            = 7;
 /** 弹窗宽度 */
 const static CGFloat kUIAlertViewToolDefaultWidth                   = 300;
+/** scroll滑动高度 */
+const static CGFloat kUIAlertViewScrollDefaultHeight                = 300;
+
 
 #define ALERT_TOOL_WIDTH    [UIScreen mainScreen].bounds.size.width
 #define ALERT_TOOL_HEIGHT   [UIScreen mainScreen].bounds.size.height
@@ -67,6 +70,15 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     model.title = title;
     model.message = message;
     model.alertViewType = UIAlertViewTypeNormal;
+    model.alertBlock = alertBlock;
+    [[self shareInstance]afterShowWithModel:model];
+}
++ (void)showScrollTitle:(NSString *)title message:(NSString *)message titlesArr:(NSArray *)titlesArr alertBlock:(void (^)(NSString *, NSInteger))alertBlock {
+    UIAlertViewToolModel *model = [[UIAlertViewToolModel alloc]init];
+    model.btnTitles = titlesArr;
+    model.title = title;
+    model.message = message;
+    model.alertViewType = UIAlertViewTypeScroll;
     model.alertBlock = alertBlock;
     [[self shareInstance]afterShowWithModel:model];
 }
@@ -123,6 +135,9 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         case UIAlertViewTypeCustom:
             [self showCustomAlertView];
             break;
+        case UIAlertViewTypeScroll:
+            [self showScrollAlertView];
+            break;
         default:
             break;
     }
@@ -135,6 +150,9 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
 }
 /** 显示输入框弹窗 */
 - (void)showFieldAlertView {
+    // 接收键盘显示隐藏的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
     if (self.textField) {
         self.textField = nil;
     }
@@ -166,6 +184,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     //赋值
     self.titleLabel.text = self.currectModel.title;
     self.messageLabel.text = self.currectModel.message;
+    self.messageLabel.textAlignment = NSTextAlignmentCenter;
     //设置frame
     CGFloat sideMargin = 15.0;
     CGFloat topBottomMargin = 20.0;
@@ -185,6 +204,40 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     //添加视图
     [self.containerView addSubview:self.titleLabel];
     [self.containerView addSubview:self.messageLabel];
+    //动画
+    [self showAnimation];
+}
+/** 显示可滑动弹框 */
+- (void)showScrollAlertView {
+    self.containerView = [[UIView alloc]init];
+    //赋值
+    self.titleLabel.text = self.currectModel.title;
+    self.messageLabel.text = self.currectModel.message;
+    self.messageLabel.textAlignment = NSTextAlignmentLeft;
+    //设置frame
+    CGFloat sideMargin = 15.0;
+    CGFloat topBottomMargin = 20.0;
+    CGFloat labelWidth = toolWidth - (sideMargin * 2.0);
+    CGFloat yOffset = topBottomMargin;
+    //滑动高度
+    CGFloat scroll_height = kUIAlertViewScrollDefaultHeight;
+    if (self.currectModel.title) {
+        CGSize sizeThatFits = [self.titleLabel sizeThatFits:CGSizeMake(labelWidth, MAXFLOAT)];
+        self.titleLabel.frame = CGRectMake(sideMargin, topBottomMargin, labelWidth, sizeThatFits.height);
+        yOffset += CGRectGetHeight(self.titleLabel.frame) + topBottomMargin;
+    }
+    UIScrollView *scrollVeiw = [[UIScrollView alloc]initWithFrame:CGRectMake(sideMargin, yOffset, labelWidth, scroll_height)];
+    yOffset += scroll_height + topBottomMargin;
+    if (self.currectModel.message) {
+        CGSize sizeThatFits = [self.messageLabel sizeThatFits:CGSizeMake(labelWidth, MAXFLOAT)];
+        self.messageLabel.frame = CGRectMake(0, 0, labelWidth, sizeThatFits.height);
+        [scrollVeiw addSubview:self.messageLabel];
+        scrollVeiw.contentSize = CGSizeMake(labelWidth, sizeThatFits.height);
+    }
+    self.containerView.frame = CGRectMake(0, 0, toolWidth, yOffset);
+    //添加视图
+    [self.containerView addSubview:self.titleLabel];
+    [self.containerView addSubview:scrollVeiw];
     //动画
     [self showAnimation];
 }
@@ -275,7 +328,39 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
 - (void)closeButtonEvent:(UIButton *)sender {
     [self dismissWithIndex:sender.tag - ALERT_TOOL_CLOSE_BTN_TAG];
 }
-
+/**
+ *  键盘将要显示
+ *
+ *  @param notification 通知
+ */
+-(void)keyboardWillShow:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *value = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGFloat keyBoardEndHeight = value.CGRectValue.size.height;
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:[curve intValue]];
+        self.dialogView.frame = CGRectMake(CGRectGetMinX(self.dialogView.frame), (MAIN_SCREEN_HEIGHT - keyBoardEndHeight - CGRectGetHeight(self.dialogView.frame))/2, CGRectGetWidth(self.dialogView.frame), CGRectGetHeight(self.dialogView.frame));
+    }];
+}
+/**
+ *  键盘将要隐藏
+ *
+ *  @param notification 通知
+ */
+-(void)keyboardWillHidden:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationCurve:[curve intValue]];
+        self.dialogView.frame = CGRectMake(CGRectGetMinX(self.dialogView.frame), (MAIN_SCREEN_HEIGHT - CGRectGetHeight(self.dialogView.frame))/2, CGRectGetWidth(self.dialogView.frame), CGRectGetHeight(self.dialogView.frame));
+    }];
+}
 #pragma mark -- setup
 - (UIView *)dialogView {
     if (!_dialogView) {
