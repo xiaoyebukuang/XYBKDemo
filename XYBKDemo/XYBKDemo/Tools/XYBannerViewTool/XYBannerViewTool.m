@@ -118,7 +118,6 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
     }
 }
 - (void)updateTimer {
-    NSLog(@"%@",[NSDate date]);
     CGFloat scroll_width = CGRectGetWidth(self.scrollView.frame);
     CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x  + scroll_width, 0);
     [UIView animateWithDuration:0.25 animations:^{
