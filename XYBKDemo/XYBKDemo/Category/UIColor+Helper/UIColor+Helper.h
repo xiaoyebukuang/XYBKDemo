@@ -10,6 +10,8 @@
 
 @interface UIColor (Helper)
 
++ (UIColor *)color_random;
+
 + (UIColor *)color_333333;
 
 + (UIColor *)color_666666;

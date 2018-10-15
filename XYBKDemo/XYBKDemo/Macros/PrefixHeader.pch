@@ -24,6 +24,9 @@
 /** 工具 */
 #import "UIAlertViewTool.h"
 #import "UITextFieldTool.h"
+#import "XYBannerViewTool.h"
 /** 三方库 */
 #import "MJRefreshTool.h"
+#import "UIImageView+WebCache.h"
+#import <Masonry.h>
 #endif /* PrefixHeader_pch */

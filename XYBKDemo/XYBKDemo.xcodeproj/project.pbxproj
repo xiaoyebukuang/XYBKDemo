@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */; };
 		6529D75B209C29CA0019DC03 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6529D75A209C29CA0019DC03 /* CoreTelephony.framework */; };
+		655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F624F2170733400A51D91 /* XYBannerViewTool.m */; };
 		655FA5C321653CCC009625B0 /* UIButton+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA5C221653CCC009625B0 /* UIButton+Helper.m */; };
 		655FA5C7216544FA009625B0 /* UILabel+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA5C6216544FA009625B0 /* UILabel+Helper.m */; };
 		655FA601216B2EC8009625B0 /* MJRefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA600216B2EC8009625B0 /* MJRefreshTool.m */; };
@@ -32,6 +33,8 @@
 		6529D743209962A60019DC03 /* MBProgressHUD+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Helper.h"; sourceTree = "<group>"; };
 		6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Helper.m"; sourceTree = "<group>"; };
 		6529D75A209C29CA0019DC03 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		655F624E2170733400A51D91 /* XYBannerViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBannerViewTool.h; sourceTree = "<group>"; };
+		655F624F2170733400A51D91 /* XYBannerViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBannerViewTool.m; sourceTree = "<group>"; };
 		655FA5C121653CCC009625B0 /* UIButton+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Helper.h"; sourceTree = "<group>"; };
 		655FA5C221653CCC009625B0 /* UIButton+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Helper.m"; sourceTree = "<group>"; };
 		655FA5C5216544FA009625B0 /* UILabel+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Helper.h"; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		6529D746209963C30019DC03 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				655F624A2170731400A51D91 /* XYBannerViewTool */,
 				65708122216D92FD002F9AD0 /* UITextFieldTool */,
 				655FA5FE216B2D2A009625B0 /* MJRefreshTool */,
 				6529D74B209996F60019DC03 /* UIAlertViewTool */,
@@ -121,6 +125,15 @@
 				655FA603216B3BD4009625B0 /* UIAlertViewToolModel.m */,
 			);
 			path = UIAlertViewTool;
+			sourceTree = "<group>";
+		};
+		655F624A2170731400A51D91 /* XYBannerViewTool */ = {
+			isa = PBXGroup;
+			children = (
+				655F624E2170733400A51D91 /* XYBannerViewTool.h */,
+				655F624F2170733400A51D91 /* XYBannerViewTool.m */,
+			);
+			path = XYBannerViewTool;
 			sourceTree = "<group>";
 		};
 		655FA5C021653CBC009625B0 /* UIButton+Helper */ = {
@@ -397,6 +410,7 @@
 				655FA5C321653CCC009625B0 /* UIButton+Helper.m in Sources */,
 				655FA5C7216544FA009625B0 /* UILabel+Helper.m in Sources */,
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,
+				655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */,
 				656FB3B22091700700C07A3F /* main.m in Sources */,
 				655FA601216B2EC8009625B0 /* MJRefreshTool.m in Sources */,
 				656FB3A42091700600C07A3F /* AppDelegate.m in Sources */,
