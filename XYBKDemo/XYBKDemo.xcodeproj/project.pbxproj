@@ -366,8 +366,8 @@
 		65F2D89D21757A8F00A11DD1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				65F2D89E21757A8F00A11DD1 /* XYPhotoBrowserViewController.m */,
 				65F2D89F21757A8F00A11DD1 /* XYPhotoBrowserViewController.h */,
+				65F2D89E21757A8F00A11DD1 /* XYPhotoBrowserViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -375,14 +375,14 @@
 		65F2D8A021757A8F00A11DD1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				65F2D8A821757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.h */,
+				65F2D8A421757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m */,
+				65F2D8A721757A8F00A11DD1 /* XYPhotoBrowserScrollView.h */,
 				65F2D8A121757A8F00A11DD1 /* XYPhotoBrowserScrollView.m */,
+				65F2D8A621757A8F00A11DD1 /* XYPhotoBrowserView.h */,
 				65F2D8A221757A8F00A11DD1 /* XYPhotoBrowserView.m */,
 				65F2D8A321757A8F00A11DD1 /* XYPhotoBrowserImageView.h */,
-				65F2D8A421757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m */,
 				65F2D8A521757A8F00A11DD1 /* XYPhotoBrowserImageView.m */,
-				65F2D8A621757A8F00A11DD1 /* XYPhotoBrowserView.h */,
-				65F2D8A721757A8F00A11DD1 /* XYPhotoBrowserScrollView.h */,
-				65F2D8A821757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";
