@@ -10,12 +10,6 @@
 		6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */; };
 		6529D75B209C29CA0019DC03 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6529D75A209C29CA0019DC03 /* CoreTelephony.framework */; };
 		655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F624F2170733400A51D91 /* XYBannerViewTool.m */; };
-		655F626221745DF200A51D91 /* XYPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F626121745DF200A51D91 /* XYPhotoBrowserViewController.m */; };
-		655F6267217462D900A51D91 /* XYPhotoBrowserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F6266217462D900A51D91 /* XYPhotoBrowserCollectionViewCell.m */; };
-		655F626A2174657400A51D91 /* XYPhotoBrowserScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F62692174657400A51D91 /* XYPhotoBrowserScrollView.m */; };
-		655F626D2174671B00A51D91 /* XYPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F626C2174671B00A51D91 /* XYPhotoBrowserView.m */; };
-		655F62702174678400A51D91 /* XYPhotoBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F626F2174678400A51D91 /* XYPhotoBrowserImageView.m */; };
-		655F62742174702900A51D91 /* XYPhotoBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F62732174702900A51D91 /* XYPhotoBrowserModel.m */; };
 		655F62812174824400A51D91 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655F62762174824400A51D91 /* lock@2x.png */; };
 		655F62822174824400A51D91 /* broswerPic4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62772174824400A51D91 /* broswerPic4.jpg */; };
 		655F62832174824400A51D91 /* broswerPic3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62782174824400A51D91 /* broswerPic3.jpg */; };
@@ -44,6 +38,12 @@
 		656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C82091AEF700C07A3F /* NSDate+Helper.m */; };
 		65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 65708124216D9310002F9AD0 /* UITextFieldTool.m */; };
 		65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */; };
+		65F2D8A921757A8F00A11DD1 /* XYPhotoBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D89C21757A8F00A11DD1 /* XYPhotoBrowserModel.m */; };
+		65F2D8AA21757A8F00A11DD1 /* XYPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D89E21757A8F00A11DD1 /* XYPhotoBrowserViewController.m */; };
+		65F2D8AB21757A8F00A11DD1 /* XYPhotoBrowserScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D8A121757A8F00A11DD1 /* XYPhotoBrowserScrollView.m */; };
+		65F2D8AC21757A8F00A11DD1 /* XYPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D8A221757A8F00A11DD1 /* XYPhotoBrowserView.m */; };
+		65F2D8AD21757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D8A421757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m */; };
+		65F2D8AE21757A8F00A11DD1 /* XYPhotoBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D8A521757A8F00A11DD1 /* XYPhotoBrowserImageView.m */; };
 		A8E8B5FD2E603588CC0F0F97 /* libPods-XYBKDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7242FDC246F66F43B8C4EDC5 /* libPods-XYBKDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -53,19 +53,6 @@
 		6529D75A209C29CA0019DC03 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		655F624E2170733400A51D91 /* XYBannerViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBannerViewTool.h; sourceTree = "<group>"; };
 		655F624F2170733400A51D91 /* XYBannerViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBannerViewTool.m; sourceTree = "<group>"; };
-		655F626021745DF200A51D91 /* XYPhotoBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserViewController.h; sourceTree = "<group>"; };
-		655F626121745DF200A51D91 /* XYPhotoBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserViewController.m; sourceTree = "<group>"; };
-		655F626321745EEC00A51D91 /* XYPhotoToolMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYPhotoToolMacros.h; sourceTree = "<group>"; };
-		655F6265217462D900A51D91 /* XYPhotoBrowserCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserCollectionViewCell.h; sourceTree = "<group>"; };
-		655F6266217462D900A51D91 /* XYPhotoBrowserCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserCollectionViewCell.m; sourceTree = "<group>"; };
-		655F62682174657400A51D91 /* XYPhotoBrowserScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserScrollView.h; sourceTree = "<group>"; };
-		655F62692174657400A51D91 /* XYPhotoBrowserScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserScrollView.m; sourceTree = "<group>"; };
-		655F626B2174671A00A51D91 /* XYPhotoBrowserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserView.h; sourceTree = "<group>"; };
-		655F626C2174671B00A51D91 /* XYPhotoBrowserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserView.m; sourceTree = "<group>"; };
-		655F626E2174678400A51D91 /* XYPhotoBrowserImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserImageView.h; sourceTree = "<group>"; };
-		655F626F2174678400A51D91 /* XYPhotoBrowserImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserImageView.m; sourceTree = "<group>"; };
-		655F62722174702900A51D91 /* XYPhotoBrowserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserModel.h; sourceTree = "<group>"; };
-		655F62732174702900A51D91 /* XYPhotoBrowserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserModel.m; sourceTree = "<group>"; };
 		655F62762174824400A51D91 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
 		655F62772174824400A51D91 /* broswerPic4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic4.jpg; sourceTree = "<group>"; };
 		655F62782174824400A51D91 /* broswerPic3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic3.jpg; sourceTree = "<group>"; };
@@ -112,6 +99,19 @@
 		65708124216D9310002F9AD0 /* UITextFieldTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITextFieldTool.m; sourceTree = "<group>"; };
 		65D0CA8B21536FF700A3DB66 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
+		65F2D89821757A8F00A11DD1 /* XYPhotoToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoToolMacros.h; sourceTree = "<group>"; };
+		65F2D89B21757A8F00A11DD1 /* XYPhotoBrowserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserModel.h; sourceTree = "<group>"; };
+		65F2D89C21757A8F00A11DD1 /* XYPhotoBrowserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserModel.m; sourceTree = "<group>"; };
+		65F2D89E21757A8F00A11DD1 /* XYPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserViewController.m; sourceTree = "<group>"; };
+		65F2D89F21757A8F00A11DD1 /* XYPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserViewController.h; sourceTree = "<group>"; };
+		65F2D8A121757A8F00A11DD1 /* XYPhotoBrowserScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserScrollView.m; sourceTree = "<group>"; };
+		65F2D8A221757A8F00A11DD1 /* XYPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserView.m; sourceTree = "<group>"; };
+		65F2D8A321757A8F00A11DD1 /* XYPhotoBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserImageView.h; sourceTree = "<group>"; };
+		65F2D8A421757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserCollectionViewCell.m; sourceTree = "<group>"; };
+		65F2D8A521757A8F00A11DD1 /* XYPhotoBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserImageView.m; sourceTree = "<group>"; };
+		65F2D8A621757A8F00A11DD1 /* XYPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserView.h; sourceTree = "<group>"; };
+		65F2D8A721757A8F00A11DD1 /* XYPhotoBrowserScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserScrollView.h; sourceTree = "<group>"; };
+		65F2D8A821757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserCollectionViewCell.h; sourceTree = "<group>"; };
 		7242FDC246F66F43B8C4EDC5 /* libPods-XYBKDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XYBKDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		811F4BBB79390293E6930252 /* Pods-XYBKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYBKDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XYBKDemo/Pods-XYBKDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FDCC5EECFEB0CFD00AFBD8EF /* Pods-XYBKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYBKDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XYBKDemo/Pods-XYBKDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				655F62752174824400A51D91 /* Resource */,
-				655F625C21745B7D00A51D91 /* XYPhotoTool */,
+				65F2D89721757A8F00A11DD1 /* XYPhotoTool */,
 				655F624A2170731400A51D91 /* XYBannerViewTool */,
 				65708122216D92FD002F9AD0 /* UITextFieldTool */,
 				655FA5FE216B2D2A009625B0 /* MJRefreshTool */,
@@ -179,66 +179,6 @@
 				655F624F2170733400A51D91 /* XYBannerViewTool.m */,
 			);
 			path = XYBannerViewTool;
-			sourceTree = "<group>";
-		};
-		655F625C21745B7D00A51D91 /* XYPhotoTool */ = {
-			isa = PBXGroup;
-			children = (
-				655F625E21745C5200A51D91 /* XYPhotoBrowserTool */,
-				655F625D21745B9800A51D91 /* XYPhotoPickerTool */,
-				655F626321745EEC00A51D91 /* XYPhotoToolMacros.h */,
-			);
-			path = XYPhotoTool;
-			sourceTree = "<group>";
-		};
-		655F625D21745B9800A51D91 /* XYPhotoPickerTool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = XYPhotoPickerTool;
-			sourceTree = "<group>";
-		};
-		655F625E21745C5200A51D91 /* XYPhotoBrowserTool */ = {
-			isa = PBXGroup;
-			children = (
-				655F62712174701D00A51D91 /* Models */,
-				655F6264217462B900A51D91 /* Views */,
-				655F625F21745DE600A51D91 /* Controllers */,
-			);
-			path = XYPhotoBrowserTool;
-			sourceTree = "<group>";
-		};
-		655F625F21745DE600A51D91 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				655F626021745DF200A51D91 /* XYPhotoBrowserViewController.h */,
-				655F626121745DF200A51D91 /* XYPhotoBrowserViewController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		655F6264217462B900A51D91 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				655F6265217462D900A51D91 /* XYPhotoBrowserCollectionViewCell.h */,
-				655F6266217462D900A51D91 /* XYPhotoBrowserCollectionViewCell.m */,
-				655F62682174657400A51D91 /* XYPhotoBrowserScrollView.h */,
-				655F62692174657400A51D91 /* XYPhotoBrowserScrollView.m */,
-				655F626E2174678400A51D91 /* XYPhotoBrowserImageView.h */,
-				655F626F2174678400A51D91 /* XYPhotoBrowserImageView.m */,
-				655F626B2174671A00A51D91 /* XYPhotoBrowserView.h */,
-				655F626C2174671B00A51D91 /* XYPhotoBrowserView.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		655F62712174701D00A51D91 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				655F62722174702900A51D91 /* XYPhotoBrowserModel.h */,
-				655F62732174702900A51D91 /* XYPhotoBrowserModel.m */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		655F62752174824400A51D91 /* Resource */ = {
@@ -395,6 +335,58 @@
 			path = "UIColor+Helper";
 			sourceTree = "<group>";
 		};
+		65F2D89721757A8F00A11DD1 /* XYPhotoTool */ = {
+			isa = PBXGroup;
+			children = (
+				65F2D89821757A8F00A11DD1 /* XYPhotoToolMacros.h */,
+				65F2D89921757A8F00A11DD1 /* XYPhotoBrowserTool */,
+			);
+			path = XYPhotoTool;
+			sourceTree = "<group>";
+		};
+		65F2D89921757A8F00A11DD1 /* XYPhotoBrowserTool */ = {
+			isa = PBXGroup;
+			children = (
+				65F2D89A21757A8F00A11DD1 /* Models */,
+				65F2D89D21757A8F00A11DD1 /* Controllers */,
+				65F2D8A021757A8F00A11DD1 /* Views */,
+			);
+			path = XYPhotoBrowserTool;
+			sourceTree = "<group>";
+		};
+		65F2D89A21757A8F00A11DD1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				65F2D89B21757A8F00A11DD1 /* XYPhotoBrowserModel.h */,
+				65F2D89C21757A8F00A11DD1 /* XYPhotoBrowserModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		65F2D89D21757A8F00A11DD1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				65F2D89E21757A8F00A11DD1 /* XYPhotoBrowserViewController.m */,
+				65F2D89F21757A8F00A11DD1 /* XYPhotoBrowserViewController.h */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		65F2D8A021757A8F00A11DD1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				65F2D8A121757A8F00A11DD1 /* XYPhotoBrowserScrollView.m */,
+				65F2D8A221757A8F00A11DD1 /* XYPhotoBrowserView.m */,
+				65F2D8A321757A8F00A11DD1 /* XYPhotoBrowserImageView.h */,
+				65F2D8A421757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m */,
+				65F2D8A521757A8F00A11DD1 /* XYPhotoBrowserImageView.m */,
+				65F2D8A621757A8F00A11DD1 /* XYPhotoBrowserView.h */,
+				65F2D8A721757A8F00A11DD1 /* XYPhotoBrowserScrollView.h */,
+				65F2D8A821757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.h */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		737936D24E51C6240334FC3C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,27 +529,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65F2D8A921757A8F00A11DD1 /* XYPhotoBrowserModel.m in Sources */,
 				655FA604216B3BD4009625B0 /* UIAlertViewToolModel.m in Sources */,
+				65F2D8AB21757A8F00A11DD1 /* XYPhotoBrowserScrollView.m in Sources */,
 				6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */,
-				655F626A2174657400A51D91 /* XYPhotoBrowserScrollView.m in Sources */,
+				65F2D8AC21757A8F00A11DD1 /* XYPhotoBrowserView.m in Sources */,
 				655FA607216B4CEB009625B0 /* UIAlertViewTool.m in Sources */,
-				655F626D2174671B00A51D91 /* XYPhotoBrowserView.m in Sources */,
 				65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */,
 				65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */,
-				655F62742174702900A51D91 /* XYPhotoBrowserModel.m in Sources */,
 				656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */,
 				655FA5C321653CCC009625B0 /* UIButton+Helper.m in Sources */,
-				655F62702174678400A51D91 /* XYPhotoBrowserImageView.m in Sources */,
-				655F626221745DF200A51D91 /* XYPhotoBrowserViewController.m in Sources */,
 				655FA5C7216544FA009625B0 /* UILabel+Helper.m in Sources */,
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,
 				655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */,
+				65F2D8AA21757A8F00A11DD1 /* XYPhotoBrowserViewController.m in Sources */,
 				656FB3B22091700700C07A3F /* main.m in Sources */,
 				655FA601216B2EC8009625B0 /* MJRefreshTool.m in Sources */,
-				655F6267217462D900A51D91 /* XYPhotoBrowserCollectionViewCell.m in Sources */,
 				656FB3A42091700600C07A3F /* AppDelegate.m in Sources */,
+				65F2D8AE21757A8F00A11DD1 /* XYPhotoBrowserImageView.m in Sources */,
 				656FB3C020919FF500C07A3F /* NSString+Helper.m in Sources */,
 				656FB3C42091AB6E00C07A3F /* UIView+Helper.m in Sources */,
+				65F2D8AD21757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
