@@ -87,7 +87,7 @@
             break;
         case UITextFieldToolCharacter:
         {
-            //只输入字符
+            //只输入字母
             NSUInteger length = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
             for (int loopIndex = 0; loopIndex < length; loopIndex ++) {
                 unichar character = [string characterAtIndex:loopIndex];
@@ -103,7 +103,7 @@
             break;
         case UITextFieldToolNumberCharacter:
         {
-            //输入字符+数字
+            //输入字母+数字
             NSUInteger length = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
             for (int loopIndex = 0; loopIndex < length; loopIndex ++) {
                 unichar character = [string characterAtIndex:loopIndex];

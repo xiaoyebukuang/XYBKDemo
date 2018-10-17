@@ -43,11 +43,28 @@
 + (void)showError:(NSString *)error;
 
 /**
+ 错误提示，加载到window上，自动消失，消失回调
+ 
+ @param error 错误提示语
+ @param completionBlock 消失回调
+ */
++ (void)showError:(NSString *)error completeBlcok:(MBProgressHUDCompletionBlock)completionBlock;
+
+/**
  错误提示，加载到自定view上，自动消失
  @param error 错误提示语
  @param view  要添加的View
  */
 + (void)showError:(NSString *)error ToView:(UIView *)view;
+
+/**
+ 错误提示，加载到自定view上，自动消失，消失回调
+
+ @param error 错误提示语
+ @param view 要添加的View
+ @param completionBlock 回调
+ */
++ (void)showError:(NSString *)error ToView:(UIView *)view completeBlcok:(MBProgressHUDCompletionBlock)completionBlock;
 
 //TODO: 成功提示
 /**
@@ -57,10 +74,10 @@
 + (void)showSuccess:(NSString *)success;
 
 /**
- 成功提示，加载到window上，成功回调，自动消失
+ 成功提示，加载到window上，自动消失，消失回调
 
  @param success 成功提示语
- @param completionBlock 成功回调
+ @param completionBlock 消失回调
  */
 + (void)showSuccess:(NSString *)success completeBlcok:(MBProgressHUDCompletionBlock)completionBlock;
 
@@ -72,7 +89,7 @@
 + (void)showSuccess:(NSString *)success ToView:(UIView *)view;
 
 /**
- 成功提示，加载到指定view上，成功回调，自动消失
+ 成功提示，加载到指定view上，自动消失，消失回调
 
  @param success 成功提示语
  @param view 要添加的view

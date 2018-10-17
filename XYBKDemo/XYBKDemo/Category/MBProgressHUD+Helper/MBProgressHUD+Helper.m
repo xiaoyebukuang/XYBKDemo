@@ -31,9 +31,15 @@ typedef NS_ENUM(NSInteger, ProgressHUDType) {
 + (void)showError:(NSString *)error{
     [self showError:error ToView:nil];
 }
++ (void)showError:(NSString *)error completeBlcok:(MBProgressHUDCompletionBlock)completionBlock {
+    [self showError:error ToView:nil completeBlcok:completionBlock];
+}
 + (void)showError:(NSString *)error ToView:(UIView *)view{
+    [self showError:error ToView:view completeBlcok:nil];
+}
++ (void)showError:(NSString *)error ToView:(UIView *)view completeBlcok:(MBProgressHUDCompletionBlock)completionBlock {
     [self hideHUDForView:view];
-    [self showMessage:error ToView:view HUDType:ProgressHUDTypeError completeBlcok:nil];
+    [self showMessage:error ToView:view HUDType:ProgressHUDTypeError completeBlcok:completionBlock];
 }
 #pragma mark -- 显示正确信息
 + (void)showSuccess:(NSString *)success {
