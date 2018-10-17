@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, UITextFieldToolType) {
-    UITextFieldToolNormal,          //常规输入,没有限制
-    UITextFieldToolNumber,          //限制数字，限制个数
-    UITextFieldToolCharacter,       //限制字符，限制个数
-    UITextFieldToolNumberCharacter, //限制数字+字符，限制个数
-    UITextFieldToolWord             //常规输入，限制个数
+    UITextFieldToolNormal,          //常规输入
+    UITextFieldToolNumber,          //限制数字
+    UITextFieldToolCharacter,       //限制字母
+    UITextFieldToolNumberCharacter, //限制数字+字母
 };
 
 
 @interface UITextFieldTool : UITextField
 
-
+/** 最大限制个数 */
+@property (nonatomic, assign) NSInteger maxCount;
 
 /**
  创建UITextField（类型）

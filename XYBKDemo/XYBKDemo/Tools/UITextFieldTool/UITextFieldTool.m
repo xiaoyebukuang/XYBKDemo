@@ -11,8 +11,6 @@
 @interface UITextFieldTool()<UITextFieldDelegate>
 /** 类型 */
 @property (nonatomic, assign) UITextFieldToolType fieldType;
-/** 最大限制个数 */
-@property (nonatomic, assign) NSInteger maxCount;
 @end
 
 @implementation UITextFieldTool
@@ -26,6 +24,7 @@
     if (self) {
         if (placeHolder) {
             self.placeholder = placeHolder;
+            self.maxCount = NSIntegerMax;
         }
         self.fieldType = filedType;
         [self setData];
@@ -132,32 +131,18 @@
     switch (self.fieldType) {
         case UITextFieldToolNormal:
         {
-            self.maxCount = NSIntegerMax;
             self.keyboardType = UIKeyboardTypeDefault;
         }
             break;
         case UITextFieldToolNumber:
         {
-            self.maxCount = 11;
             self.keyboardType = UIKeyboardTypeNumberPad;
         }
             break;
         case UITextFieldToolCharacter:
-        {
-            self.maxCount = 10;
-            self.keyboardType = UIKeyboardTypeASCIICapable;
-        }
-            break;
         case UITextFieldToolNumberCharacter:
         {
-            self.maxCount = 9;
             self.keyboardType = UIKeyboardTypeASCIICapable;
-        }
-            break;
-        case UITextFieldToolWord:
-        {
-            self.maxCount = 6;
-            self.keyboardType = UIKeyboardTypeDefault;
         }
             break;
         default:
