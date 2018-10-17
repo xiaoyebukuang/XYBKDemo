@@ -36,7 +36,8 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
 #pragma mark -- XYPhotoBrowserScrollViewDelegate
 // 单击调用
 - (void) pickerPhotoScrollViewDidSingleClick:(XYPhotoBrowserScrollView *)photoScrollView {
-    NSLog(@"单击");
+    NSLog(@"单击current = %ld",self.currentPage);
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 //双击
 - (void) pickerPhotoScrollViewDidDoubleClick:(XYPhotoBrowserScrollView *)photoScrollView {

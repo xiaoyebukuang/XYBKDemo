@@ -10,7 +10,7 @@
 /** 相册浏览器 */
 @interface XYPhotoBrowserViewController : UIViewController
 /** 原数组 */
-@property (nonatomic ,strong) NSArray* photosArr;
+@property (nonatomic ,strong) NSArray *photosArr;
 
 /** 当前的页码 */
 @property (nonatomic ,assign) NSInteger currentPage;
