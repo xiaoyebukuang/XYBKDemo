@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         self.textColor = textColor;
-        self.font = self.font;
+        self.font = font;
     }
     return self;
 }
@@ -24,7 +24,7 @@
     if (self) {
         self.text = text;
         self.textColor = textColor;
-        self.font = self.font;
+        self.font = font;
     }
     return self;
 }
@@ -33,7 +33,7 @@
     self = [super init];
     if (self) {
         self.textColor = textColor;
-        self.font = self.font;
+        self.font = font;
         self.textAlignment = textAlignment;
     }
     return self;
@@ -45,7 +45,7 @@
         self.text = text;
         self.textColor = textColor;
         self.textAlignment = textAlignment;
-        self.font = self.font;
+        self.font = font;
     }
     return self;
 }

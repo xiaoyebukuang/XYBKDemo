@@ -58,10 +58,14 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
     [self stopTimer];
     self.isRunning = isRunning;
     self.imagesArray = [NSMutableArray arrayWithArray:imagesArr];
-    //在数组的尾部添加原数组第一个元素
-    [self.imagesArray addObject:[imagesArr firstObject]];
-    //在数组的首部添加原数组最后一个元素
-    [self.imagesArray insertObject:[imagesArr lastObject] atIndex:0];
+    if (imagesArr.count == 1) {
+        self.isRunning = NO;
+    } else {
+        //在数组的尾部添加原数组第一个元素
+        [self.imagesArray addObject:[imagesArr firstObject]];
+        //在数组的首部添加原数组最后一个元素
+        [self.imagesArray insertObject:[imagesArr lastObject] atIndex:0];
+    }
     [self setImageView];
     if (self.isRunning) {
         [self startTimer];
@@ -95,7 +99,17 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
 }
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (self.imagesArray.count > 0) {
+    if (self.imagesArray.count == 0) {
+        return;
+    }
+    if (self.imagesArray.count == 1) {
+        self.pageControl.hidden = YES;
+        self.pageControl.currentPage = 0;
+        self.pageControl.numberOfPages = self.imagesArray.count;
+        self.scrollView.contentOffset = CGPointMake(0, 0);
+    }
+    if (self.imagesArray.count >= 2) {
+        self.pageControl.hidden = NO;
         self.pageControl.numberOfPages = self.imagesArray.count - 2;
         self.pageControl.currentPage = 0;
         self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.scrollView.frame), 0);
@@ -104,7 +118,7 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
 #pragma mark -- evetn
 //手势点击
 - (void)tapGestureEvent:(UITapGestureRecognizer *)tap {
-    if (self.imagesArray.count >0) {
+    if (self.imagesArray.count > 0) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(bannerViewToolEvent:)]) {
             [self.delegate bannerViewToolEvent:self.pageControl.currentPage];
         }
@@ -141,6 +155,9 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
 #pragma mark UIScrollViewDelegate
 /** 开始滚动时 */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.imagesArray.count <= 1) {
+        return;
+    }
     CGFloat scroll_width = CGRectGetWidth(scrollView.frame);
     if (scrollView.contentOffset.x < scroll_width) {
         [self.scrollView setContentOffset:CGPointMake(scroll_width*(self.imagesArray.count - 1), 0) animated:NO];
@@ -151,6 +168,9 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
 }
 /** 停止滚动时 */
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.imagesArray.count <= 1) {
+        return;
+    }
     CGFloat pageWidth = scrollView.frame.size.width;
     int currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     if (currentPage > self.imagesArray.count - 2) {
@@ -187,6 +207,4 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
     }
     return _pageControl;
 }
-
-
 @end
