@@ -38,12 +38,39 @@
 		656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C82091AEF700C07A3F /* NSDate+Helper.m */; };
 		65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 65708124216D9310002F9AD0 /* UITextFieldTool.m */; };
 		65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */; };
-		65F2D8A921757A8F00A11DD1 /* XYPhotoBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D89C21757A8F00A11DD1 /* XYPhotoBrowserModel.m */; };
-		65F2D8AA21757A8F00A11DD1 /* XYPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D89E21757A8F00A11DD1 /* XYPhotoBrowserViewController.m */; };
-		65F2D8AB21757A8F00A11DD1 /* XYPhotoBrowserScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D8A121757A8F00A11DD1 /* XYPhotoBrowserScrollView.m */; };
-		65F2D8AC21757A8F00A11DD1 /* XYPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D8A221757A8F00A11DD1 /* XYPhotoBrowserView.m */; };
-		65F2D8AD21757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D8A421757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m */; };
-		65F2D8AE21757A8F00A11DD1 /* XYPhotoBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F2D8A521757A8F00A11DD1 /* XYPhotoBrowserImageView.m */; };
+		65F7ECFE218A00C5008ABDDD /* assets_finish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */; };
+		65F7ECFF218A00C5008ABDDD /* assets_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC8218A00C4008ABDDD /* assets_back@3x.png */; };
+		65F7ED00218A00C5008ABDDD /* assets_preview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC9218A00C4008ABDDD /* assets_preview@2x.png */; };
+		65F7ED01218A00C5008ABDDD /* assets_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECCA218A00C4008ABDDD /* assets_selected.png */; };
+		65F7ED02218A00C5008ABDDD /* assets_preview@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECCB218A00C4008ABDDD /* assets_preview@3x.png */; };
+		65F7ED03218A00C5008ABDDD /* assets_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECCC218A00C4008ABDDD /* assets_preview.png */; };
+		65F7ED04218A00C5008ABDDD /* assets_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECCD218A00C4008ABDDD /* assets_back@2x.png */; };
+		65F7ED05218A00C5008ABDDD /* assets_finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECCE218A00C4008ABDDD /* assets_finish@2x.png */; };
+		65F7ED06218A00C5008ABDDD /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECCF218A00C4008ABDDD /* blank.png */; };
+		65F7ED07218A00C5008ABDDD /* assets_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD0218A00C4008ABDDD /* assets_selected@3x.png */; };
+		65F7ED08218A00C5008ABDDD /* assets_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD1218A00C4008ABDDD /* assets_back.png */; };
+		65F7ED09218A00C5008ABDDD /* assets_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD2218A00C4008ABDDD /* assets_selected@2x.png */; };
+		65F7ED0A218A00C5008ABDDD /* assets_finish.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD3218A00C4008ABDDD /* assets_finish.png */; };
+		65F7ED0B218A00C5008ABDDD /* blank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD4218A00C4008ABDDD /* blank@2x.png */; };
+		65F7ED0C218A00C5008ABDDD /* assets_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD5218A00C4008ABDDD /* assets_normal.png */; };
+		65F7ED0D218A00C5008ABDDD /* blank@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD6218A00C4008ABDDD /* blank@3x.png */; };
+		65F7ED0E218A00C5008ABDDD /* assets_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD7218A00C4008ABDDD /* assets_normal@2x.png */; };
+		65F7ED0F218A00C5008ABDDD /* assets_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECD8218A00C4008ABDDD /* assets_normal@3x.png */; };
+		65F7ED10218A00C5008ABDDD /* XYPhotoPickerPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECDF218A00C4008ABDDD /* XYPhotoPickerPreviewViewController.m */; };
+		65F7ED11218A00C5008ABDDD /* XYPhotoPickerAssetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECE0218A00C4008ABDDD /* XYPhotoPickerAssetsViewController.m */; };
+		65F7ED13218A00C5008ABDDD /* XYPhotoPickerGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECE2218A00C4008ABDDD /* XYPhotoPickerGroupViewController.m */; };
+		65F7ED14218A00C5008ABDDD /* XYPhotoPickerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECE5218A00C4008ABDDD /* XYPhotoPickerGroup.m */; };
+		65F7ED16218A00C5008ABDDD /* XYPhotoPickerAssetsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECEB218A00C4008ABDDD /* XYPhotoPickerAssetsCollectionViewCell.m */; };
+		65F7ED17218A00C5008ABDDD /* XYPhotoPickerGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECEC218A00C4008ABDDD /* XYPhotoPickerGroupTableViewCell.m */; };
+		65F7ED19218A00C5008ABDDD /* XYPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECF3218A00C4008ABDDD /* XYPhotoBrowserViewController.m */; };
+		65F7ED1A218A00C5008ABDDD /* XYPhotoBrowserScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECF6218A00C5008ABDDD /* XYPhotoBrowserScrollView.m */; };
+		65F7ED1B218A00C5008ABDDD /* XYPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECF7218A00C5008ABDDD /* XYPhotoBrowserView.m */; };
+		65F7ED1C218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECF9218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m */; };
+		65F7ED1D218A00C5008ABDDD /* XYPhotoBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ECFA218A00C5008ABDDD /* XYPhotoBrowserImageView.m */; };
+		65F7ED20218A0169008ABDDD /* XYPhotoPickerDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ED1F218A0169008ABDDD /* XYPhotoPickerDatas.m */; };
+		65F7ED23218A090C008ABDDD /* XYPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ED21218A090B008ABDDD /* XYPhotoPickerViewController.m */; };
+		65F7ED26218A0953008ABDDD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ED25218A0953008ABDDD /* RootViewController.m */; };
+		65F7ED95218A16CF008ABDDD /* XYPhotoTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F7ED94218A16CF008ABDDD /* XYPhotoTransitionView.m */; };
 		A8E8B5FD2E603588CC0F0F97 /* libPods-XYBKDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7242FDC246F66F43B8C4EDC5 /* libPods-XYBKDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -99,19 +126,55 @@
 		65708124216D9310002F9AD0 /* UITextFieldTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITextFieldTool.m; sourceTree = "<group>"; };
 		65D0CA8B21536FF700A3DB66 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
-		65F2D89821757A8F00A11DD1 /* XYPhotoToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoToolMacros.h; sourceTree = "<group>"; };
-		65F2D89B21757A8F00A11DD1 /* XYPhotoBrowserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserModel.h; sourceTree = "<group>"; };
-		65F2D89C21757A8F00A11DD1 /* XYPhotoBrowserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserModel.m; sourceTree = "<group>"; };
-		65F2D89E21757A8F00A11DD1 /* XYPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserViewController.m; sourceTree = "<group>"; };
-		65F2D89F21757A8F00A11DD1 /* XYPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserViewController.h; sourceTree = "<group>"; };
-		65F2D8A121757A8F00A11DD1 /* XYPhotoBrowserScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserScrollView.m; sourceTree = "<group>"; };
-		65F2D8A221757A8F00A11DD1 /* XYPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserView.m; sourceTree = "<group>"; };
-		65F2D8A321757A8F00A11DD1 /* XYPhotoBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserImageView.h; sourceTree = "<group>"; };
-		65F2D8A421757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserCollectionViewCell.m; sourceTree = "<group>"; };
-		65F2D8A521757A8F00A11DD1 /* XYPhotoBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserImageView.m; sourceTree = "<group>"; };
-		65F2D8A621757A8F00A11DD1 /* XYPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserView.h; sourceTree = "<group>"; };
-		65F2D8A721757A8F00A11DD1 /* XYPhotoBrowserScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserScrollView.h; sourceTree = "<group>"; };
-		65F2D8A821757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserCollectionViewCell.h; sourceTree = "<group>"; };
+		65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_finish@3x.png"; sourceTree = "<group>"; };
+		65F7ECC8218A00C4008ABDDD /* assets_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_back@3x.png"; sourceTree = "<group>"; };
+		65F7ECC9218A00C4008ABDDD /* assets_preview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_preview@2x.png"; sourceTree = "<group>"; };
+		65F7ECCA218A00C4008ABDDD /* assets_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_selected.png; sourceTree = "<group>"; };
+		65F7ECCB218A00C4008ABDDD /* assets_preview@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_preview@3x.png"; sourceTree = "<group>"; };
+		65F7ECCC218A00C4008ABDDD /* assets_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_preview.png; sourceTree = "<group>"; };
+		65F7ECCD218A00C4008ABDDD /* assets_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_back@2x.png"; sourceTree = "<group>"; };
+		65F7ECCE218A00C4008ABDDD /* assets_finish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_finish@2x.png"; sourceTree = "<group>"; };
+		65F7ECCF218A00C4008ABDDD /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
+		65F7ECD0218A00C4008ABDDD /* assets_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_selected@3x.png"; sourceTree = "<group>"; };
+		65F7ECD1218A00C4008ABDDD /* assets_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_back.png; sourceTree = "<group>"; };
+		65F7ECD2218A00C4008ABDDD /* assets_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_selected@2x.png"; sourceTree = "<group>"; };
+		65F7ECD3218A00C4008ABDDD /* assets_finish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_finish.png; sourceTree = "<group>"; };
+		65F7ECD4218A00C4008ABDDD /* blank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank@2x.png"; sourceTree = "<group>"; };
+		65F7ECD5218A00C4008ABDDD /* assets_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets_normal.png; sourceTree = "<group>"; };
+		65F7ECD6218A00C4008ABDDD /* blank@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blank@3x.png"; sourceTree = "<group>"; };
+		65F7ECD7218A00C4008ABDDD /* assets_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_normal@2x.png"; sourceTree = "<group>"; };
+		65F7ECD8218A00C4008ABDDD /* assets_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_normal@3x.png"; sourceTree = "<group>"; };
+		65F7ECD9218A00C4008ABDDD /* XYPhotoToolMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoToolMacros.h; sourceTree = "<group>"; };
+		65F7ECDC218A00C4008ABDDD /* XYPhotoPickerAssetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerAssetsViewController.h; sourceTree = "<group>"; };
+		65F7ECDE218A00C4008ABDDD /* XYPhotoPickerGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerGroupViewController.h; sourceTree = "<group>"; };
+		65F7ECDF218A00C4008ABDDD /* XYPhotoPickerPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerPreviewViewController.m; sourceTree = "<group>"; };
+		65F7ECE0218A00C4008ABDDD /* XYPhotoPickerAssetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerAssetsViewController.m; sourceTree = "<group>"; };
+		65F7ECE2218A00C4008ABDDD /* XYPhotoPickerGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerGroupViewController.m; sourceTree = "<group>"; };
+		65F7ECE3218A00C4008ABDDD /* XYPhotoPickerPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerPreviewViewController.h; sourceTree = "<group>"; };
+		65F7ECE5218A00C4008ABDDD /* XYPhotoPickerGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerGroup.m; sourceTree = "<group>"; };
+		65F7ECE7218A00C4008ABDDD /* XYPhotoPickerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerGroup.h; sourceTree = "<group>"; };
+		65F7ECEA218A00C4008ABDDD /* XYPhotoPickerGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerGroupTableViewCell.h; sourceTree = "<group>"; };
+		65F7ECEB218A00C4008ABDDD /* XYPhotoPickerAssetsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerAssetsCollectionViewCell.m; sourceTree = "<group>"; };
+		65F7ECEC218A00C4008ABDDD /* XYPhotoPickerGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerGroupTableViewCell.m; sourceTree = "<group>"; };
+		65F7ECED218A00C4008ABDDD /* XYPhotoPickerAssetsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerAssetsCollectionViewCell.h; sourceTree = "<group>"; };
+		65F7ECF3218A00C4008ABDDD /* XYPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserViewController.m; sourceTree = "<group>"; };
+		65F7ECF4218A00C5008ABDDD /* XYPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserViewController.h; sourceTree = "<group>"; };
+		65F7ECF6218A00C5008ABDDD /* XYPhotoBrowserScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserScrollView.m; sourceTree = "<group>"; };
+		65F7ECF7218A00C5008ABDDD /* XYPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserView.m; sourceTree = "<group>"; };
+		65F7ECF8218A00C5008ABDDD /* XYPhotoBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserImageView.h; sourceTree = "<group>"; };
+		65F7ECF9218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserCollectionViewCell.m; sourceTree = "<group>"; };
+		65F7ECFA218A00C5008ABDDD /* XYPhotoBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoBrowserImageView.m; sourceTree = "<group>"; };
+		65F7ECFB218A00C5008ABDDD /* XYPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserView.h; sourceTree = "<group>"; };
+		65F7ECFC218A00C5008ABDDD /* XYPhotoBrowserScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserScrollView.h; sourceTree = "<group>"; };
+		65F7ECFD218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoBrowserCollectionViewCell.h; sourceTree = "<group>"; };
+		65F7ED1E218A0169008ABDDD /* XYPhotoPickerDatas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerDatas.h; sourceTree = "<group>"; };
+		65F7ED1F218A0169008ABDDD /* XYPhotoPickerDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerDatas.m; sourceTree = "<group>"; };
+		65F7ED21218A090B008ABDDD /* XYPhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerViewController.m; sourceTree = "<group>"; };
+		65F7ED22218A090B008ABDDD /* XYPhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerViewController.h; sourceTree = "<group>"; };
+		65F7ED24218A0953008ABDDD /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		65F7ED25218A0953008ABDDD /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		65F7ED93218A16CF008ABDDD /* XYPhotoTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPhotoTransitionView.h; sourceTree = "<group>"; };
+		65F7ED94218A16CF008ABDDD /* XYPhotoTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPhotoTransitionView.m; sourceTree = "<group>"; };
 		7242FDC246F66F43B8C4EDC5 /* libPods-XYBKDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XYBKDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		811F4BBB79390293E6930252 /* Pods-XYBKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYBKDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XYBKDemo/Pods-XYBKDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FDCC5EECFEB0CFD00AFBD8EF /* Pods-XYBKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XYBKDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XYBKDemo/Pods-XYBKDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,7 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				655F62752174824400A51D91 /* Resource */,
-				65F2D89721757A8F00A11DD1 /* XYPhotoTool */,
+				65F7ECC5218A00C4008ABDDD /* XYPhotoTool */,
 				655F624A2170731400A51D91 /* XYBannerViewTool */,
 				65708122216D92FD002F9AD0 /* UITextFieldTool */,
 				655FA5FE216B2D2A009625B0 /* MJRefreshTool */,
@@ -335,56 +398,132 @@
 			path = "UIColor+Helper";
 			sourceTree = "<group>";
 		};
-		65F2D89721757A8F00A11DD1 /* XYPhotoTool */ = {
+		65F7ECC5218A00C4008ABDDD /* XYPhotoTool */ = {
 			isa = PBXGroup;
 			children = (
-				65F2D89821757A8F00A11DD1 /* XYPhotoToolMacros.h */,
-				65F2D89921757A8F00A11DD1 /* XYPhotoBrowserTool */,
+				65F7ECD9218A00C4008ABDDD /* XYPhotoToolMacros.h */,
+				65F7ECC6218A00C4008ABDDD /* Resources */,
+				65F7ECDA218A00C4008ABDDD /* XYPhotoPickerTool */,
+				65F7ECF1218A00C4008ABDDD /* XYPhotoBrowserTool */,
+				65F7ED8C218A1555008ABDDD /* XYPhotoTransitionView */,
 			);
 			path = XYPhotoTool;
 			sourceTree = "<group>";
 		};
-		65F2D89921757A8F00A11DD1 /* XYPhotoBrowserTool */ = {
+		65F7ECC6218A00C4008ABDDD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				65F2D89A21757A8F00A11DD1 /* Models */,
-				65F2D89D21757A8F00A11DD1 /* Controllers */,
-				65F2D8A021757A8F00A11DD1 /* Views */,
+				65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */,
+				65F7ECC8218A00C4008ABDDD /* assets_back@3x.png */,
+				65F7ECC9218A00C4008ABDDD /* assets_preview@2x.png */,
+				65F7ECCA218A00C4008ABDDD /* assets_selected.png */,
+				65F7ECCB218A00C4008ABDDD /* assets_preview@3x.png */,
+				65F7ECCC218A00C4008ABDDD /* assets_preview.png */,
+				65F7ECCD218A00C4008ABDDD /* assets_back@2x.png */,
+				65F7ECCE218A00C4008ABDDD /* assets_finish@2x.png */,
+				65F7ECCF218A00C4008ABDDD /* blank.png */,
+				65F7ECD0218A00C4008ABDDD /* assets_selected@3x.png */,
+				65F7ECD1218A00C4008ABDDD /* assets_back.png */,
+				65F7ECD2218A00C4008ABDDD /* assets_selected@2x.png */,
+				65F7ECD3218A00C4008ABDDD /* assets_finish.png */,
+				65F7ECD4218A00C4008ABDDD /* blank@2x.png */,
+				65F7ECD5218A00C4008ABDDD /* assets_normal.png */,
+				65F7ECD6218A00C4008ABDDD /* blank@3x.png */,
+				65F7ECD7218A00C4008ABDDD /* assets_normal@2x.png */,
+				65F7ECD8218A00C4008ABDDD /* assets_normal@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		65F7ECDA218A00C4008ABDDD /* XYPhotoPickerTool */ = {
+			isa = PBXGroup;
+			children = (
+				65F7ECDB218A00C4008ABDDD /* Controller */,
+				65F7ECE4218A00C4008ABDDD /* Model */,
+				65F7ECE9218A00C4008ABDDD /* View */,
+			);
+			path = XYPhotoPickerTool;
+			sourceTree = "<group>";
+		};
+		65F7ECDB218A00C4008ABDDD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				65F7ED24218A0953008ABDDD /* RootViewController.h */,
+				65F7ED25218A0953008ABDDD /* RootViewController.m */,
+				65F7ED22218A090B008ABDDD /* XYPhotoPickerViewController.h */,
+				65F7ED21218A090B008ABDDD /* XYPhotoPickerViewController.m */,
+				65F7ECDE218A00C4008ABDDD /* XYPhotoPickerGroupViewController.h */,
+				65F7ECE2218A00C4008ABDDD /* XYPhotoPickerGroupViewController.m */,
+				65F7ECDC218A00C4008ABDDD /* XYPhotoPickerAssetsViewController.h */,
+				65F7ECE0218A00C4008ABDDD /* XYPhotoPickerAssetsViewController.m */,
+				65F7ECE3218A00C4008ABDDD /* XYPhotoPickerPreviewViewController.h */,
+				65F7ECDF218A00C4008ABDDD /* XYPhotoPickerPreviewViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		65F7ECE4218A00C4008ABDDD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				65F7ED1E218A0169008ABDDD /* XYPhotoPickerDatas.h */,
+				65F7ED1F218A0169008ABDDD /* XYPhotoPickerDatas.m */,
+				65F7ECE7218A00C4008ABDDD /* XYPhotoPickerGroup.h */,
+				65F7ECE5218A00C4008ABDDD /* XYPhotoPickerGroup.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		65F7ECE9218A00C4008ABDDD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65F7ECEA218A00C4008ABDDD /* XYPhotoPickerGroupTableViewCell.h */,
+				65F7ECEC218A00C4008ABDDD /* XYPhotoPickerGroupTableViewCell.m */,
+				65F7ECED218A00C4008ABDDD /* XYPhotoPickerAssetsCollectionViewCell.h */,
+				65F7ECEB218A00C4008ABDDD /* XYPhotoPickerAssetsCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		65F7ECF1218A00C4008ABDDD /* XYPhotoBrowserTool */ = {
+			isa = PBXGroup;
+			children = (
+				65F7ECF2218A00C4008ABDDD /* Controllers */,
+				65F7ECF5218A00C5008ABDDD /* Views */,
 			);
 			path = XYPhotoBrowserTool;
 			sourceTree = "<group>";
 		};
-		65F2D89A21757A8F00A11DD1 /* Models */ = {
+		65F7ECF2218A00C4008ABDDD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				65F2D89B21757A8F00A11DD1 /* XYPhotoBrowserModel.h */,
-				65F2D89C21757A8F00A11DD1 /* XYPhotoBrowserModel.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		65F2D89D21757A8F00A11DD1 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				65F2D89F21757A8F00A11DD1 /* XYPhotoBrowserViewController.h */,
-				65F2D89E21757A8F00A11DD1 /* XYPhotoBrowserViewController.m */,
+				65F7ECF4218A00C5008ABDDD /* XYPhotoBrowserViewController.h */,
+				65F7ECF3218A00C4008ABDDD /* XYPhotoBrowserViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		65F2D8A021757A8F00A11DD1 /* Views */ = {
+		65F7ECF5218A00C5008ABDDD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				65F2D8A821757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.h */,
-				65F2D8A421757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m */,
-				65F2D8A721757A8F00A11DD1 /* XYPhotoBrowserScrollView.h */,
-				65F2D8A121757A8F00A11DD1 /* XYPhotoBrowserScrollView.m */,
-				65F2D8A621757A8F00A11DD1 /* XYPhotoBrowserView.h */,
-				65F2D8A221757A8F00A11DD1 /* XYPhotoBrowserView.m */,
-				65F2D8A321757A8F00A11DD1 /* XYPhotoBrowserImageView.h */,
-				65F2D8A521757A8F00A11DD1 /* XYPhotoBrowserImageView.m */,
+				65F7ECFD218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.h */,
+				65F7ECF9218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m */,
+				65F7ECFC218A00C5008ABDDD /* XYPhotoBrowserScrollView.h */,
+				65F7ECF6218A00C5008ABDDD /* XYPhotoBrowserScrollView.m */,
+				65F7ECF8218A00C5008ABDDD /* XYPhotoBrowserImageView.h */,
+				65F7ECFA218A00C5008ABDDD /* XYPhotoBrowserImageView.m */,
+				65F7ECFB218A00C5008ABDDD /* XYPhotoBrowserView.h */,
+				65F7ECF7218A00C5008ABDDD /* XYPhotoBrowserView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		65F7ED8C218A1555008ABDDD /* XYPhotoTransitionView */ = {
+			isa = PBXGroup;
+			children = (
+				65F7ED93218A16CF008ABDDD /* XYPhotoTransitionView.h */,
+				65F7ED94218A16CF008ABDDD /* XYPhotoTransitionView.m */,
+			);
+			path = XYPhotoTransitionView;
 			sourceTree = "<group>";
 		};
 		737936D24E51C6240334FC3C /* Pods */ = {
@@ -457,20 +596,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				656FB3AF2091700700C07A3F /* LaunchScreen.storyboard in Resources */,
+				65F7ED07218A00C5008ABDDD /* assets_selected@3x.png in Resources */,
 				655F62892174824400A51D91 /* checkbox_pic_non@3x.png in Resources */,
+				65F7ED00218A00C5008ABDDD /* assets_preview@2x.png in Resources */,
+				65F7ED02218A00C5008ABDDD /* assets_preview@3x.png in Resources */,
 				655F62812174824400A51D91 /* lock@2x.png in Resources */,
+				65F7ED09218A00C5008ABDDD /* assets_selected@2x.png in Resources */,
+				65F7ED0A218A00C5008ABDDD /* assets_finish.png in Resources */,
 				655F62822174824400A51D91 /* broswerPic4.jpg in Resources */,
+				65F7ED04218A00C5008ABDDD /* assets_back@2x.png in Resources */,
 				655F62862174824400A51D91 /* broswerPic1.jpg in Resources */,
+				65F7ECFE218A00C5008ABDDD /* assets_finish@3x.png in Resources */,
+				65F7ED0E218A00C5008ABDDD /* assets_normal@2x.png in Resources */,
 				655F628A2174824400A51D91 /* icon_pic_break@2x.png in Resources */,
 				655F628D217489DC00A51D91 /* broswerPic5.jpg in Resources */,
+				65F7ED03218A00C5008ABDDD /* assets_preview.png in Resources */,
+				65F7ED0B218A00C5008ABDDD /* blank@2x.png in Resources */,
 				655F62832174824400A51D91 /* broswerPic3.jpg in Resources */,
 				655F62882174824400A51D91 /* checkbox_pic@2x.png in Resources */,
 				655F628B2174824400A51D91 /* checkbox_pic_non@2x.png in Resources */,
+				65F7ECFF218A00C5008ABDDD /* assets_back@3x.png in Resources */,
+				65F7ED01218A00C5008ABDDD /* assets_selected.png in Resources */,
+				65F7ED05218A00C5008ABDDD /* assets_finish@2x.png in Resources */,
 				655F62872174824400A51D91 /* checkbox_pic@3x.png in Resources */,
+				65F7ED0F218A00C5008ABDDD /* assets_normal@3x.png in Resources */,
 				655F62842174824400A51D91 /* broswerPic2.jpg in Resources */,
+				65F7ED06218A00C5008ABDDD /* blank.png in Resources */,
+				65F7ED0C218A00C5008ABDDD /* assets_normal.png in Resources */,
 				656FB3AC2091700700C07A3F /* Assets.xcassets in Resources */,
+				65F7ED0D218A00C5008ABDDD /* blank@3x.png in Resources */,
 				655F62852174824400A51D91 /* broswerPic0.jpg in Resources */,
 				656FB3AA2091700600C07A3F /* Main.storyboard in Resources */,
+				65F7ED08218A00C5008ABDDD /* assets_back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,27 +686,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65F2D8A921757A8F00A11DD1 /* XYPhotoBrowserModel.m in Sources */,
 				655FA604216B3BD4009625B0 /* UIAlertViewToolModel.m in Sources */,
-				65F2D8AB21757A8F00A11DD1 /* XYPhotoBrowserScrollView.m in Sources */,
+				65F7ED23218A090C008ABDDD /* XYPhotoPickerViewController.m in Sources */,
 				6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */,
-				65F2D8AC21757A8F00A11DD1 /* XYPhotoBrowserView.m in Sources */,
 				655FA607216B4CEB009625B0 /* UIAlertViewTool.m in Sources */,
 				65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */,
+				65F7ED95218A16CF008ABDDD /* XYPhotoTransitionView.m in Sources */,
+				65F7ED14218A00C5008ABDDD /* XYPhotoPickerGroup.m in Sources */,
 				65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */,
 				656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */,
+				65F7ED1D218A00C5008ABDDD /* XYPhotoBrowserImageView.m in Sources */,
 				655FA5C321653CCC009625B0 /* UIButton+Helper.m in Sources */,
 				655FA5C7216544FA009625B0 /* UILabel+Helper.m in Sources */,
+				65F7ED20218A0169008ABDDD /* XYPhotoPickerDatas.m in Sources */,
+				65F7ED1A218A00C5008ABDDD /* XYPhotoBrowserScrollView.m in Sources */,
+				65F7ED1C218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m in Sources */,
+				65F7ED26218A0953008ABDDD /* RootViewController.m in Sources */,
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,
+				65F7ED13218A00C5008ABDDD /* XYPhotoPickerGroupViewController.m in Sources */,
+				65F7ED11218A00C5008ABDDD /* XYPhotoPickerAssetsViewController.m in Sources */,
+				65F7ED10218A00C5008ABDDD /* XYPhotoPickerPreviewViewController.m in Sources */,
 				655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */,
-				65F2D8AA21757A8F00A11DD1 /* XYPhotoBrowserViewController.m in Sources */,
 				656FB3B22091700700C07A3F /* main.m in Sources */,
+				65F7ED17218A00C5008ABDDD /* XYPhotoPickerGroupTableViewCell.m in Sources */,
 				655FA601216B2EC8009625B0 /* MJRefreshTool.m in Sources */,
 				656FB3A42091700600C07A3F /* AppDelegate.m in Sources */,
-				65F2D8AE21757A8F00A11DD1 /* XYPhotoBrowserImageView.m in Sources */,
+				65F7ED16218A00C5008ABDDD /* XYPhotoPickerAssetsCollectionViewCell.m in Sources */,
 				656FB3C020919FF500C07A3F /* NSString+Helper.m in Sources */,
+				65F7ED19218A00C5008ABDDD /* XYPhotoBrowserViewController.m in Sources */,
+				65F7ED1B218A00C5008ABDDD /* XYPhotoBrowserView.m in Sources */,
 				656FB3C42091AB6E00C07A3F /* UIView+Helper.m in Sources */,
-				65F2D8AD21757A8F00A11DD1 /* XYPhotoBrowserCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

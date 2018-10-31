@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XYPhotoBrowserModel.h"
+#import "XYPhotoBrowserImageView.h"
 @class XYPhotoBrowserScrollView;
 
 @protocol XYPhotoBrowserScrollViewDelegate <NSObject>
@@ -22,10 +22,12 @@
 
 @interface XYPhotoBrowserScrollView : UIScrollView
 
+@property (nonatomic, strong) XYPhotoBrowserImageView *photoBrowserImageView ;
 
 @property (nonatomic ,weak) id<XYPhotoBrowserScrollViewDelegate>photoScrollViewDelegate;
 
-@property (nonatomic ,strong) XYPhotoBrowserModel *photoModel;
+/** 数据源 */
+@property (nonatomic ,strong) id obj;
 
 
 @end

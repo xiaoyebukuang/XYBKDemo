@@ -27,25 +27,19 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
 }
 - (void)setupUI {
     [self.view addSubview:self.collectionView];
-    if (@available(iOS 11.0,*)) {
-       
-    } else {
-         self.automaticallyAdjustsScrollViewInsets = NO;
-    }
 }
 #pragma mark -- XYPhotoBrowserScrollViewDelegate
 // 单击调用
 - (void) pickerPhotoScrollViewDidSingleClick:(XYPhotoBrowserScrollView *)photoScrollView {
-    NSLog(@"单击current = %ld",self.currentPage);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 //双击
 - (void) pickerPhotoScrollViewDidDoubleClick:(XYPhotoBrowserScrollView *)photoScrollView {
-    NSLog(@"双击");
+    
 }
 //长按
 - (void) pickerPhotoScrollViewDidLongPressed:(XYPhotoBrowserScrollView *)photoScrollView {
-    NSLog(@"长按");
+    
 }
 #pragma mark -- UIScrollViewDelegate
 /** 停止滚动时 */
@@ -93,6 +87,11 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[XYPhotoBrowserCollectionViewCell class] forCellWithReuseIdentifier:XYPhotoBrowserCollectionViewCellID];
+        if (@available(iOS 11.0,*)) {
+            self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
         if (self.photosArr.count > 0) {
             [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         }

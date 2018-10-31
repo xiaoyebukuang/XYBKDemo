@@ -146,6 +146,21 @@
                      titleColor:(UIColor *)titleColor
                            font:(UIFont *)font;
 
+/**
+ 创建button（背景+选中背景+标题）
+ 
+ @param bgImage 背景
+ @param selectBGImage 选中背景
+ @param title 标题
+ @param titleColor 标题颜色
+ @param font 标题大小
+ @return button
+ */
++ (UIButton *)buttonWithBGImage:(NSString *)bgImage
+                  selectBGImage:(NSString *)selectBGImage
+                          title:(NSString *)title
+                     titleColor:(UIColor *)titleColor
+                           font:(UIFont *)font;
 
 
 

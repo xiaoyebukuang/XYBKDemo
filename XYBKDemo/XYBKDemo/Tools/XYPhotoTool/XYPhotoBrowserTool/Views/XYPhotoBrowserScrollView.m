@@ -8,10 +8,7 @@
 
 #import "XYPhotoBrowserScrollView.h"
 #import "XYPhotoBrowserView.h"
-#import "XYPhotoBrowserImageView.h"
-
 #import "XYPhotoToolMacros.h"
-
 @interface XYPhotoBrowserScrollView()<XYPhotoBrowserViewDelegate, XYPhotoBrowserImageViewDelegate, UIScrollViewDelegate>
 /** 最大缩放 */
 @property (nonatomic, assign) CGFloat maxScale;
@@ -24,7 +21,6 @@
 
 @property (nonatomic, strong) XYPhotoBrowserView *photoBrowserView;
 
-@property (nonatomic, strong) XYPhotoBrowserImageView *photoBrowserImageView ;
 /** 进度条 */
 @property (nonatomic ,strong) MBProgressHUD* progressView;
 /** 设置进度 */
@@ -61,17 +57,20 @@
     [self addSubview:self.progressView];
 }
 #pragma mark -- setData
-- (void)setPhotoModel:(XYPhotoBrowserModel *)photoModel {
-    _photoModel = photoModel;
+- (void)setObj:(id)obj {
+    _obj = obj;
     WeakSelf;
-    if (photoModel.photoURL.absoluteString.length || photoModel.photoURLStr.length) {
+    if ([obj isKindOfClass:[UIImage class]]) {
+        //图片
+        UIImage *image = obj;
+        self.progress = 1;
+        self.photoBrowserImageView.image = image;
+        [self displayImage];
+    } else if ([obj isKindOfClass:[NSString class]]) {
+        //url
+        NSString *urlStr = obj;
         [self.progressView showAnimated:YES];
-        NSURL *url;
-        if (photoModel.photoURL.absoluteString.length) {
-            url = photoModel.photoURL;
-        } else {
-            url = [NSURL URLWithString:photoModel.photoURLStr];
-        }
+        NSURL *url = [NSURL URLWithString:urlStr];
         [self.photoBrowserImageView sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             [weakSelf setProgress:(double)receivedSize / expectedSize];
         } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -83,12 +82,12 @@
             }
             [weakSelf displayImage];
         }];
-    } else if (photoModel.photoImage) {
-        self.progress = 1;
-        self.photoBrowserImageView.image = photoModel.photoImage;
-        [self displayImage];
+    } else if ([obj isKindOfClass:[PHAsset class]]) {
+        PHAsset *asset = obj;
+        UIImage *image = [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:asset withSize:CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
+        self.photoBrowserImageView.image = image;
     } else {
-        NSLog(@"传入错误类型");
+        NSLog(@"错误类型");
     }
 }
 /** 设置进度条 */

@@ -7,61 +7,96 @@
 //
 
 #import "ViewController.h"
-#import "XYPhotoBrowserModel.h"
-#import "XYPhotoBrowserViewController.h"
-@interface ViewController ()<XYBannerViewToolDelegate>
+#import "XYPhotoPickerViewController.h"
+#import "UITextFieldTool.h"
+
+
+@interface ViewController ()
+
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
 @implementation ViewController
-{
-    dispatch_source_t _timer;
-    XYBannerViewTool *_bannerView;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+//
+//    XYBannerViewTool *bannerViewTool = [[XYBannerViewTool alloc]init];
+//    [self.view addSubview: bannerViewTool];
+//    [bannerViewTool mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.width.top.equalTo(self.view);
+//        make.height.mas_equalTo(300);
+//    }];
+    
+//    [bannerViewTool reloadViewWithArr:@[@"broswerPic0.jpg",@"broswerPic1.jpg",@"broswerPic2.jpg",@"broswerPic3.jpg",@"broswerPic4.jpg",@"broswerPic5.jpg"] isRunning:YES];
+    
+//    [bannerViewTool reloadViewWithArr:@[@"broswerPic0.jpg"] isRunning:YES];
     
     
-    
-//    UITextFieldTool *textField01 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumber placeHolder:@"请输入textField01"];
-//    textField01.frame = CGRectMake(40, 120, 200, 40);
+//
+//
+//    UITextFieldTool *textField01 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNormal placeHolder:@"textField01"];
+//    textField01.maxCount = 10;
 //    [self.view addSubview:textField01];
 //
-//    UITextFieldTool *textField02 = [[UITextFieldTool alloc]initWithType:UITextFieldToolCharacter placeHolder:@"请输入textField02"];
-//    textField02.frame = CGRectMake(40, 180, 200, 40);
+//    [textField01 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.view).offset(20);
+//        make.top.equalTo(self.view).offset(64);
+//        make.width.mas_equalTo(200);
+//        make.height.mas_equalTo(40);
+//    }];
+//
+//    UITextFieldTool *textField02 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumber placeHolder:@"textField02"];
+//    textField02.maxCount = 9;
 //    [self.view addSubview:textField02];
 //
-//    UITextFieldTool *textField03 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumberCharacter placeHolder:@"请输入textField03"];
-//    textField03.frame = CGRectMake(40, 240, 200, 40);
+//    [textField02 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.height.left.equalTo(textField01);
+//        make.top.equalTo(textField01.mas_bottom).offset(10);
+//    }];
+//
+//
+//    UITextFieldTool *textField03 = [[UITextFieldTool alloc]initWithType:UITextFieldToolCharacter placeHolder:@"textField03"];
+//    textField03.maxCount = 9;
 //    [self.view addSubview:textField03];
 //
-//    UITextFieldTool *textField04 = [[UITextFieldTool alloc]initWithType:UITextFieldToolWord placeHolder:@"请输入textField04"];
-//    textField04.frame = CGRectMake(40, 300, 200, 40);
+//    [textField03 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.height.left.equalTo(textField01);
+//        make.top.equalTo(textField02.mas_bottom).offset(10);
+//    }];
+//
+//
+//    UITextFieldTool *textField04 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumberCharacter placeHolder:@"textField04"];
+//    textField04.maxCount = 9;
 //    [self.view addSubview:textField04];
 //
-//    TJXView *view = [[TJXView alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, 100*100) andImageNameArray:@[@"",@"",@""]  andIsRunning:YES];
-//    view.delegate = self;
-//    [self.view addSubview: view];
+//    [textField04 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.height.left.equalTo(textField01);
+//        make.top.equalTo(textField03.mas_bottom).offset(10);
+//    }];
 //
-    
-    
-    
-    _bannerView = [[XYBannerViewTool alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
-//    XYBannerViewTool *bannerView = [[XYBannerViewTool alloc]init];
-    [_bannerView reloadViewWithArr:@[@"01",@"02",@"03",@"04"] isRunning:YES];
-    _bannerView.delegate = self;
-    [self.view addSubview:_bannerView];
-    
-    
-    
+//
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = [UIColor redColor];
     btn.frame = CGRectMake(0, 0, 100, 100);
     [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"点击" forState:UIControlStateNormal];
     [self.view addSubview:btn];
+//
+//
+//
+//    [self.view addSubview:self.tableView];
+//    [MJRefreshTool addRefreshToolWithScrollView:self.tableView headerBlock:^{
+//        [MJRefreshTool  endRefresh:self.tableView];
+//    }];
 }
 - (void)btnEvent:(UIButton *)sender {
+    XYPhotoPickerViewController *vc = [[XYPhotoPickerViewController alloc]init];
+    vc.maxCount = 9;
+    vc.status = PickerViewShowStatusCameraRoll;
+    [self presentViewController:vc animated:YES completion:nil];
+    
     //照片
     NSMutableArray *array = [[NSMutableArray alloc] init];
 //    for (int i = 0; i < 6; i++) {
@@ -69,32 +104,33 @@
 //        [array addObject:photo];
 //    }
     
+//
+//
+//
+//    XYPhotoBrowserModel *photo = [[XYPhotoBrowserModel alloc] init];
+//    photo.photoURL = [NSURL URLWithString:@"http://img.ivsky.com/img/bizhi/slides/201511/11/december.jpg"];
+//    [array addObject:photo];
+//
+//    XYPhotoBrowserModel *photo1 = [[XYPhotoBrowserModel alloc] init];
+//    photo1.photoURL = [NSURL URLWithString:@"http://h.hiphotos.baidu.com/image/pic/item/267f9e2f0708283890f56e02bb99a9014c08f128.jpg"];
+//    [array addObject:photo1];
+//
+//    XYPhotoBrowserModel *photo2 = [[XYPhotoBrowserModel alloc] init];
+//    photo2.photoURL = [NSURL URLWithString:@"http://a.hiphotos.baidu.com/image/pic/item/b219ebc4b74543a9fa0c4bc11c178a82b90114a3.jpg"];
+//    [array addObject:photo2];
+//
+//    XYPhotoBrowserModel *photo3 = [[XYPhotoBrowserModel alloc] init];
+//    photo3.photoURL = [NSURL URLWithString:@"http://c.hiphotos.baidu.com/image/pic/item/024f78f0f736afc33b1dbe65b119ebc4b7451298.jpg"];
+//    [array addObject:photo3];
+//
+//    XYPhotoBrowserModel *photo4 = [[XYPhotoBrowserModel alloc] init];
+//    photo4.photoURL = [NSURL URLWithString:@"http://d.hiphotos.baidu.com/image/pic/item/77094b36acaf2edd481ef6e78f1001e9380193d5.jpg"];
+//    [array addObject:photo4];
     
-    
-    
-    XYPhotoBrowserModel *photo = [[XYPhotoBrowserModel alloc] init];
-    photo.photoURL = [NSURL URLWithString:@"http://img.ivsky.com/img/bizhi/slides/201511/11/december.jpg"];
-    [array addObject:photo];
-    
-    XYPhotoBrowserModel *photo1 = [[XYPhotoBrowserModel alloc] init];
-    photo1.photoURL = [NSURL URLWithString:@"http://h.hiphotos.baidu.com/image/pic/item/267f9e2f0708283890f56e02bb99a9014c08f128.jpg"];
-    [array addObject:photo1];
-    
-    XYPhotoBrowserModel *photo2 = [[XYPhotoBrowserModel alloc] init];
-    photo2.photoURL = [NSURL URLWithString:@"http://a.hiphotos.baidu.com/image/pic/item/b219ebc4b74543a9fa0c4bc11c178a82b90114a3.jpg"];
-    [array addObject:photo2];
-    
-    XYPhotoBrowserModel *photo3 = [[XYPhotoBrowserModel alloc] init];
-    photo3.photoURL = [NSURL URLWithString:@"http://c.hiphotos.baidu.com/image/pic/item/024f78f0f736afc33b1dbe65b119ebc4b7451298.jpg"];
-    [array addObject:photo3];
-    
-    XYPhotoBrowserModel *photo4 = [[XYPhotoBrowserModel alloc] init];
-    photo4.photoURL = [NSURL URLWithString:@"http://d.hiphotos.baidu.com/image/pic/item/77094b36acaf2edd481ef6e78f1001e9380193d5.jpg"];
-    [array addObject:photo4];
-    
-    XYPhotoBrowserViewController *vc = [[XYPhotoBrowserViewController alloc]init];
-    vc.photosArr = array;
-    [self presentViewController:vc animated:YES completion:nil];
+//    XYPhotoBrowserViewController *vc = [[XYPhotoBrowserViewController alloc]init];
+//    vc.photosArr = array;
+//    vc.currentPage = 2;
+//    [self presentViewController:vc animated:YES completion:nil];
 
     
     
@@ -117,13 +153,17 @@
 //
 //    }];
 }
-- (void)bannerViewToolEvent:(NSInteger)index {
-    NSLog(@"%ld",index);
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
+    }
+    return _tableView;
 }
 
 
