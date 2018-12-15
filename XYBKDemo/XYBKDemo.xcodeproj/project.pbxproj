@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */; };
 		6529D75B209C29CA0019DC03 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6529D75A209C29CA0019DC03 /* CoreTelephony.framework */; };
+		6544C40821C5752600ED0436 /* XYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C40721C5752600ED0436 /* XYNetworking.m */; };
+		6544C40B21C5753700ED0436 /* XYHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C40A21C5753700ED0436 /* XYHttpRequest.m */; };
+		6544C40E21C5764300ED0436 /* XYNetworkingHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C40D21C5764300ED0436 /* XYNetworkingHandle.m */; };
+		6544C41221C5779F00ED0436 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C41021C5779F00ED0436 /* Reachability.m */; };
 		655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F624F2170733400A51D91 /* XYBannerViewTool.m */; };
 		655F62812174824400A51D91 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655F62762174824400A51D91 /* lock@2x.png */; };
 		655F62822174824400A51D91 /* broswerPic4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62772174824400A51D91 /* broswerPic4.jpg */; };
@@ -78,6 +82,16 @@
 		6529D743209962A60019DC03 /* MBProgressHUD+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Helper.h"; sourceTree = "<group>"; };
 		6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Helper.m"; sourceTree = "<group>"; };
 		6529D75A209C29CA0019DC03 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6544C40321C574C900ED0436 /* RequestMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestMacros.h; sourceTree = "<group>"; };
+		6544C40421C574DB00ED0436 /* NotificationMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationMacros.h; sourceTree = "<group>"; };
+		6544C40621C5752600ED0436 /* XYNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYNetworking.h; sourceTree = "<group>"; };
+		6544C40721C5752600ED0436 /* XYNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYNetworking.m; sourceTree = "<group>"; };
+		6544C40921C5753700ED0436 /* XYHttpRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYHttpRequest.h; sourceTree = "<group>"; };
+		6544C40A21C5753700ED0436 /* XYHttpRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYHttpRequest.m; sourceTree = "<group>"; };
+		6544C40C21C5764300ED0436 /* XYNetworkingHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYNetworkingHandle.h; sourceTree = "<group>"; };
+		6544C40D21C5764300ED0436 /* XYNetworkingHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYNetworkingHandle.m; sourceTree = "<group>"; };
+		6544C41021C5779F00ED0436 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		6544C41121C5779F00ED0436 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		655F624E2170733400A51D91 /* XYBannerViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBannerViewTool.h; sourceTree = "<group>"; };
 		655F624F2170733400A51D91 /* XYBannerViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBannerViewTool.m; sourceTree = "<group>"; };
 		655F62762174824400A51D91 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
@@ -235,6 +249,29 @@
 			path = UIAlertViewTool;
 			sourceTree = "<group>";
 		};
+		6544C40521C574F800ED0436 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6544C40F21C5779F00ED0436 /* Reachability */,
+				6544C40621C5752600ED0436 /* XYNetworking.h */,
+				6544C40721C5752600ED0436 /* XYNetworking.m */,
+				6544C40921C5753700ED0436 /* XYHttpRequest.h */,
+				6544C40A21C5753700ED0436 /* XYHttpRequest.m */,
+				6544C40C21C5764300ED0436 /* XYNetworkingHandle.h */,
+				6544C40D21C5764300ED0436 /* XYNetworkingHandle.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		6544C40F21C5779F00ED0436 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				6544C41121C5779F00ED0436 /* Reachability.h */,
+				6544C41021C5779F00ED0436 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		655F624A2170731400A51D91 /* XYBannerViewTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				656FB3A12091700600C07A3F /* XYBKDemo */,
-				656FB3B82091711600C07A3F /* Macros */,
 				656FB3A02091700600C07A3F /* Products */,
 				737936D24E51C6240334FC3C /* Pods */,
 				63835DC1EF45B133D8B64489 /* Frameworks */,
@@ -312,6 +348,8 @@
 		656FB3A12091700600C07A3F /* XYBKDemo */ = {
 			isa = PBXGroup;
 			children = (
+				656FB3B82091711600C07A3F /* Macros */,
+				6544C40521C574F800ED0436 /* Network */,
 				6529D746209963C30019DC03 /* Tools */,
 				656FB3BC20919FC200C07A3F /* Category */,
 				656FB3A22091700600C07A3F /* AppDelegate.h */,
@@ -334,9 +372,10 @@
 				656FB3BB20917C0800C07A3F /* UtilsMacros.h */,
 				656FB3C62091AC3C00C07A3F /* PathMacros.h */,
 				656FB3B92091712200C07A3F /* DimensMacros.h */,
+				6544C40321C574C900ED0436 /* RequestMacros.h */,
+				6544C40421C574DB00ED0436 /* NotificationMacros.h */,
 			);
-			name = Macros;
-			path = XYBKDemo/Macros;
+			path = Macros;
 			sourceTree = "<group>";
 		};
 		656FB3BC20919FC200C07A3F /* Category */ = {
@@ -690,6 +729,7 @@
 				65F7ED23218A090C008ABDDD /* XYPhotoPickerViewController.m in Sources */,
 				6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */,
 				655FA607216B4CEB009625B0 /* UIAlertViewTool.m in Sources */,
+				6544C40B21C5753700ED0436 /* XYHttpRequest.m in Sources */,
 				65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */,
 				65F7ED95218A16CF008ABDDD /* XYPhotoTransitionView.m in Sources */,
 				65F7ED14218A00C5008ABDDD /* XYPhotoPickerGroup.m in Sources */,
@@ -701,13 +741,16 @@
 				65F7ED20218A0169008ABDDD /* XYPhotoPickerDatas.m in Sources */,
 				65F7ED1A218A00C5008ABDDD /* XYPhotoBrowserScrollView.m in Sources */,
 				65F7ED1C218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m in Sources */,
+				6544C41221C5779F00ED0436 /* Reachability.m in Sources */,
 				65F7ED26218A0953008ABDDD /* RootViewController.m in Sources */,
+				6544C40821C5752600ED0436 /* XYNetworking.m in Sources */,
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,
 				65F7ED13218A00C5008ABDDD /* XYPhotoPickerGroupViewController.m in Sources */,
 				65F7ED11218A00C5008ABDDD /* XYPhotoPickerAssetsViewController.m in Sources */,
 				65F7ED10218A00C5008ABDDD /* XYPhotoPickerPreviewViewController.m in Sources */,
 				655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */,
 				656FB3B22091700700C07A3F /* main.m in Sources */,
+				6544C40E21C5764300ED0436 /* XYNetworkingHandle.m in Sources */,
 				65F7ED17218A00C5008ABDDD /* XYPhotoPickerGroupTableViewCell.m in Sources */,
 				655FA601216B2EC8009625B0 /* MJRefreshTool.m in Sources */,
 				656FB3A42091700600C07A3F /* AppDelegate.m in Sources */,

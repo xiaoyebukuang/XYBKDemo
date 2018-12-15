@@ -28,7 +28,7 @@
     [self.contentView addSubview:self.photoBrowserScrollView];
 }
 - (void)reloadViewWithPhotosArr:(NSArray *)photosArr andIndexPath:(NSInteger)row {
-    self.photoBrowserScrollView.obj = photosArr[row];
+    self.photoBrowserScrollView.model = photosArr[row];
 }
 #pragma mark -- setup
 - (XYPhotoBrowserScrollView *)photoBrowserScrollView {

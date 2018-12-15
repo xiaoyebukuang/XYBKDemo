@@ -129,6 +129,9 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
     [cell reloadViewWithPhotosArr:self.assetsArray andIndexPath:indexPath.row];
     return cell;
 }
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeMake(XYColletionViewLineSpacing, collectionView.height);
+}
 #pragma mark -- setup
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
@@ -154,7 +157,7 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
         if (self.assetsArray.count > 0) {
-            [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+            [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
         }
     }
     return _collectionView;

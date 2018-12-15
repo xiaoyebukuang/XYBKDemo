@@ -93,7 +93,7 @@
 }
 - (void)btnEvent:(UIButton *)sender {
     XYPhotoPickerViewController *vc = [[XYPhotoPickerViewController alloc]init];
-    vc.maxCount = 9;
+    vc.maxCount = 12;
     vc.status = PickerViewShowStatusCameraRoll;
     [self presentViewController:vc animated:YES completion:nil];
     

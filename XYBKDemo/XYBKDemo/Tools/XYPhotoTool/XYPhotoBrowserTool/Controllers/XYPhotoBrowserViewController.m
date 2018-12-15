@@ -93,7 +93,7 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
         if (self.photosArr.count > 0) {
-            [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+            [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
         }
     }
     return _collectionView;

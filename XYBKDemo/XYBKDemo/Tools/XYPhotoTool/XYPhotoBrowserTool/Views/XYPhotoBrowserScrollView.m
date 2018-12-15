@@ -57,18 +57,18 @@
     [self addSubview:self.progressView];
 }
 #pragma mark -- setData
-- (void)setObj:(id)obj {
-    _obj = obj;
+- (void)setModel:(id)model {
+    _model = model;
     WeakSelf;
-    if ([obj isKindOfClass:[UIImage class]]) {
+    if ([model isKindOfClass:[UIImage class]]) {
         //图片
-        UIImage *image = obj;
+        UIImage *image = model;
         self.progress = 1;
         self.photoBrowserImageView.image = image;
         [self displayImage];
-    } else if ([obj isKindOfClass:[NSString class]]) {
+    } else if ([model isKindOfClass:[NSString class]]) {
         //url
-        NSString *urlStr = obj;
+        NSString *urlStr = model;
         [self.progressView showAnimated:YES];
         NSURL *url = [NSURL URLWithString:urlStr];
         [self.photoBrowserImageView sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
@@ -82,10 +82,17 @@
             }
             [weakSelf displayImage];
         }];
-    } else if ([obj isKindOfClass:[PHAsset class]]) {
-        PHAsset *asset = obj;
-        UIImage *image = [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:asset withSize:CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
-        self.photoBrowserImageView.image = image;
+    } else if ([model isKindOfClass:[PHAsset class]]) {
+        self.photoBrowserImageView.image = nil;
+        [MBProgressHUD showToView:self];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PHAsset *asset = model;
+            UIImage *image = [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:asset withSize:CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self];
+                self.photoBrowserImageView.image = image;
+            });
+        });
     } else {
         NSLog(@"错误类型");
     }

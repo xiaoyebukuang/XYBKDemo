@@ -27,7 +27,7 @@
 @property (nonatomic ,weak) id<XYPhotoBrowserScrollViewDelegate>photoScrollViewDelegate;
 
 /** 数据源 */
-@property (nonatomic ,strong) id obj;
+@property (nonatomic ,strong) id model;
 
 
 @end

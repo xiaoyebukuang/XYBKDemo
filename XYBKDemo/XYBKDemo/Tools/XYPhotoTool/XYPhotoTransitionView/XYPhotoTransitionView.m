@@ -82,7 +82,7 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
             [imageView removeFromSuperview];
             [backView removeFromSuperview];
             [window addSubview:self];
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
         }];
     } else {
         [window addSubview:self];
@@ -171,9 +171,6 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[XYPhotoBrowserCollectionViewCell class] forCellWithReuseIdentifier:XYPhotoBrowserCollectionViewCellID];
-        if (self.photosArr.count > 0) {
-            [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-        }
     }
     return _collectionView;
 }

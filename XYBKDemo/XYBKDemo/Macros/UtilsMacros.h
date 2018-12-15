@@ -17,14 +17,10 @@
 
 /** 系统版本 */
 #define IS_IOS_VERSION   floorf([[UIDevice currentDevice].systemVersion floatValue])
-#define IS_IOS_5    floorf([[UIDevice currentDevice].systemVersion floatValue]) >=5.0 ? 1 : 0
-#define IS_IOS_6    floorf([[UIDevice currentDevice].systemVersion floatValue]) >=6.0 ? 1 : 0
-#define IS_IOS_7    floorf([[UIDevice currentDevice].systemVersion floatValue]) >=7.0 ? 1 : 0
-#define IS_IOS_8    floorf([[UIDevice currentDevice].systemVersion floatValue]) >=8.0 ? 1 : 0
 #define IS_IOS_9    floorf([[UIDevice currentDevice].systemVersion floatValue]) >=9.0 ? 1 : 0
+#define IS_IOS_10   floorf([[UIDevice currentDevice].systemVersion floatValue]) >=10.0 ? 1 : 0
 #define IS_IOS_11   floorf([[UIDevice currentDevice].systemVersion floatValue]) >=11.0 ? 1 : 0
-
-
+#define IS_IOS_12   floorf([[UIDevice currentDevice].systemVersion floatValue]) >=12.0 ? 1 : 0
 
 
 /** 字体 */
@@ -34,7 +30,7 @@
 #define SYSTEM_FONT_24                  SYSTEM_FONT(24)
 #define SYSTEM_FONT_18                  SYSTEM_FONT(18)
 #define SYSTEM_FONT_14                  SYSTEM_FONT(14)
-
+#define SYSTEM_FONT_B_14                SYSTEM_BOLD_FONT(14)
 
 
 #endif /* UtilsMacros_h */

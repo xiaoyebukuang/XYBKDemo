@@ -13,6 +13,11 @@
 #import "DimensMacros.h"
 #import "UtilsMacros.h"
 #import "PathMacros.h"
+#import "RequestMacros.h"
+#import "NotificationMacros.h"
+/** 请求工具 */
+#import "XYHttpRequest.h"
+#import "XYNetworkingHandle.h"
 /** 类别 */
 #import "UIButton+Helper.h"
 #import "UILabel+Helper.h"

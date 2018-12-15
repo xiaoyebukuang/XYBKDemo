@@ -10,7 +10,7 @@
 #define XYPhotoToolMacros_h
 
 /** 单元格 最小行间距 scrollView滑动之间的间距 */
-static CGFloat const XYColletionViewLineSpacing = 0;
+static CGFloat const XYColletionViewLineSpacing = 20;
 /** 单元格 最小列间距 */
 static CGFloat const XYColletionViewInteritemSpacing = 0;
 /** 动画时间 */
