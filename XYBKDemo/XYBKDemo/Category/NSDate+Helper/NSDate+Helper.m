@@ -91,4 +91,15 @@
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:dateStample];
     return [self getDateStrWithDate:date formatType:type];
 }
+/** 比较时间大小 */
++ (BOOL)compareOneDayStr:(NSString *)dayStr withAnotherDayStr:(NSString *)anotherDayStr formatType:(FormatType)type; {
+    NSDate *dateA = [self getDateWithDateStr:dayStr formatType:type];
+    NSDate *dateB = [self getDateWithDateStr:anotherDayStr formatType:type];
+    NSComparisonResult result = [dateA compare:dateB];
+    if (result == NSOrderedAscending) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
 @end

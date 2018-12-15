@@ -16,6 +16,11 @@
 		6544C41A21C5798200ED0436 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C41921C5798200ED0436 /* GTMBase64.m */; };
 		6544C41D21C579AF00ED0436 /* DesEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C41C21C579AF00ED0436 /* DesEncryption.m */; };
 		6544C42021C57A3A00ED0436 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C41F21C57A3A00ED0436 /* NSString+MD5.m */; };
+		6544C42421C57A7800ED0436 /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C42221C57A7700ED0436 /* UIImage+Helper.m */; };
+		6544C42821C57BA200ED0436 /* NSDictionary+DeUTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C42621C57BA200ED0436 /* NSDictionary+DeUTF.m */; };
+		6544C42C21C57BC200ED0436 /* UIDevice+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C42B21C57BC200ED0436 /* UIDevice+Helper.m */; };
+		6544C43021C57CF400ED0436 /* UIScrollView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C42E21C57CF400ED0436 /* UIScrollView+Helper.m */; };
+		6544C43421C5854400ED0436 /* UIJudgeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C43321C5854400ED0436 /* UIJudgeTool.m */; };
 		655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F624F2170733400A51D91 /* XYBannerViewTool.m */; };
 		655F62812174824400A51D91 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655F62762174824400A51D91 /* lock@2x.png */; };
 		655F62822174824400A51D91 /* broswerPic4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62772174824400A51D91 /* broswerPic4.jpg */; };
@@ -31,7 +36,6 @@
 		655F628D217489DC00A51D91 /* broswerPic5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F628C217489DC00A51D91 /* broswerPic5.jpg */; };
 		655FA5C321653CCC009625B0 /* UIButton+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA5C221653CCC009625B0 /* UIButton+Helper.m */; };
 		655FA5C7216544FA009625B0 /* UILabel+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA5C6216544FA009625B0 /* UILabel+Helper.m */; };
-		655FA601216B2EC8009625B0 /* MJRefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA600216B2EC8009625B0 /* MJRefreshTool.m */; };
 		655FA604216B3BD4009625B0 /* UIAlertViewToolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA603216B3BD4009625B0 /* UIAlertViewToolModel.m */; };
 		655FA607216B4CEB009625B0 /* UIAlertViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655FA606216B4CEB009625B0 /* UIAlertViewTool.m */; };
 		656FB3A42091700600C07A3F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3A32091700600C07A3F /* AppDelegate.m */; };
@@ -102,6 +106,16 @@
 		6544C41C21C579AF00ED0436 /* DesEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DesEncryption.m; sourceTree = "<group>"; };
 		6544C41E21C57A3A00ED0436 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		6544C41F21C57A3A00ED0436 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		6544C42221C57A7700ED0436 /* UIImage+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helper.m"; sourceTree = "<group>"; };
+		6544C42321C57A7700ED0436 /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
+		6544C42621C57BA200ED0436 /* NSDictionary+DeUTF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+DeUTF.m"; sourceTree = "<group>"; };
+		6544C42721C57BA200ED0436 /* NSDictionary+DeUTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+DeUTF.h"; sourceTree = "<group>"; };
+		6544C42A21C57BC200ED0436 /* UIDevice+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Helper.h"; sourceTree = "<group>"; };
+		6544C42B21C57BC200ED0436 /* UIDevice+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Helper.m"; sourceTree = "<group>"; };
+		6544C42E21C57CF400ED0436 /* UIScrollView+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Helper.m"; sourceTree = "<group>"; };
+		6544C42F21C57CF400ED0436 /* UIScrollView+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Helper.h"; sourceTree = "<group>"; };
+		6544C43221C5854400ED0436 /* UIJudgeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIJudgeTool.h; sourceTree = "<group>"; };
+		6544C43321C5854400ED0436 /* UIJudgeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIJudgeTool.m; sourceTree = "<group>"; };
 		655F624E2170733400A51D91 /* XYBannerViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBannerViewTool.h; sourceTree = "<group>"; };
 		655F624F2170733400A51D91 /* XYBannerViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBannerViewTool.m; sourceTree = "<group>"; };
 		655F62762174824400A51D91 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
@@ -120,8 +134,6 @@
 		655FA5C221653CCC009625B0 /* UIButton+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Helper.m"; sourceTree = "<group>"; };
 		655FA5C5216544FA009625B0 /* UILabel+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Helper.h"; sourceTree = "<group>"; };
 		655FA5C6216544FA009625B0 /* UILabel+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Helper.m"; sourceTree = "<group>"; };
-		655FA5FF216B2EC8009625B0 /* MJRefreshTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJRefreshTool.h; sourceTree = "<group>"; };
-		655FA600216B2EC8009625B0 /* MJRefreshTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJRefreshTool.m; sourceTree = "<group>"; };
 		655FA602216B3BD4009625B0 /* UIAlertViewToolModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAlertViewToolModel.h; sourceTree = "<group>"; };
 		655FA603216B3BD4009625B0 /* UIAlertViewToolModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAlertViewToolModel.m; sourceTree = "<group>"; };
 		655FA605216B4CEB009625B0 /* UIAlertViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAlertViewTool.h; sourceTree = "<group>"; };
@@ -238,11 +250,11 @@
 		6529D746209963C30019DC03 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				6544C43121C5854400ED0436 /* UIJudgeTool */,
+				65708122216D92FD002F9AD0 /* UITextFieldTool */,
 				655F62752174824400A51D91 /* Resource */,
 				65F7ECC5218A00C4008ABDDD /* XYPhotoTool */,
 				655F624A2170731400A51D91 /* XYBannerViewTool */,
-				65708122216D92FD002F9AD0 /* UITextFieldTool */,
-				655FA5FE216B2D2A009625B0 /* MJRefreshTool */,
 				6529D74B209996F60019DC03 /* UIAlertViewTool */,
 			);
 			path = Tools;
@@ -321,6 +333,51 @@
 			path = GTMBase64;
 			sourceTree = "<group>";
 		};
+		6544C42121C57A7700ED0436 /* UIImage+Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6544C42321C57A7700ED0436 /* UIImage+Helper.h */,
+				6544C42221C57A7700ED0436 /* UIImage+Helper.m */,
+			);
+			path = "UIImage+Helper";
+			sourceTree = "<group>";
+		};
+		6544C42521C57BA200ED0436 /* NSDictionary+Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6544C42721C57BA200ED0436 /* NSDictionary+DeUTF.h */,
+				6544C42621C57BA200ED0436 /* NSDictionary+DeUTF.m */,
+			);
+			path = "NSDictionary+Helper";
+			sourceTree = "<group>";
+		};
+		6544C42921C57BC200ED0436 /* UIDevice+Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6544C42A21C57BC200ED0436 /* UIDevice+Helper.h */,
+				6544C42B21C57BC200ED0436 /* UIDevice+Helper.m */,
+			);
+			path = "UIDevice+Helper";
+			sourceTree = "<group>";
+		};
+		6544C42D21C57CF400ED0436 /* UIScrollView+Helper */ = {
+			isa = PBXGroup;
+			children = (
+				6544C42F21C57CF400ED0436 /* UIScrollView+Helper.h */,
+				6544C42E21C57CF400ED0436 /* UIScrollView+Helper.m */,
+			);
+			path = "UIScrollView+Helper";
+			sourceTree = "<group>";
+		};
+		6544C43121C5854400ED0436 /* UIJudgeTool */ = {
+			isa = PBXGroup;
+			children = (
+				6544C43221C5854400ED0436 /* UIJudgeTool.h */,
+				6544C43321C5854400ED0436 /* UIJudgeTool.m */,
+			);
+			path = UIJudgeTool;
+			sourceTree = "<group>";
+		};
 		655F624A2170731400A51D91 /* XYBannerViewTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,15 +422,6 @@
 				655FA5C6216544FA009625B0 /* UILabel+Helper.m */,
 			);
 			path = "UILabel+Helper";
-			sourceTree = "<group>";
-		};
-		655FA5FE216B2D2A009625B0 /* MJRefreshTool */ = {
-			isa = PBXGroup;
-			children = (
-				655FA5FF216B2EC8009625B0 /* MJRefreshTool.h */,
-				655FA600216B2EC8009625B0 /* MJRefreshTool.m */,
-			);
-			path = MJRefreshTool;
 			sourceTree = "<group>";
 		};
 		656FB3962091700600C07A3F = {
@@ -430,13 +478,17 @@
 		656FB3BC20919FC200C07A3F /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				655FA5C021653CBC009625B0 /* UIButton+Helper */,
+				656FB3C12091AB6E00C07A3F /* UIView+Helper */,
 				655FA5C4216544EF009625B0 /* UILabel+Helper */,
+				655FA5C021653CBC009625B0 /* UIButton+Helper */,
+				6544C42121C57A7700ED0436 /* UIImage+Helper */,
 				65D0CA8A21536FF700A3DB66 /* UIColor+Helper */,
-				6529D742209961D70019DC03 /* MBProgressHUD+Helper */,
+				6544C42D21C57CF400ED0436 /* UIScrollView+Helper */,
+				6544C42521C57BA200ED0436 /* NSDictionary+Helper */,
 				656FB3BD20919FE100C07A3F /* NSString+Helper */,
 				656FB3C52091ABAC00C07A3F /* NSDate+Helper */,
-				656FB3C12091AB6E00C07A3F /* UIView+Helper */,
+				6544C42921C57BC200ED0436 /* UIDevice+Helper */,
+				6529D742209961D70019DC03 /* MBProgressHUD+Helper */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -776,6 +828,7 @@
 			files = (
 				655FA604216B3BD4009625B0 /* UIAlertViewToolModel.m in Sources */,
 				65F7ED23218A090C008ABDDD /* XYPhotoPickerViewController.m in Sources */,
+				6544C43021C57CF400ED0436 /* UIScrollView+Helper.m in Sources */,
 				6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */,
 				655FA607216B4CEB009625B0 /* UIAlertViewTool.m in Sources */,
 				6544C40B21C5753700ED0436 /* XYHttpRequest.m in Sources */,
@@ -791,11 +844,14 @@
 				6544C41D21C579AF00ED0436 /* DesEncryption.m in Sources */,
 				65F7ED20218A0169008ABDDD /* XYPhotoPickerDatas.m in Sources */,
 				65F7ED1A218A00C5008ABDDD /* XYPhotoBrowserScrollView.m in Sources */,
+				6544C42421C57A7800ED0436 /* UIImage+Helper.m in Sources */,
 				65F7ED1C218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m in Sources */,
 				6544C41221C5779F00ED0436 /* Reachability.m in Sources */,
 				65F7ED26218A0953008ABDDD /* RootViewController.m in Sources */,
+				6544C42821C57BA200ED0436 /* NSDictionary+DeUTF.m in Sources */,
 				6544C40821C5752600ED0436 /* XYNetworking.m in Sources */,
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,
+				6544C43421C5854400ED0436 /* UIJudgeTool.m in Sources */,
 				65F7ED13218A00C5008ABDDD /* XYPhotoPickerGroupViewController.m in Sources */,
 				65F7ED11218A00C5008ABDDD /* XYPhotoPickerAssetsViewController.m in Sources */,
 				65F7ED10218A00C5008ABDDD /* XYPhotoPickerPreviewViewController.m in Sources */,
@@ -804,11 +860,11 @@
 				6544C40E21C5764300ED0436 /* XYNetworkingHandle.m in Sources */,
 				65F7ED17218A00C5008ABDDD /* XYPhotoPickerGroupTableViewCell.m in Sources */,
 				6544C41A21C5798200ED0436 /* GTMBase64.m in Sources */,
-				655FA601216B2EC8009625B0 /* MJRefreshTool.m in Sources */,
 				656FB3A42091700600C07A3F /* AppDelegate.m in Sources */,
 				65F7ED16218A00C5008ABDDD /* XYPhotoPickerAssetsCollectionViewCell.m in Sources */,
 				656FB3C020919FF500C07A3F /* NSString+Helper.m in Sources */,
 				65F7ED19218A00C5008ABDDD /* XYPhotoBrowserViewController.m in Sources */,
+				6544C42C21C57BC200ED0436 /* UIDevice+Helper.m in Sources */,
 				65F7ED1B218A00C5008ABDDD /* XYPhotoBrowserView.m in Sources */,
 				656FB3C42091AB6E00C07A3F /* UIView+Helper.m in Sources */,
 			);

@@ -13,13 +13,22 @@ typedef NS_ENUM(NSInteger, UITextFieldToolType) {
     UITextFieldToolNumber,          //限制数字
     UITextFieldToolCharacter,       //限制字母
     UITextFieldToolNumberCharacter, //限制数字+字母
+    UITextFieldToolChineseWord      //中文+英文+数字
 };
 
+@class UITextFieldTool;
+@protocol UITextFieldToolDelegate <NSObject>
+
+- (void)textChange:(NSString *)text textViewTool:(UITextFieldTool *)textViewTool;
+
+@end
 
 @interface UITextFieldTool : UITextField
 
 /** 最大限制个数 */
 @property (nonatomic, assign) NSInteger maxCount;
+
+@property (nonatomic, weak) id<UITextFieldToolDelegate> tool_delegate;
 
 /**
  创建UITextField（类型）

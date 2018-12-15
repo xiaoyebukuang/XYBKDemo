@@ -19,19 +19,24 @@
 #import "XYHttpRequest.h"
 #import "XYNetworkingHandle.h"
 /** 类别 */
-#import "UIButton+Helper.h"
+#import "UIView+Helper.h"
 #import "UILabel+Helper.h"
+#import "UIButton+Helper.h"
+#import "UIImage+Helper.h"
 #import "UIColor+Helper.h"
-#import "MBProgressHUD+Helper.h"
+#import "UIScrollView+Helper.h"
+#import "NSDictionary+DeUTF.h"
 #import "NSString+Helper.h"
 #import "NSDate+Helper.h"
-#import "UIView+Helper.h"
+#import "UIDevice+Helper.h"
+#import "MBProgressHUD+Helper.h"
 /** 工具 */
+#import "UIJudgeTool.h"
+
 #import "UIAlertViewTool.h"
 #import "UITextFieldTool.h"
 #import "XYBannerViewTool.h"
 /** 三方库 */
-#import "MJRefreshTool.h"
 #import "UIImageView+WebCache.h"
 #import <Masonry.h>
 #endif /* PrefixHeader_pch */

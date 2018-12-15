@@ -34,18 +34,17 @@
 //    [bannerViewTool reloadViewWithArr:@[@"broswerPic0.jpg"] isRunning:YES];
     
     
-//
-//
-//    UITextFieldTool *textField01 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNormal placeHolder:@"textField01"];
-//    textField01.maxCount = 10;
-//    [self.view addSubview:textField01];
-//
-//    [textField01 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view).offset(20);
-//        make.top.equalTo(self.view).offset(64);
-//        make.width.mas_equalTo(200);
-//        make.height.mas_equalTo(40);
-//    }];
+
+    UITextFieldTool *textField01 = [[UITextFieldTool alloc]initWithType:UITextFieldToolChineseWord placeHolder:@"textField01"];
+    textField01.maxCount = 10;
+    [self.view addSubview:textField01];
+
+    [textField01 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(20);
+        make.top.equalTo(self.view).offset(64);
+        make.width.mas_equalTo(200);
+        make.height.mas_equalTo(40);
+    }];
 //
 //    UITextFieldTool *textField02 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumber placeHolder:@"textField02"];
 //    textField02.maxCount = 9;
@@ -77,12 +76,12 @@
 //    }];
 //
 //
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.backgroundColor = [UIColor redColor];
-    btn.frame = CGRectMake(0, 0, 100, 100);
-    [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"点击" forState:UIControlStateNormal];
-    [self.view addSubview:btn];
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btn.backgroundColor = [UIColor redColor];
+//    btn.frame = CGRectMake(0, 0, 100, 100);
+//    [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
+//    [btn setTitle:@"点击" forState:UIControlStateNormal];
+//    [self.view addSubview:btn];
 //
 //
 //

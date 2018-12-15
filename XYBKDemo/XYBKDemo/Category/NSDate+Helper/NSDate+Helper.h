@@ -77,4 +77,15 @@ typedef NS_ENUM(NSInteger, FormatType) {
  */
 + (NSString *)getDateStrWithDateStample:(NSTimeInterval)dateStample formatType:(FormatType)type;
 
+/**
+ 比较时间大小
+ 
+ @param dayStr 第一个时间
+ @param anotherDayStr 第二个时间
+ @param type 日期类型
+ @return YES：第一个时间大于或登录第二个时间
+ */
++ (BOOL)compareOneDayStr:(NSString *)dayStr withAnotherDayStr:(NSString *)anotherDayStr formatType:(FormatType)type;
+
+
 @end

@@ -47,13 +47,25 @@
     UITextField *textField = (UITextField *)obj.object;
     //限制输入字符数
     NSString *toBeString = textField.text;
-    NSString *lang = [textField.textInputMode primaryLanguage]; // 键盘输入模式
-    if([lang isEqualToString:@"zh-Hans"]) { //简体中文输入，包括简体拼音，健体五笔，简体手写
+    // 键盘输入模式
+    NSString *lang = [textField.textInputMode primaryLanguage];
+    if([lang isEqualToString:@"zh-Hans"]) {
+        //简体中文输入，包括简体拼音，健体五笔，简体手写
         UITextRange *selectedRange = [textField markedTextRange];
         //获取高亮部分
         UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
-        //没有高亮选择的字，则对已输入的文字进行字数统计和限制
         if(!position) {
+            if (self.fieldType == UITextFieldToolChineseWord) {
+                NSString *textStr = @"";
+                for(int i =0; i < [textField.text length]; i++) {
+                    NSString *temp = [textField.text substringWithRange:NSMakeRange(i, 1)];
+                    if ([UIJudgeTool validateChineseNumber:temp]) {
+                        textStr = [textStr stringByAppendingString:temp];
+                    }
+                }
+                textField.text = textStr;
+            }
+            //没有高亮选择的字，则对已输入的文字进行字数统计和限制
             if(toBeString.length > self.maxCount) {
                 textField.text = [toBeString substringToIndex:self.maxCount];
             }
@@ -66,7 +78,11 @@
             textField.text= [toBeString substringToIndex:self.maxCount];
         }
     }
+    if ([self.tool_delegate respondsToSelector:@selector(textChange:textViewTool:)]) {
+        [self.tool_delegate textChange:textField.text textViewTool:self];
+    }
 }
+
 #pragma mark -- UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     switch (self.fieldType) {
@@ -118,6 +134,18 @@
             }
         }
             break;
+        case UITextFieldToolChineseWord:
+        {
+            //中文+英文+数字
+            NSString *temp =nil;
+            for(int i =0; i < [string length]; i ++) {
+                temp = [string substringWithRange:NSMakeRange(i,1)];
+                if (!([UIJudgeTool validateChineseNumber:temp] || [temp isEqualToString:@""])) {//当输入符合规则和退格键时允许改变输入框
+                    return NO;
+                }
+            }
+        }
+            break;
         default:
             break;
     }
@@ -128,8 +156,9 @@
 #pragma mark -- setup
 - (void)setFieldType:(UITextFieldToolType)fieldType {
     _fieldType = fieldType;
-    switch (self.fieldType) {
+    switch (_fieldType) {
         case UITextFieldToolNormal:
+        case UITextFieldToolChineseWord:
         {
             self.keyboardType = UIKeyboardTypeDefault;
         }
@@ -144,8 +173,6 @@
         {
             self.keyboardType = UIKeyboardTypeASCIICapable;
         }
-            break;
-        default:
             break;
     }
 }
