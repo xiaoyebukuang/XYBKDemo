@@ -1,14 +1,14 @@
 //
-//  UIJudgeTool.h
-//  cwz51
+//  XYJudge.h
+//  XYBKDemo
 //
-//  Created by 陈晓 on 2018/10/30.
+//  Created by 陈晓 on 2018/12/16.
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface UIJudgeTool : NSObject
+@interface XYJudge : NSObject
 
 /** 验证相关 */
 /** 验证手机号码及固定电话 */

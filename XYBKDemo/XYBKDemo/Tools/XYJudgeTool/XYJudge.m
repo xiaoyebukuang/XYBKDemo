@@ -1,15 +1,16 @@
 //
-//  UIJudgeTool.m
-//  cwz51
+//  XYJudge.m
+//  XYBKDemo
 //
-//  Created by 陈晓 on 2018/10/30.
+//  Created by 陈晓 on 2018/12/16.
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "UIJudgeTool.h"
+#import "XYJudge.h"
 #import <Photos/Photos.h>
 #import <CoreLocation/CLLocationManager.h>
-@implementation UIJudgeTool
+
+@implementation XYJudge
 
 #pragma mark -- 判断
 /** 验证手机号码及固定电话 */
@@ -30,12 +31,12 @@
 
 #pragma mark -- 定位
 /**
-     kCLAuthorizationStatusNotDetermined = 0,   //用户没有选择是否要使用定位服务（弹框没选择，或者根本没有弹框）
-     kCLAuthorizationStatusRestricted,          //定位服务授权状态受限制
-     kCLAuthorizationStatusDenied,              //用户在设置中关闭定位功能，或者用户明确的在弹框之后选择禁止定位
-     kCLAuthorizationStatusAuthorizedAlways     //App始终允许使用定位功能NS_ENUM_AVAILABLE(10_12, 8_0),
-     kCLAuthorizationStatusAuthorizedWhenInUse  //用户在使用期间允许使用定位功能NS_ENUM_AVAILABLE(NA, 8_0),
-     kCLAuthorizationStatusAuthorized NS_ENUM_DEPRECATED(10_6, NA, 2_0, 8_0, "Use kCLAuthorizationStatusAuthorizedAlways") __TVOS_PROHIBITED __WATCHOS_PROHIBITED = kCLAuthorizationStatusAuthorizedAlways ////用户已经明确使用定位功能
+ kCLAuthorizationStatusNotDetermined = 0,   //用户没有选择是否要使用定位服务（弹框没选择，或者根本没有弹框）
+ kCLAuthorizationStatusRestricted,          //定位服务授权状态受限制
+ kCLAuthorizationStatusDenied,              //用户在设置中关闭定位功能，或者用户明确的在弹框之后选择禁止定位
+ kCLAuthorizationStatusAuthorizedAlways     //App始终允许使用定位功能NS_ENUM_AVAILABLE(10_12, 8_0),
+ kCLAuthorizationStatusAuthorizedWhenInUse  //用户在使用期间允许使用定位功能NS_ENUM_AVAILABLE(NA, 8_0),
+ kCLAuthorizationStatusAuthorized NS_ENUM_DEPRECATED(10_6, NA, 2_0, 8_0, "Use kCLAuthorizationStatusAuthorizedAlways") __TVOS_PROHIBITED __WATCHOS_PROHIBITED = kCLAuthorizationStatusAuthorizedAlways ////用户已经明确使用定位功能
  */
 + (void)checkLocationAuthorizationStatus:(void(^)(BOOL handler))handler {
     //确定用户的位置服务是否启用,位置服务在设置中是否被禁用

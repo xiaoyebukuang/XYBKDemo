@@ -1,25 +1,26 @@
 //
-//  UITextFieldTool.m
+//  XYTextField.m
 //  XYBKDemo
 //
-//  Created by 陈晓 on 2018/10/10.
+//  Created by 陈晓 on 2018/12/16.
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "UITextFieldTool.h"
+#import "XYTextField.h"
 
-@interface UITextFieldTool()<UITextFieldDelegate>
+@interface XYTextField()<UITextFieldDelegate>
 /** 类型 */
-@property (nonatomic, assign) UITextFieldToolType fieldType;
+@property (nonatomic, assign) XYTextFieldType fieldType;
+
 @end
 
-@implementation UITextFieldTool
+@implementation XYTextField
 
-- (instancetype)initWithType:(UITextFieldToolType)filedType {
-    return [self initWithType:_fieldType placeHolder:nil];
+- (instancetype)initWithType:(XYTextFieldType)filedType {
+    return [self initWithType:filedType placeHolder:nil];
 }
 
-- (instancetype)initWithType:(UITextFieldToolType)filedType placeHolder:(NSString *)placeHolder {
+- (instancetype)initWithType:(XYTextFieldType)filedType placeHolder:(NSString *)placeHolder {
     self = [super init];
     if (self) {
         if (placeHolder) {
@@ -55,11 +56,11 @@
         //获取高亮部分
         UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
         if(!position) {
-            if (self.fieldType == UITextFieldToolChineseWord) {
+            if (self.fieldType == XYTextFieldChineseWord) {
                 NSString *textStr = @"";
                 for(int i =0; i < [textField.text length]; i++) {
                     NSString *temp = [textField.text substringWithRange:NSMakeRange(i, 1)];
-                    if ([UIJudgeTool validateChineseNumber:temp]) {
+                    if ([XYJudge validateChineseNumber:temp]) {
                         textStr = [textStr stringByAppendingString:temp];
                     }
                 }
@@ -86,7 +87,7 @@
 #pragma mark -- UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     switch (self.fieldType) {
-        case UITextFieldToolNumber:
+        case XYTextFieldNumber:
         {
             //只输入数字
             NSUInteger length = string.length;
@@ -101,7 +102,7 @@
             }
         }
             break;
-        case UITextFieldToolCharacter:
+        case XYTextFieldCharacter:
         {
             //只输入字母
             NSUInteger length = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
@@ -117,7 +118,7 @@
             }
         }
             break;
-        case UITextFieldToolNumberCharacter:
+        case XYTextFieldNumberCharacter:
         {
             //输入字母+数字
             NSUInteger length = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
@@ -134,13 +135,13 @@
             }
         }
             break;
-        case UITextFieldToolChineseWord:
+        case XYTextFieldChineseWord:
         {
             //中文+英文+数字
             NSString *temp =nil;
             for(int i =0; i < [string length]; i ++) {
                 temp = [string substringWithRange:NSMakeRange(i,1)];
-                if (!([UIJudgeTool validateChineseNumber:temp] || [temp isEqualToString:@""])) {//当输入符合规则和退格键时允许改变输入框
+                if (!([XYJudge validateChineseNumber:temp] || [temp isEqualToString:@""])) {//当输入符合规则和退格键时允许改变输入框
                     return NO;
                 }
             }
@@ -152,24 +153,23 @@
     return YES;
 }
 
-
 #pragma mark -- setup
-- (void)setFieldType:(UITextFieldToolType)fieldType {
+- (void)setFieldType:(XYTextFieldType)fieldType {
     _fieldType = fieldType;
     switch (_fieldType) {
-        case UITextFieldToolNormal:
-        case UITextFieldToolChineseWord:
+        case XYTextFieldNormal:
+        case XYTextFieldChineseWord:
         {
             self.keyboardType = UIKeyboardTypeDefault;
         }
             break;
-        case UITextFieldToolNumber:
+        case XYTextFieldNumber:
         {
             self.keyboardType = UIKeyboardTypeNumberPad;
         }
             break;
-        case UITextFieldToolCharacter:
-        case UITextFieldToolNumberCharacter:
+        case XYTextFieldCharacter:
+        case XYTextFieldNumberCharacter:
         {
             self.keyboardType = UIKeyboardTypeASCIICapable;
         }

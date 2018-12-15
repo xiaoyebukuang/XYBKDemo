@@ -20,7 +20,8 @@
 		6544C42821C57BA200ED0436 /* NSDictionary+DeUTF.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C42621C57BA200ED0436 /* NSDictionary+DeUTF.m */; };
 		6544C42C21C57BC200ED0436 /* UIDevice+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C42B21C57BC200ED0436 /* UIDevice+Helper.m */; };
 		6544C43021C57CF400ED0436 /* UIScrollView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C42E21C57CF400ED0436 /* UIScrollView+Helper.m */; };
-		6544C43421C5854400ED0436 /* UIJudgeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C43321C5854400ED0436 /* UIJudgeTool.m */; };
+		6544C44321C58ED200ED0436 /* XYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C43F21C58ED100ED0436 /* XYTextField.m */; };
+		6544C44421C58ED200ED0436 /* XYJudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C44221C58ED200ED0436 /* XYJudge.m */; };
 		655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F624F2170733400A51D91 /* XYBannerViewTool.m */; };
 		655F62812174824400A51D91 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655F62762174824400A51D91 /* lock@2x.png */; };
 		655F62822174824400A51D91 /* broswerPic4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62772174824400A51D91 /* broswerPic4.jpg */; };
@@ -47,7 +48,6 @@
 		656FB3C020919FF500C07A3F /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3BF20919FF500C07A3F /* NSString+Helper.m */; };
 		656FB3C42091AB6E00C07A3F /* UIView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C32091AB6E00C07A3F /* UIView+Helper.m */; };
 		656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C82091AEF700C07A3F /* NSDate+Helper.m */; };
-		65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 65708124216D9310002F9AD0 /* UITextFieldTool.m */; };
 		65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */; };
 		65F7ECFE218A00C5008ABDDD /* assets_finish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */; };
 		65F7ECFF218A00C5008ABDDD /* assets_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC8218A00C4008ABDDD /* assets_back@3x.png */; };
@@ -114,8 +114,10 @@
 		6544C42B21C57BC200ED0436 /* UIDevice+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Helper.m"; sourceTree = "<group>"; };
 		6544C42E21C57CF400ED0436 /* UIScrollView+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Helper.m"; sourceTree = "<group>"; };
 		6544C42F21C57CF400ED0436 /* UIScrollView+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Helper.h"; sourceTree = "<group>"; };
-		6544C43221C5854400ED0436 /* UIJudgeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIJudgeTool.h; sourceTree = "<group>"; };
-		6544C43321C5854400ED0436 /* UIJudgeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIJudgeTool.m; sourceTree = "<group>"; };
+		6544C43E21C58ED100ED0436 /* XYTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTextField.h; sourceTree = "<group>"; };
+		6544C43F21C58ED100ED0436 /* XYTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTextField.m; sourceTree = "<group>"; };
+		6544C44121C58ED200ED0436 /* XYJudge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYJudge.h; sourceTree = "<group>"; };
+		6544C44221C58ED200ED0436 /* XYJudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYJudge.m; sourceTree = "<group>"; };
 		655F624E2170733400A51D91 /* XYBannerViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBannerViewTool.h; sourceTree = "<group>"; };
 		655F624F2170733400A51D91 /* XYBannerViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBannerViewTool.m; sourceTree = "<group>"; };
 		655F62762174824400A51D91 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
@@ -158,8 +160,6 @@
 		656FB3C62091AC3C00C07A3F /* PathMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathMacros.h; sourceTree = "<group>"; };
 		656FB3C72091AEF700C07A3F /* NSDate+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		656FB3C82091AEF700C07A3F /* NSDate+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
-		65708123216D9310002F9AD0 /* UITextFieldTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextFieldTool.h; sourceTree = "<group>"; };
-		65708124216D9310002F9AD0 /* UITextFieldTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITextFieldTool.m; sourceTree = "<group>"; };
 		65D0CA8B21536FF700A3DB66 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_finish@3x.png"; sourceTree = "<group>"; };
@@ -250,8 +250,8 @@
 		6529D746209963C30019DC03 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				6544C43121C5854400ED0436 /* UIJudgeTool */,
-				65708122216D92FD002F9AD0 /* UITextFieldTool */,
+				6544C44021C58ED200ED0436 /* XYJudgeTool */,
+				6544C43D21C58ED100ED0436 /* XYTextFieldTool */,
 				655F62752174824400A51D91 /* Resource */,
 				65F7ECC5218A00C4008ABDDD /* XYPhotoTool */,
 				655F624A2170731400A51D91 /* XYBannerViewTool */,
@@ -369,13 +369,22 @@
 			path = "UIScrollView+Helper";
 			sourceTree = "<group>";
 		};
-		6544C43121C5854400ED0436 /* UIJudgeTool */ = {
+		6544C43D21C58ED100ED0436 /* XYTextFieldTool */ = {
 			isa = PBXGroup;
 			children = (
-				6544C43221C5854400ED0436 /* UIJudgeTool.h */,
-				6544C43321C5854400ED0436 /* UIJudgeTool.m */,
+				6544C43E21C58ED100ED0436 /* XYTextField.h */,
+				6544C43F21C58ED100ED0436 /* XYTextField.m */,
 			);
-			path = UIJudgeTool;
+			path = XYTextFieldTool;
+			sourceTree = "<group>";
+		};
+		6544C44021C58ED200ED0436 /* XYJudgeTool */ = {
+			isa = PBXGroup;
+			children = (
+				6544C44121C58ED200ED0436 /* XYJudge.h */,
+				6544C44221C58ED200ED0436 /* XYJudge.m */,
+			);
+			path = XYJudgeTool;
 			sourceTree = "<group>";
 		};
 		655F624A2170731400A51D91 /* XYBannerViewTool */ = {
@@ -518,15 +527,6 @@
 				656FB3C82091AEF700C07A3F /* NSDate+Helper.m */,
 			);
 			path = "NSDate+Helper";
-			sourceTree = "<group>";
-		};
-		65708122216D92FD002F9AD0 /* UITextFieldTool */ = {
-			isa = PBXGroup;
-			children = (
-				65708123216D9310002F9AD0 /* UITextFieldTool.h */,
-				65708124216D9310002F9AD0 /* UITextFieldTool.m */,
-			);
-			path = UITextFieldTool;
 			sourceTree = "<group>";
 		};
 		65D0CA8A21536FF700A3DB66 /* UIColor+Helper */ = {
@@ -832,11 +832,12 @@
 				6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */,
 				655FA607216B4CEB009625B0 /* UIAlertViewTool.m in Sources */,
 				6544C40B21C5753700ED0436 /* XYHttpRequest.m in Sources */,
-				65708125216D9310002F9AD0 /* UITextFieldTool.m in Sources */,
+				6544C44321C58ED200ED0436 /* XYTextField.m in Sources */,
 				65F7ED95218A16CF008ABDDD /* XYPhotoTransitionView.m in Sources */,
 				65F7ED14218A00C5008ABDDD /* XYPhotoPickerGroup.m in Sources */,
 				65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */,
 				656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */,
+				6544C44421C58ED200ED0436 /* XYJudge.m in Sources */,
 				65F7ED1D218A00C5008ABDDD /* XYPhotoBrowserImageView.m in Sources */,
 				655FA5C321653CCC009625B0 /* UIButton+Helper.m in Sources */,
 				655FA5C7216544FA009625B0 /* UILabel+Helper.m in Sources */,
@@ -851,7 +852,6 @@
 				6544C42821C57BA200ED0436 /* NSDictionary+DeUTF.m in Sources */,
 				6544C40821C5752600ED0436 /* XYNetworking.m in Sources */,
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,
-				6544C43421C5854400ED0436 /* UIJudgeTool.m in Sources */,
 				65F7ED13218A00C5008ABDDD /* XYPhotoPickerGroupViewController.m in Sources */,
 				65F7ED11218A00C5008ABDDD /* XYPhotoPickerAssetsViewController.m in Sources */,
 				65F7ED10218A00C5008ABDDD /* XYPhotoPickerPreviewViewController.m in Sources */,

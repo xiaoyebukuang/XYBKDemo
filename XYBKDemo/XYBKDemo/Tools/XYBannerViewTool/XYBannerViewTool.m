@@ -15,11 +15,11 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) UIPageControl *pageControl;
-
+/** 数据源 */
 @property (nonatomic, strong) NSMutableArray *imagesArray;
 /** 定时器 */
 @property (nonatomic ,strong) NSTimer *timer;
-
+/** 是否需要定时滚动 */
 @property (nonatomic, assign) BOOL isRunning;
 
 @end

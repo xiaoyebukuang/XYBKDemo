@@ -31,10 +31,10 @@
 #import "UIDevice+Helper.h"
 #import "MBProgressHUD+Helper.h"
 /** 工具 */
-#import "UIJudgeTool.h"
+#import "XYTextField.h"
+#import "XYJudge.h"
 
 #import "UIAlertViewTool.h"
-#import "UITextFieldTool.h"
 #import "XYBannerViewTool.h"
 /** 三方库 */
 #import "UIImageView+WebCache.h"
