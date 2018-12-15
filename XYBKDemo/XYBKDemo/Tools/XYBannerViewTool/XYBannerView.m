@@ -1,16 +1,16 @@
 //
-//  XYBannerViewTool.m
+//  XYBannerView.m
 //  XYBKDemo
 //
-//  Created by 陈晓 on 2018/10/12.
+//  Created by 陈晓 on 2018/12/16.
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "XYBannerViewTool.h"
-/** 按钮高度 */
-const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
+#import "XYBannerView.h"
+/** 默认轮播时间 */
+const static CGFloat kXYBannerViewDefaultDuration           = 3.0f;
 
-@interface XYBannerViewTool()<UIScrollViewDelegate>
+@interface XYBannerView()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
@@ -24,7 +24,8 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
 
 @end
 
-@implementation XYBannerViewTool
+@implementation XYBannerView
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -32,15 +33,9 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
     }
     return self;
 }
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setupUI];
-    }
-    return self;
-}
 - (void)setupUI {
-    self.duration = kXYBannerViewToolDefaultDuration;
+    self.duration = kXYBannerViewDefaultDuration;
+    self.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
@@ -51,6 +46,7 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
         make.bottom.equalTo(self).offset(-10);
     }];
 }
+/** 刷新视图 */
 - (void)reloadViewWithArr:(NSArray *)imagesArr isRunning:(BOOL)isRunning {
     if (imagesArr.count == 0) {
         return;
@@ -72,6 +68,7 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
     }
     [self setNeedsLayout];
 }
+/** 创建视图 */
 - (void)setImageView {
     for (UIView *temp in self.scrollView.subviews) {
         [temp removeFromSuperview];
@@ -79,7 +76,15 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
     UIImageView *imageV;
     for (int i = 0; i < self.imagesArray.count; i++) {
         UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.image = [UIImage imageNamed:self.imagesArray[i]];
+        id temp = self.imagesArray[i];
+        if ([temp isKindOfClass:[NSString class]]) {
+            imageView.image = [UIImage imageNamed:(NSString *)temp];
+        }
+        if ([temp isKindOfClass:[NSURL class]]) {
+            [imageView sd_setImageWithURL:(NSURL *)temp placeholderImage:[UIImage imageNamed:self.placeholderStr] options:SDWebImageRetryFailed];
+        }
+        imageView.contentMode = self.contentMode;
+        imageView.clipsToBounds = YES;
         [self.scrollView addSubview:imageView];
         if (imageV) {
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,18 +124,30 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
 //手势点击
 - (void)tapGestureEvent:(UITapGestureRecognizer *)tap {
     if (self.imagesArray.count > 0) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(bannerViewToolEvent:)]) {
-            [self.delegate bannerViewToolEvent:self.pageControl.currentPage];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectIndex:bannerView:)]) {
+            [self.delegate didSelectIndex:self.pageControl.currentPage bannerView:self];
         }
     }
 }
+#pragma mark -- 滑动到指定页码
+- (void)scrollToPage:(NSInteger)page {
+    [self layoutIfNeeded];
+    self.pageControl.currentPage = page;
+    if (self.imagesArray.count == 1) {
+        [self.scrollView setContentOffset:CGPointMake(page*self.scrollView.width, 0) animated:NO];
+    } else {
+        [self.scrollView setContentOffset:CGPointMake((page+1)*self.scrollView.width, 0) animated:NO];
+    }
+}
 #pragma mark - Timer时间方法
+/** 开始定时 */
 -(void)startTimer {
     if (!self.timer) {
         self.timer = [NSTimer timerWithTimeInterval:self.duration target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     }
 }
+/** 更新 */
 - (void)updateTimer {
     CGFloat scroll_width = CGRectGetWidth(self.scrollView.frame);
     CGPoint newOffset = CGPointMake(self.scrollView.contentOffset.x  + scroll_width, 0);
@@ -146,6 +163,7 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
         }
     }];
 }
+/** 停止计时器 */
 - (void)stopTimer {
     if (self.timer) {
         [self.timer invalidate];
@@ -204,7 +222,10 @@ const static CGFloat kXYBannerViewToolDefaultDuration           = 3.0f;
         _pageControl.currentPage = 0;
         _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
         _pageControl.pageIndicatorTintColor = [UIColor grayColor];
+        _pageControl.userInteractionEnabled = NO;
     }
     return _pageControl;
 }
+
+
 @end

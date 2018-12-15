@@ -1,22 +1,23 @@
 //
-//  XYBannerViewTool.h
+//  XYBannerView.h
 //  XYBKDemo
 //
-//  Created by 陈晓 on 2018/10/12.
+//  Created by 陈晓 on 2018/12/16.
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
+@class XYBannerView;
 
-@protocol XYBannerViewToolDelegate <NSObject>
+@protocol XYBannerViewDelegate <NSObject>
 
--(void)bannerViewToolEvent:(NSInteger)index;
+-(void)didSelectIndex:(NSInteger)index bannerView:(XYBannerView *)bannerView;
 
 @end
 
+@interface XYBannerView : UIView
 
-@interface XYBannerViewTool : UIView
 /** 时间time */
 @property (nonatomic ,assign) NSTimeInterval duration;
 /** 默认图 */
@@ -24,12 +25,12 @@
 /** 图片模式 */
 @property (nonatomic, assign) UIViewContentMode contentMode;
 
-@property (nonatomic, weak) id <XYBannerViewToolDelegate>delegate;
+@property (nonatomic, weak) id <XYBannerViewDelegate>delegate;
 
 /** 刷新视图 */
 - (void)reloadViewWithArr:(NSArray *)imagesArr isRunning:(BOOL)isRunning;
-
+/** 取消计时器 */
 - (void)stopTimer;
-
-
+/** 滑动指定页码 */
+- (void)scrollToPage:(NSInteger)page;
 @end

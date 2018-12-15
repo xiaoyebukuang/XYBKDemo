@@ -33,9 +33,10 @@
 /** 工具 */
 #import "XYTextField.h"
 #import "XYJudge.h"
+#import "XYBannerView.h"
+
 
 #import "UIAlertViewTool.h"
-#import "XYBannerViewTool.h"
 /** 三方库 */
 #import "UIImageView+WebCache.h"
 #import <Masonry.h>

@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, XYTextFieldType) {
 @class XYTextField;
 @protocol XYTextFieldDelegate <NSObject>
 
-- (void)textChange:(NSString *)text textViewTool:(XYTextField *)textView;
+- (void)textChange:(NSString *)text textView:(XYTextField *)textView;
 
 @end
 

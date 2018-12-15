@@ -80,7 +80,7 @@
         }
     }
     if ([self.tool_delegate respondsToSelector:@selector(textChange:textViewTool:)]) {
-        [self.tool_delegate textChange:textField.text textViewTool:self];
+        [self.tool_delegate textChange:textField.text textView:self];
     }
 }
 

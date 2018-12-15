@@ -22,7 +22,7 @@
 		6544C43021C57CF400ED0436 /* UIScrollView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C42E21C57CF400ED0436 /* UIScrollView+Helper.m */; };
 		6544C44321C58ED200ED0436 /* XYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C43F21C58ED100ED0436 /* XYTextField.m */; };
 		6544C44421C58ED200ED0436 /* XYJudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C44221C58ED200ED0436 /* XYJudge.m */; };
-		655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 655F624F2170733400A51D91 /* XYBannerViewTool.m */; };
+		6544C44721C58F7500ED0436 /* XYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C44621C58F7500ED0436 /* XYBannerView.m */; };
 		655F62812174824400A51D91 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655F62762174824400A51D91 /* lock@2x.png */; };
 		655F62822174824400A51D91 /* broswerPic4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62772174824400A51D91 /* broswerPic4.jpg */; };
 		655F62832174824400A51D91 /* broswerPic3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62782174824400A51D91 /* broswerPic3.jpg */; };
@@ -118,8 +118,8 @@
 		6544C43F21C58ED100ED0436 /* XYTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTextField.m; sourceTree = "<group>"; };
 		6544C44121C58ED200ED0436 /* XYJudge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYJudge.h; sourceTree = "<group>"; };
 		6544C44221C58ED200ED0436 /* XYJudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYJudge.m; sourceTree = "<group>"; };
-		655F624E2170733400A51D91 /* XYBannerViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBannerViewTool.h; sourceTree = "<group>"; };
-		655F624F2170733400A51D91 /* XYBannerViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBannerViewTool.m; sourceTree = "<group>"; };
+		6544C44521C58F7500ED0436 /* XYBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBannerView.h; sourceTree = "<group>"; };
+		6544C44621C58F7500ED0436 /* XYBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBannerView.m; sourceTree = "<group>"; };
 		655F62762174824400A51D91 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
 		655F62772174824400A51D91 /* broswerPic4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic4.jpg; sourceTree = "<group>"; };
 		655F62782174824400A51D91 /* broswerPic3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic3.jpg; sourceTree = "<group>"; };
@@ -252,9 +252,9 @@
 			children = (
 				6544C44021C58ED200ED0436 /* XYJudgeTool */,
 				6544C43D21C58ED100ED0436 /* XYTextFieldTool */,
+				655F624A2170731400A51D91 /* XYBannerViewTool */,
 				655F62752174824400A51D91 /* Resource */,
 				65F7ECC5218A00C4008ABDDD /* XYPhotoTool */,
-				655F624A2170731400A51D91 /* XYBannerViewTool */,
 				6529D74B209996F60019DC03 /* UIAlertViewTool */,
 			);
 			path = Tools;
@@ -390,8 +390,8 @@
 		655F624A2170731400A51D91 /* XYBannerViewTool */ = {
 			isa = PBXGroup;
 			children = (
-				655F624E2170733400A51D91 /* XYBannerViewTool.h */,
-				655F624F2170733400A51D91 /* XYBannerViewTool.m */,
+				6544C44521C58F7500ED0436 /* XYBannerView.h */,
+				6544C44621C58F7500ED0436 /* XYBannerView.m */,
 			);
 			path = XYBannerViewTool;
 			sourceTree = "<group>";
@@ -827,6 +827,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				655FA604216B3BD4009625B0 /* UIAlertViewToolModel.m in Sources */,
+				6544C44721C58F7500ED0436 /* XYBannerView.m in Sources */,
 				65F7ED23218A090C008ABDDD /* XYPhotoPickerViewController.m in Sources */,
 				6544C43021C57CF400ED0436 /* UIScrollView+Helper.m in Sources */,
 				6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */,
@@ -855,7 +856,6 @@
 				65F7ED13218A00C5008ABDDD /* XYPhotoPickerGroupViewController.m in Sources */,
 				65F7ED11218A00C5008ABDDD /* XYPhotoPickerAssetsViewController.m in Sources */,
 				65F7ED10218A00C5008ABDDD /* XYPhotoPickerPreviewViewController.m in Sources */,
-				655F62502170733400A51D91 /* XYBannerViewTool.m in Sources */,
 				656FB3B22091700700C07A3F /* main.m in Sources */,
 				6544C40E21C5764300ED0436 /* XYNetworkingHandle.m in Sources */,
 				65F7ED17218A00C5008ABDDD /* XYPhotoPickerGroupTableViewCell.m in Sources */,

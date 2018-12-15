@@ -8,10 +8,9 @@
 
 #import "ViewController.h"
 #import "XYPhotoPickerViewController.h"
-#import "UITextFieldTool.h"
 
 
-@interface ViewController ()
+@interface ViewController ()<XYBannerViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -21,60 +20,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//
-//    XYBannerViewTool *bannerViewTool = [[XYBannerViewTool alloc]init];
-//    [self.view addSubview: bannerViewTool];
-//    [bannerViewTool mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.width.top.equalTo(self.view);
-//        make.height.mas_equalTo(300);
-//    }];
-    
-//    [bannerViewTool reloadViewWithArr:@[@"broswerPic0.jpg",@"broswerPic1.jpg",@"broswerPic2.jpg",@"broswerPic3.jpg",@"broswerPic4.jpg",@"broswerPic5.jpg"] isRunning:YES];
+
+    XYBannerView *bannerViewTool = [[XYBannerView alloc]init];
+    [self.view addSubview: bannerViewTool];
+    [bannerViewTool mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.width.top.equalTo(self.view);
+        make.height.mas_equalTo(300);
+    }];
+    bannerViewTool.delegate = self;
+    [bannerViewTool reloadViewWithArr:@[@"broswerPic0.jpg",@"broswerPic1.jpg",@"broswerPic2.jpg",@"broswerPic3.jpg",@"broswerPic4.jpg",@"broswerPic5.jpg"] isRunning:NO];
+    [bannerViewTool scrollToPage:3];
     
 //    [bannerViewTool reloadViewWithArr:@[@"broswerPic0.jpg"] isRunning:YES];
     
     
 
-    UITextFieldTool *textField01 = [[UITextFieldTool alloc]initWithType:UITextFieldToolChineseWord placeHolder:@"textField01"];
-    textField01.maxCount = 10;
-    [self.view addSubview:textField01];
-
-    [textField01 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(20);
-        make.top.equalTo(self.view).offset(64);
-        make.width.mas_equalTo(200);
-        make.height.mas_equalTo(40);
-    }];
-//
-//    UITextFieldTool *textField02 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumber placeHolder:@"textField02"];
-//    textField02.maxCount = 9;
-//    [self.view addSubview:textField02];
-//
-//    [textField02 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.height.left.equalTo(textField01);
-//        make.top.equalTo(textField01.mas_bottom).offset(10);
-//    }];
-//
-//
-//    UITextFieldTool *textField03 = [[UITextFieldTool alloc]initWithType:UITextFieldToolCharacter placeHolder:@"textField03"];
-//    textField03.maxCount = 9;
-//    [self.view addSubview:textField03];
-//
-//    [textField03 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.height.left.equalTo(textField01);
-//        make.top.equalTo(textField02.mas_bottom).offset(10);
-//    }];
-//
-//
-//    UITextFieldTool *textField04 = [[UITextFieldTool alloc]initWithType:UITextFieldToolNumberCharacter placeHolder:@"textField04"];
-//    textField04.maxCount = 9;
-//    [self.view addSubview:textField04];
-//
-//    [textField04 mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.height.left.equalTo(textField01);
-//        make.top.equalTo(textField03.mas_bottom).offset(10);
-//    }];
-//
 //
 //    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    btn.backgroundColor = [UIColor redColor];
@@ -152,11 +112,9 @@
 //
 //    }];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)didSelectIndex:(NSInteger)index bannerView:(XYBannerView *)bannerView {
+    NSLog(@"index = %ld",index);
 }
-
 
 - (UITableView *)tableView {
     if (!_tableView) {
