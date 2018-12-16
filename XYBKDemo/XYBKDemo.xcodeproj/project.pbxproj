@@ -49,6 +49,7 @@
 		656FB3C020919FF500C07A3F /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3BF20919FF500C07A3F /* NSString+Helper.m */; };
 		656FB3C42091AB6E00C07A3F /* UIView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C32091AB6E00C07A3F /* UIView+Helper.m */; };
 		656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C82091AEF700C07A3F /* NSDate+Helper.m */; };
+		6579C09C21C659070054EE66 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579C09B21C659070054EE66 /* CustomNavigationController.m */; };
 		65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */; };
 		65F7ECFE218A00C5008ABDDD /* assets_finish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */; };
 		65F7ECFF218A00C5008ABDDD /* assets_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC8218A00C4008ABDDD /* assets_back@3x.png */; };
@@ -163,6 +164,8 @@
 		656FB3C62091AC3C00C07A3F /* PathMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathMacros.h; sourceTree = "<group>"; };
 		656FB3C72091AEF700C07A3F /* NSDate+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		656FB3C82091AEF700C07A3F /* NSDate+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
+		6579C09A21C659070054EE66 /* CustomNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
+		6579C09B21C659070054EE66 /* CustomNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
 		65D0CA8B21536FF700A3DB66 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_finish@3x.png"; sourceTree = "<group>"; };
@@ -461,6 +464,7 @@
 				6544C40521C574F800ED0436 /* Network */,
 				656FB3BC20919FC200C07A3F /* Category */,
 				6529D746209963C30019DC03 /* Tools */,
+				6579C09821C658F30054EE66 /* SRC */,
 				656FB3A22091700600C07A3F /* AppDelegate.h */,
 				656FB3A32091700600C07A3F /* AppDelegate.m */,
 				656FB3A52091700600C07A3F /* ViewController.h */,
@@ -530,6 +534,23 @@
 				656FB3C82091AEF700C07A3F /* NSDate+Helper.m */,
 			);
 			path = "NSDate+Helper";
+			sourceTree = "<group>";
+		};
+		6579C09821C658F30054EE66 /* SRC */ = {
+			isa = PBXGroup;
+			children = (
+				6579C09921C658F30054EE66 /* BaseViewController */,
+			);
+			path = SRC;
+			sourceTree = "<group>";
+		};
+		6579C09921C658F30054EE66 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6579C09A21C659070054EE66 /* CustomNavigationController.h */,
+				6579C09B21C659070054EE66 /* CustomNavigationController.m */,
+			);
+			path = BaseViewController;
 			sourceTree = "<group>";
 		};
 		65D0CA8A21536FF700A3DB66 /* UIColor+Helper */ = {
@@ -842,6 +863,7 @@
 				65F7ED95218A16CF008ABDDD /* XYPhotoTransitionView.m in Sources */,
 				65F7ED14218A00C5008ABDDD /* XYPhotoPickerGroup.m in Sources */,
 				65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */,
+				6579C09C21C659070054EE66 /* CustomNavigationController.m in Sources */,
 				656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */,
 				6544C44421C58ED200ED0436 /* XYJudge.m in Sources */,
 				65F7ED1D218A00C5008ABDDD /* XYPhotoBrowserImageView.m in Sources */,

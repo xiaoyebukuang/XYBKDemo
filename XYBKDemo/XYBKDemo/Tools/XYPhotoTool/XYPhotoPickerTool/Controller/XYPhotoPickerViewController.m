@@ -7,7 +7,7 @@
 //
 
 #import "XYPhotoPickerViewController.h"
-
+#import "CustomNavigationController.h"
 #import "XYPhotoPickerGroupViewController.h"
 
 @interface XYPhotoPickerViewController ()
@@ -35,10 +35,7 @@
 - (void)createNavigationController{
     XYPhotoPickerGroupViewController* groupVc = [[XYPhotoPickerGroupViewController alloc]init];
     /** 可以自己定位导航控制器 */
-    UINavigationController* nvc = [[UINavigationController alloc]initWithRootViewController:groupVc];
-    nvc.navigationBar.titleTextAttributes = @{NSFontAttributeName: SYSTEM_FONT_18,NSForegroundColorAttributeName: [UIColor color_FFFFFF]};
-    nvc.navigationBar.barTintColor = [UIColor color_232323];
-    nvc.navigationBar.translucent = NO;
+    CustomNavigationController* nvc = [[CustomNavigationController alloc]initWithRootViewController:groupVc];
     groupVc.maxCount = self.maxCount;
     groupVc.status = self.status;
     nvc.view.frame = self.view.frame;
