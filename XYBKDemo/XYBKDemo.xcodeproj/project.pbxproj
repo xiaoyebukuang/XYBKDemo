@@ -23,6 +23,7 @@
 		6544C44321C58ED200ED0436 /* XYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C43F21C58ED100ED0436 /* XYTextField.m */; };
 		6544C44421C58ED200ED0436 /* XYJudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C44221C58ED200ED0436 /* XYJudge.m */; };
 		6544C44721C58F7500ED0436 /* XYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C44621C58F7500ED0436 /* XYBannerView.m */; };
+		6544C44D21C59F2200ED0436 /* XYPhotoPickerAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C44C21C59F2200ED0436 /* XYPhotoPickerAsset.m */; };
 		655F62812174824400A51D91 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 655F62762174824400A51D91 /* lock@2x.png */; };
 		655F62822174824400A51D91 /* broswerPic4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62772174824400A51D91 /* broswerPic4.jpg */; };
 		655F62832174824400A51D91 /* broswerPic3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 655F62782174824400A51D91 /* broswerPic3.jpg */; };
@@ -120,6 +121,8 @@
 		6544C44221C58ED200ED0436 /* XYJudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYJudge.m; sourceTree = "<group>"; };
 		6544C44521C58F7500ED0436 /* XYBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBannerView.h; sourceTree = "<group>"; };
 		6544C44621C58F7500ED0436 /* XYBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBannerView.m; sourceTree = "<group>"; };
+		6544C44B21C59F2200ED0436 /* XYPhotoPickerAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYPhotoPickerAsset.h; sourceTree = "<group>"; };
+		6544C44C21C59F2200ED0436 /* XYPhotoPickerAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYPhotoPickerAsset.m; sourceTree = "<group>"; };
 		655F62762174824400A51D91 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
 		655F62772174824400A51D91 /* broswerPic4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic4.jpg; sourceTree = "<group>"; };
 		655F62782174824400A51D91 /* broswerPic3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic3.jpg; sourceTree = "<group>"; };
@@ -609,6 +612,8 @@
 				65F7ED1F218A0169008ABDDD /* XYPhotoPickerDatas.m */,
 				65F7ECE7218A00C4008ABDDD /* XYPhotoPickerGroup.h */,
 				65F7ECE5218A00C4008ABDDD /* XYPhotoPickerGroup.m */,
+				6544C44B21C59F2200ED0436 /* XYPhotoPickerAsset.h */,
+				6544C44C21C59F2200ED0436 /* XYPhotoPickerAsset.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -845,6 +850,7 @@
 				6544C42021C57A3A00ED0436 /* NSString+MD5.m in Sources */,
 				6544C41D21C579AF00ED0436 /* DesEncryption.m in Sources */,
 				65F7ED20218A0169008ABDDD /* XYPhotoPickerDatas.m in Sources */,
+				6544C44D21C59F2200ED0436 /* XYPhotoPickerAsset.m in Sources */,
 				65F7ED1A218A00C5008ABDDD /* XYPhotoBrowserScrollView.m in Sources */,
 				6544C42421C57A7800ED0436 /* UIImage+Helper.m in Sources */,
 				65F7ED1C218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m in Sources */,

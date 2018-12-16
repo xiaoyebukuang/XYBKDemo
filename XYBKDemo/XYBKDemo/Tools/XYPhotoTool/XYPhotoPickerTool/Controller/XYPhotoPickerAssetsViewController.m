@@ -9,19 +9,18 @@
 #import "XYPhotoPickerAssetsViewController.h"
 #import "XYPhotoPickerAssetsCollectionViewCell.h"
 #import "XYPhotoPickerPreviewViewController.h"
-/** cell宽度 */
-static const CGFloat assets_cell_width = 108.0f;
-/** cell高度 */
-static const CGFloat assets_cell_height = 108.0f;
+#import "XYPhotoPickerAsset.h"
+/** 一行的个数 */
+static const NSInteger assets_cell_number = 4;
 /** 内边距 */
-static const CGFloat assets_inset_top = 15.0f;
-static const CGFloat assets_inset_left = 15.0f;
-static const CGFloat assets_inset_bottom = 15.0f;
-static const CGFloat assets_inset_right = 15.0f;
+static const CGFloat assets_inset_top = 5.0f;
+static const CGFloat assets_inset_left = 5.0f;
+static const CGFloat assets_inset_bottom = 5.0f;
+static const CGFloat assets_inset_right = 5.0f;
 /** 列间距 */
-static const CGFloat assets_interitem_spacing = 10.0f;
+static const CGFloat assets_interitem_spacing = 5.0f;
 /** 行间距 */
-static const CGFloat assets_line_spacing = 10.0f;
+static const CGFloat assets_line_spacing = 5.0f;
 
 static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPickerAssetsCollectionViewCellID";
 
@@ -34,18 +33,20 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 /** 完成按钮 */
 @property (nonatomic, strong) UIButton *finishBtn;
 /** 数据源 */
-@property (nonatomic, strong) NSArray *assetsArray;
+@property (nonatomic, strong) NSArray <XYPhotoPickerAsset *>*assetsArray;
 /** 选中的数据 */
-@property (nonatomic, strong) NSMutableArray *selectPickerAssets;
+@property (nonatomic, strong) NSMutableArray <XYPhotoPickerAsset *>*selectPickerAssets;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+
+@property (nonatomic, assign) CGFloat assets_cell_size;
 
 @end
 
 @implementation XYPhotoPickerAssetsViewController
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
     [self reloadView];
 }
 - (void)viewDidLoad {
@@ -53,6 +54,7 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
     self.view.backgroundColor = [UIColor color_FFFFFF];
     self.selectPickerAssets = [NSMutableArray array];
     self.title = self.pickerGroup.groupName;
+    self.assets_cell_size = (MAIN_SCREEN_WIDTH - assets_inset_left - assets_inset_right - (assets_cell_number - 1)*assets_interitem_spacing)/assets_cell_number;
     [self setupUI];
     [self setNavigationBar];
     [self setImages];
@@ -105,9 +107,12 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 - (void)setImages {
     [MBProgressHUD showToView:self.view];
     [[XYPhotoPickerDatas defaultPicker]enumerateAssetsInAssetCollection:self.pickerGroup.assetCollection pickerDatasCallBack:^(id obj) {
+        [MBProgressHUD hideHUDForView:self.view];
         self.assetsArray = obj;
         [self.collectionView reloadData];
-        [MBProgressHUD hideHUDForView:self.view];
+        if (self.assetsArray.count > 0) {
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.assetsArray.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+        }
     }];
 }
 #pragma mark -- event
@@ -131,7 +136,7 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUD];
             /** 发送通知 */
-            [[NSNotificationCenter defaultCenter]postNotificationName:PICKER_TAKE_DONE object:images];
+            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:images];
             [self dismissViewControllerAnimated:NO completion:nil];
         });
     });
@@ -159,10 +164,17 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 /** 创建cell */
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     XYPhotoPickerAssetsCollectionViewCell *cell = (XYPhotoPickerAssetsCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:XYPhotoPickerAssetsCollectionViewCellID forIndexPath:indexPath];
-    PHAsset *asset = self.assetsArray[indexPath.row];
-    NSUInteger index = [self.selectPickerAssets indexOfObject:asset];
+    XYPhotoPickerAsset *assetModel = self.assetsArray[indexPath.row];
+    NSInteger index = -1;
+    for (int i = 0; i < self.selectPickerAssets.count; i ++) {
+        XYPhotoPickerAsset *temp = self.selectPickerAssets[i];
+        if ([temp.asset isEqual:assetModel.asset]) {
+            index = i;
+            break;
+        }
+    }
     WeakSelf;
-    [cell reloadDataWithPHAssets:asset indexPath:index photoPickerAssetsBlock:^(BOOL isSelected) {
+    [cell reloadDataWithAssetModel:assetModel size:self.assets_cell_size indexPath:index photoPickerAssetsBlock:^(BOOL isSelected) {
         if (isSelected) {
             if (weakSelf.selectPickerAssets.count >= weakSelf.maxCount) {
                 /** 超过限制个数，提示 */
@@ -171,11 +183,11 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
                 }];
             } else {
                 /** 没有超过限制个数，直接添加 */
-                [weakSelf.selectPickerAssets addObject:asset];
+                [weakSelf.selectPickerAssets addObject:assetModel];
             }
         } else {
             /** 从添加的数组中移除 */
-            [weakSelf.selectPickerAssets removeObject:asset];
+            [weakSelf.selectPickerAssets removeObjectAtIndex:index];
         }
         /** 刷新视图 */
         [weakSelf reloadView];
@@ -190,7 +202,7 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(assets_cell_width, assets_cell_height);
+        layout.itemSize = CGSizeMake(self.assets_cell_size, self.assets_cell_size);
         layout.sectionInset = UIEdgeInsetsMake(assets_inset_top, assets_inset_left, assets_inset_bottom, assets_inset_right);
         layout.minimumLineSpacing = assets_line_spacing;
         layout.minimumInteritemSpacing = assets_interitem_spacing;

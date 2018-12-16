@@ -7,10 +7,8 @@
 //
 
 #import "XYPhotoPickerGroupViewController.h"
-#import "XYPhotoToolMacros.h"
 #import "XYPhotoPickerGroupTableViewCell.h"
 #import "XYPhotoPickerAssetsViewController.h"
-#import <Photos/Photos.h>
 static NSString * const XYPhotoPickerGroupTableViewCellID = @"XYPhotoPickerGroupTableViewCellID";
 
 @interface XYPhotoPickerGroupViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -21,6 +19,11 @@ static NSString * const XYPhotoPickerGroupTableViewCellID = @"XYPhotoPickerGroup
 @end
 
 @implementation XYPhotoPickerGroupViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = NO;
+}
 
 - (instancetype)init{
     self = [super init];

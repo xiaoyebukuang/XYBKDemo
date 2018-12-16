@@ -12,7 +12,7 @@
 
 @protocol XYPhotoBrowserScrollViewDelegate <NSObject>
 @optional
-// 单击调用
+//单击调用
 - (void) pickerPhotoScrollViewDidSingleClick:(XYPhotoBrowserScrollView *)photoScrollView;
 //双击
 - (void) pickerPhotoScrollViewDidDoubleClick:(XYPhotoBrowserScrollView *)photoScrollView;

@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-
+#import "XYPhotoToolMacros.h"
 // 状态组
 typedef NS_ENUM(NSInteger , PickerViewShowStatus) {
     PickerViewShowStatusGroup = 0, //默认相册组

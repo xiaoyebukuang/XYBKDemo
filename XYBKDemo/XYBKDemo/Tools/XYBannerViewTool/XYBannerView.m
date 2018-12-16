@@ -35,11 +35,20 @@ const static CGFloat kXYBannerViewDefaultDuration           = 3.0f;
 }
 - (void)setupUI {
     self.duration = kXYBannerViewDefaultDuration;
-    self.contentMode = UIViewContentModeScaleToFill;
+    self.contentMode = UIViewContentModeScaleAspectFill;
+    [self addSubview:[UIView new]];
     [self addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
+    
+    UIView *subView = [[UIView alloc]init];
+    [self.scrollView addSubview:subView];
+    subView.backgroundColor = [UIColor redColor];
+    [subView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.scrollView);
+    }];
+    
     [self addSubview:self.pageControl];
     [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.width.equalTo(self);
@@ -82,6 +91,9 @@ const static CGFloat kXYBannerViewDefaultDuration           = 3.0f;
         }
         if ([temp isKindOfClass:[NSURL class]]) {
             [imageView sd_setImageWithURL:(NSURL *)temp placeholderImage:[UIImage imageNamed:self.placeholderStr] options:SDWebImageRetryFailed];
+        }
+        if ([temp isKindOfClass:[UIImage class]]) {
+            imageView.image = (UIImage *)temp;
         }
         imageView.contentMode = self.contentMode;
         imageView.clipsToBounds = YES;

@@ -11,7 +11,7 @@
 #import "XYPhotoToolMacros.h"
 
 static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCollectionViewCellID";
-@interface XYPhotoPickerPreviewViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UIScrollViewDelegate>
+@interface XYPhotoPickerPreviewViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UIScrollViewDelegate,XYPhotoBrowserScrollViewDelegate>
 
 /** 选择按钮 */
 @property (nonatomic, strong) UIButton *selectBtn;
@@ -22,13 +22,20 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
+@property (nonatomic, assign) BOOL hiddenView;
 @end
 
 @implementation XYPhotoPickerPreviewViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.translucent = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor color_FFFFFF];
+    self.hiddenView = NO;
     [self setNavigationBar];
     [self setupUI];
     [self reloadView];
@@ -44,32 +51,41 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
     self.navigationItem.rightBarButtonItem = rightButtonItem;
 }
 - (void)setupUI {
+    [self.view addSubview:self.collectionView];
+    
     [self.view addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.width.bottom.equalTo(self.view);
         make.height.mas_equalTo(kAssetsBottomHeight + IPHONEX_BOTTOW_HEIGHT);
     }];
-    [self.view addSubview:self.collectionView];
 }
 #pragma mark -- 刷新视图
 - (void)reloadView {
-    PHAsset *asset = self.assetsArray[self.currentPage];
-    NSUInteger index = [self.selectPickerAssets indexOfObject:asset];
-    BOOL isSelect = NO;
-    if (index != NSNotFound) {
-        isSelect = YES;
-    }
+    XYPhotoPickerAsset *assetModel = self.assetsArray[self.currentPage];
+    NSInteger index = [self getIndexWithAssetModel:assetModel];
+    BOOL isSelect = index >= 0 ? YES:NO;
     self.selectBtn.selected = isSelect;
     if (isSelect) {
-        [self.selectBtn setTitle:[NSString stringWithFormat:@"%ld",index+1] forState:UIControlStateNormal];
+        [self.selectBtn setTitle:[NSString stringWithFormat:@"%lu",index+1] forState:UIControlStateNormal];
     } else {
         [self.selectBtn setTitle:@"" forState:UIControlStateNormal];
     }
     if (self.selectPickerAssets.count == 0) {
         [self.finishBtn setTitle:@"完成" forState:UIControlStateNormal];
     } else {
-        [self.finishBtn setTitle:[NSString stringWithFormat:@"完成(%ld)",self.selectPickerAssets.count] forState:UIControlStateNormal];
+        [self.finishBtn setTitle:[NSString stringWithFormat:@"完成(%lu)",(unsigned long)self.selectPickerAssets.count] forState:UIControlStateNormal];
     }
+}
+- (NSInteger)getIndexWithAssetModel:(XYPhotoPickerAsset *)assetModel {
+    NSInteger index = -1;
+    for (int i = 0; i < self.selectPickerAssets.count; i ++) {
+        XYPhotoPickerAsset *temp = self.selectPickerAssets[i];
+        if ([temp.asset isEqual:assetModel.asset]) {
+            index = i;
+            break;
+        }
+    }
+    return index;
 }
 #pragma mark -- event
 /** 左侧返回按钮 */
@@ -78,18 +94,21 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
 }
 /** 右侧选中按钮 */
 - (void)rightNavigationBarEvent:(UIButton *)sender {
-    PHAsset *asset = self.assetsArray[self.currentPage];
+    XYPhotoPickerAsset *assetModel = self.assetsArray[self.currentPage];
     if (sender.selected) {
         /** 选中状态,取消选中 */
-        [self.selectPickerAssets removeObject:asset];
+        NSInteger index = [self getIndexWithAssetModel:assetModel];
+        if (index >= 0) {
+            [self.selectPickerAssets removeObjectAtIndex:index];
+        }
     } else {
         /** 非选中状态，添加选中 */
         if (self.selectPickerAssets.count >= self.maxCount) {
-            NSString *title = [NSString stringWithFormat:@"你最多只能选择%ld张照片",self.maxCount];
+            NSString *title = [NSString stringWithFormat:@"你最多只能选择%ld张照片",(long)self.maxCount];
             [UIAlertViewTool showTitle:title message:nil titlesArr:@[@"我知道了"] alertBlock:^(NSString *mes, NSInteger index) {
             }];
         } else {
-            [self.selectPickerAssets addObject:asset];
+            [self.selectPickerAssets addObject:assetModel];
         }
     }
     [self reloadView];
@@ -102,10 +121,17 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUD];
             /** 发送通知 */
-            [[NSNotificationCenter defaultCenter]postNotificationName:PICKER_TAKE_DONE object:images];
+            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:images];
             [self dismissViewControllerAnimated:NO completion:nil];
         });
     });
+}
+#pragma mark -- XYPhotoBrowserScrollViewDelegate
+//单击调用
+- (void) pickerPhotoScrollViewDidSingleClick:(XYPhotoBrowserScrollView *)photoScrollView {
+    self.hiddenView = !self.hiddenView;
+    [self.navigationController.navigationBar setHidden:self.hiddenView];
+    self.bottomView.hidden = self.hiddenView;
 }
 #pragma mark -- UIScrollViewDelegate
 /** 停止滚动时 */
@@ -127,6 +153,7 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     XYPhotoBrowserCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:XYPhotoBrowserCollectionViewCellID forIndexPath:indexPath];
     [cell reloadViewWithPhotosArr:self.assetsArray andIndexPath:indexPath.row];
+    cell.photoBrowserScrollView.photoScrollViewDelegate = self;
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
@@ -135,14 +162,13 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
 #pragma mark -- setup
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
-        CGFloat collection_height = MAIN_SCREEN_HEIGHT - NAV_BAR_HEIGHT - IPHONEX_BOTTOW_HEIGHT - kAssetsBottomHeight;
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = XYColletionViewLineSpacing;
         flowLayout.minimumInteritemSpacing = XYColletionViewInteritemSpacing;
-        flowLayout.itemSize = CGSizeMake(MAIN_SCREEN_WIDTH, collection_height);
+        flowLayout.itemSize = CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT);
         //支持横向滑动
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH + XYColletionViewLineSpacing,collection_height) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_WIDTH + XYColletionViewLineSpacing,MAIN_SCREEN_HEIGHT) collectionViewLayout:flowLayout];
         _collectionView.showsHorizontalScrollIndicator = YES;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.pagingEnabled = YES;

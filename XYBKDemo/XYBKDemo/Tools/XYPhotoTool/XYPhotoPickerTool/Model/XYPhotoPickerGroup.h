@@ -12,11 +12,12 @@
 @interface XYPhotoPickerGroup : NSObject
 /** 组名 */
 @property (nonatomic, copy) NSString *groupName;
+/** 默认图 */
+@property (nonatomic, strong) UIImage *defaultImage;
 /** 缩略图 默认为50 */
 @property (nonatomic, strong) UIImage *thumbImage;
 /** 组里面的图片个数 */
 @property (nonatomic, assign) NSInteger assetsCount;
-
 /** 相册类型 */
 @property (nonatomic, assign) PHAssetCollectionSubtype assetSubtype;
 /** 相册 */

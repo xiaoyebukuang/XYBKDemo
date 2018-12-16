@@ -35,8 +35,8 @@ static CGFloat const kAssetsRowWidth = 108.0f;
 static CGFloat const kAssetsBottomHeight = 45.0f;
 
 /** 完成通知 */
-static NSString *PICKER_TAKE_DONE = @"PICKER_TAKE_DONE";
+static NSString *NOTIFICATION_PICKER_TAKE_DONE = @"NOTIFICATION_PICKER_TAKE_DONE";
 /** 相册常用类 */
 #import "XYPhotoPickerDatas.h"
-
+#import <Photos/Photos.h>
 #endif /* XYPhotoToolMacros_h */

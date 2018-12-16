@@ -8,11 +8,17 @@
 
 #import "ViewController.h"
 #import "XYPhotoPickerViewController.h"
+#import "XYPhotoBrowserViewController.h"
+#import "XYPhotoToolMacros.h"
 
 
 @interface ViewController ()<XYBannerViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) XYBannerView *bannerViewTool;
+
+@property (nonatomic, strong) NSArray *images;
 
 @end
 
@@ -21,43 +27,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    XYBannerView *bannerViewTool = [[XYBannerView alloc]init];
-    [self.view addSubview: bannerViewTool];
-    [bannerViewTool mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.width.top.equalTo(self.view);
+    self.bannerViewTool = [[XYBannerView alloc]init];
+    [self.view addSubview: self.bannerViewTool];
+    [self.bannerViewTool mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.width.equalTo(self.view);
+        make.top.equalTo(self.view).mas_offset(100);
         make.height.mas_equalTo(300);
     }];
-    bannerViewTool.delegate = self;
-    [bannerViewTool reloadViewWithArr:@[@"broswerPic0.jpg",@"broswerPic1.jpg",@"broswerPic2.jpg",@"broswerPic3.jpg",@"broswerPic4.jpg",@"broswerPic5.jpg"] isRunning:NO];
-    [bannerViewTool scrollToPage:3];
+    self.bannerViewTool.delegate = self;
+    self.images = @[@"broswerPic0.jpg",@"broswerPic1.jpg",@"broswerPic2.jpg",@"broswerPic3.jpg",@"broswerPic4.jpg",@"broswerPic5.jpg"];
+    [self.bannerViewTool reloadViewWithArr:self.images isRunning:NO];
+    [self.bannerViewTool scrollToPage:3];
     
 //    [bannerViewTool reloadViewWithArr:@[@"broswerPic0.jpg"] isRunning:YES];
     
     
 
-//
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    btn.backgroundColor = [UIColor redColor];
-//    btn.frame = CGRectMake(0, 0, 100, 100);
-//    [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
-//    [btn setTitle:@"点击" forState:UIControlStateNormal];
-//    [self.view addSubview:btn];
-//
-//
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.backgroundColor = [UIColor redColor];
+    btn.frame = CGRectMake(0, 0, 100, 100);
+    [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
+    [btn setTitle:@"点击" forState:UIControlStateNormal];
+    [self.view addSubview:btn];
+
 //
 //    [self.view addSubview:self.tableView];
 //    [MJRefreshTool addRefreshToolWithScrollView:self.tableView headerBlock:^{
 //        [MJRefreshTool  endRefresh:self.tableView];
 //    }];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(sendPhoto:) name:NOTIFICATION_PICKER_TAKE_DONE object:nil];
+    
+}
+//照片选择接收照片
+- (void)sendPhoto:(NSNotification *)notification{
+    self.images = notification.object;
+    [self.bannerViewTool reloadViewWithArr:self.images isRunning:NO];
 }
 - (void)btnEvent:(UIButton *)sender {
+    //照片选择器
     XYPhotoPickerViewController *vc = [[XYPhotoPickerViewController alloc]init];
     vc.maxCount = 12;
     vc.status = PickerViewShowStatusCameraRoll;
     [self presentViewController:vc animated:YES completion:nil];
     
     //照片
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+//    NSMutableArray *array = [[NSMutableArray alloc] init];
 //    for (int i = 0; i < 6; i++) {
 //        XYPhotoBrowserModel *photo = [[XYPhotoBrowserModel alloc] initWithObj:[UIImage imageNamed:[NSString stringWithFormat:@"broswerPic%d.jpg",i]]];
 //        [array addObject:photo];
@@ -114,7 +129,12 @@
 }
 - (void)didSelectIndex:(NSInteger)index bannerView:(XYBannerView *)bannerView {
     NSLog(@"index = %ld",index);
+    XYPhotoBrowserViewController *browservc = [[XYPhotoBrowserViewController alloc]init];
+    browservc.photosArr = self.images;
+    browservc.currentPage = index;
+    [self.navigationController pushViewController:browservc animated:YES];
 }
+
 
 - (UITableView *)tableView {
     if (!_tableView) {

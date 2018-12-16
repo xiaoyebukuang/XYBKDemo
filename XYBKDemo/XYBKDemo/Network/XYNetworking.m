@@ -106,7 +106,7 @@ static NSTimeInterval const timeInterval = 30.0;
     } else {
         request = [network.manager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             for (int i = 0; i < imageArray.count; i ++) {
-                UIImage *image=  imageArray[i];
+                UIImage *image = imageArray[i];
                 NSData *data;
                 NSString *dataStr = [NSDate getDateStrWithDate:[NSDate date] formatType:FormatDefault];
                 [formData appendPartWithFileData:data name:@"files" fileName:[NSString stringWithFormat:@"%@.jpeg",dataStr] mimeType:@"multipart/form-data"];

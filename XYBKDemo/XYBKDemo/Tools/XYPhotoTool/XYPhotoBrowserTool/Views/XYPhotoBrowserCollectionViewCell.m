@@ -7,7 +7,7 @@
 //
 
 #import "XYPhotoBrowserCollectionViewCell.h"
-
+#import "XYPhotoPickerAsset.h"
 @implementation XYPhotoBrowserCollectionViewCell
 
 - (instancetype)init{

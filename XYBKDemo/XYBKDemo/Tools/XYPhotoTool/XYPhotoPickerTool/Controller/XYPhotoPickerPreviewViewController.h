@@ -7,12 +7,12 @@
 //
 
 #import "RootViewController.h"
-
+#import "XYPhotoPickerAsset.h"
 @interface XYPhotoPickerPreviewViewController : RootViewController
 /** 数据源 */
-@property (nonatomic, strong) NSArray *assetsArray;
+@property (nonatomic, strong) NSArray <XYPhotoPickerAsset *>*assetsArray;
 /** 选中的数据 */
-@property (nonatomic, strong) NSMutableArray *selectPickerAssets;
+@property (nonatomic, strong) NSMutableArray <XYPhotoPickerAsset *>*selectPickerAssets;
 /** 当前page */
 @property (nonatomic, assign) NSInteger currentPage;
 /** 最大限制数 */

@@ -57,13 +57,20 @@
 }
 - (void)setPickerGroup:(XYPhotoPickerGroup *)pickerGroup {
     _pickerGroup = pickerGroup;
-    self.imageV.image = pickerGroup.thumbImage;
+    if (pickerGroup.thumbImage) {
+        self.imageV.image = pickerGroup.thumbImage;
+    } else {
+        self.imageV.image = pickerGroup.defaultImage;
+        WeakSelf;
+        [[XYPhotoPickerDatas defaultPicker]getGroupNormalPhoto:pickerGroup.assetCollection complete:^(UIImage *image) {
+            weakSelf.pickerGroup.thumbImage = image;
+            weakSelf.imageV.image = image;
+        }];
+    }
     self.titleL.text = pickerGroup.groupName;
     self.countL.text = [NSString stringWithFormat:@"(%ld)",pickerGroup.assetsCount];
 }
-
 #pragma mark -- setupUI
-
 - (UIImageView *)imageV {
     if (!_imageV) {
         _imageV = [[UIImageView alloc]init];

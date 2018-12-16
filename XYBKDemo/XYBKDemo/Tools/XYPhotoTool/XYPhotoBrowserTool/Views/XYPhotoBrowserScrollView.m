@@ -9,6 +9,7 @@
 #import "XYPhotoBrowserScrollView.h"
 #import "XYPhotoBrowserView.h"
 #import "XYPhotoToolMacros.h"
+#import "XYPhotoPickerAsset.h"
 @interface XYPhotoBrowserScrollView()<XYPhotoBrowserViewDelegate, XYPhotoBrowserImageViewDelegate, UIScrollViewDelegate>
 /** 最大缩放 */
 @property (nonatomic, assign) CGFloat maxScale;
@@ -60,17 +61,23 @@
 - (void)setModel:(id)model {
     _model = model;
     WeakSelf;
-    if ([model isKindOfClass:[UIImage class]]) {
+    if ([model isKindOfClass:[NSString class]]) {
+        //string
+        NSString *imageStr = model;
+        UIImage *image = [UIImage imageNamed:imageStr];
+        self.progress = 1;
+        self.photoBrowserImageView.image = image;
+        [self displayImage];
+    } else if ([model isKindOfClass:[UIImage class]]) {
         //图片
         UIImage *image = model;
         self.progress = 1;
         self.photoBrowserImageView.image = image;
         [self displayImage];
-    } else if ([model isKindOfClass:[NSString class]]) {
+    } else if ([model isKindOfClass:[NSURL class]]) {
         //url
-        NSString *urlStr = model;
+        NSURL *url = model;
         [self.progressView showAnimated:YES];
-        NSURL *url = [NSURL URLWithString:urlStr];
         [self.photoBrowserImageView sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             [weakSelf setProgress:(double)receivedSize / expectedSize];
         } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -93,6 +100,19 @@
                 self.photoBrowserImageView.image = image;
             });
         });
+    } else if ([model isKindOfClass:[XYPhotoPickerAsset class]]) {
+        XYPhotoPickerAsset *assetModel = model;
+        if (assetModel.image) {
+            self.photoBrowserImageView.image = assetModel.image;
+        } else {
+            self.photoBrowserImageView.image = nil;
+            [MBProgressHUD showToView:self];
+            [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:assetModel.asset synchronous:NO size:CGSizeMake(MAIN_SCREEN_WIDTH*2, MAIN_SCREEN_HEIGHT*2) complete:^(UIImage *image) {
+                [MBProgressHUD hideHUDForView:self];
+                assetModel.image = image;
+                self.photoBrowserImageView.image = image;
+            }];
+        }   
     } else {
         NSLog(@"错误类型");
     }

@@ -45,11 +45,8 @@
         make.top.equalTo(self.contentView).mas_offset(5);
     }];
 }
-- (void)reloadDataWithPHAssets:(PHAsset *)asset indexPath:(NSUInteger)index photoPickerAssetsBlock:(XYPhotoPickerAssetsBlock)assetsBlock {
-    BOOL isSelect = NO;
-    if (index != NSNotFound) {
-        isSelect = YES;
-    }
+- (void)reloadDataWithAssetModel:(XYPhotoPickerAsset *)assetModel size:(CGFloat)size indexPath:(NSInteger)index photoPickerAssetsBlock:(XYPhotoPickerAssetsBlock)assetsBlock {
+    BOOL isSelect = index >= 0 ? YES:NO;
     self.selectBtn.selected = isSelect;
     if (isSelect) {
         [self.selectBtn setTitle:[NSString stringWithFormat:@"%ld",index+1] forState:UIControlStateNormal];
@@ -57,8 +54,16 @@
         [self.selectBtn setTitle:@"" forState:UIControlStateNormal];
     }
     self.assetsBlock = assetsBlock;
-    UIImage *image = [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:asset withSize:CGSizeMake(kAssetsRowWidth*2, kAssetsRowHeight*2)];
-    self.imageV.image = image;
+    if (assetModel.thumbImage) {
+        self.imageV.image = assetModel.thumbImage;
+    } else {
+        self.imageV.image = assetModel.defaultImage;
+        WeakSelf;
+        [[XYPhotoPickerDatas defaultPicker] getImageFromPHAsset:assetModel.asset synchronous:NO size:CGSizeMake(size*2, size*2) complete:^(UIImage *image) {
+            assetModel.thumbImage = image;
+            weakSelf.imageV.image = image;
+        }];
+    }
 }
 #pragma mark -- setup
 - (void)selectBtnEvent:(UIButton *)sender {

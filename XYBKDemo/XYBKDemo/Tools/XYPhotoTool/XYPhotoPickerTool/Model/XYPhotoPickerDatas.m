@@ -9,6 +9,7 @@
 #import "XYPhotoPickerDatas.h"
 #import "XYPhotoToolMacros.h"
 #import "XYPhotoPickerGroup.h"
+#import "XYPhotoPickerAsset.h"
 @implementation XYPhotoPickerDatas
 
 /** 获取单例 */
@@ -20,7 +21,6 @@
     });
     return photoPickerDatas;
 }
-
 /** 获取所有的相簿 */
 - (void)getAllGroupWithPhotos:(PickerDatasCallBack)callBack; {
     /** 第一次获取权限 */
@@ -42,7 +42,6 @@
          PHAssetCollectionTypeSmartAlbum = 2,//经由相机得来的相册
          PHAssetCollectionTypeMoment     = 3,//Photos 为我们自动生成的时间分组的相册
          */
-        
         /**
          case AlbumRegular //用户在 Photos 中创建的相册，也就是我所谓的逻辑相册
          case AlbumSyncedEvent //使用 iTunes 从 Photos 照片库或者 iPhoto 照片库同步过来的事件。然而，在iTunes 12 以及iOS 9.0 beta4上，选用该类型没法获取同步的事件相册，而必须使用AlbumSyncedAlbum。
@@ -65,49 +64,60 @@
          */
         NSMutableArray *group = [NSMutableArray array];
         PHFetchResult<PHAssetCollection *> *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-        //遍历所有的自定义相簿
-        for (PHAssetCollection *assetCollection in assetCollections) {
-            //获得某个相簿中的所有PHAsset对象
-            PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-            XYPhotoPickerGroup *groupModel = [[XYPhotoPickerGroup alloc]init];
-            groupModel.assetCollection = assetCollection;
-            groupModel.groupName = assetCollection.localizedTitle;
-            groupModel.assetSubtype = assetCollection.assetCollectionSubtype;
-            groupModel.assetsCount = assets.count;
-            if (assets.count > 0) {
-                PHAsset *asset = assets.firstObject;
-                PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-                options.resizeMode = PHImageRequestOptionsResizeModeFast;
-                // 同步获得图片, 只会返回1张图片
-                options.synchronous = YES;
-                [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(kAlbumRowWidth, kAlbumRowHeight) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    groupModel.thumbImage = result;
-                }];
-            } else {
-                groupModel.thumbImage = [UIImage imageNamed:@"blank"];
+        [assetCollections enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull assetCollection, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([assetCollection isKindOfClass:[PHAssetCollection class]]) {
+                //获得某个相簿中的所有PHAsset对象
+                PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+                XYPhotoPickerGroup *groupModel = [[XYPhotoPickerGroup alloc]init];
+                groupModel.assetCollection = assetCollection;
+                groupModel.groupName = assetCollection.localizedTitle;
+                groupModel.assetSubtype = assetCollection.assetCollectionSubtype;
+                groupModel.assetsCount = assets.count;
+                groupModel.defaultImage = [UIImage imageNamed:@"blank"];
+                switch (assetCollection.assetCollectionSubtype) {
+                    case PHAssetCollectionSubtypeSmartAlbumUserLibrary:
+                        [group insertObject:groupModel atIndex:0];
+                        break;
+                    case PHAssetCollectionSubtypeSmartAlbumFavorites:
+                    case PHAssetCollectionSubtypeSmartAlbumRecentlyAdded:
+                    case PHAssetCollectionSubtypeSmartAlbumSelfPortraits:
+                    case PHAssetCollectionSubtypeSmartAlbumScreenshots:
+                    case PHAssetCollectionSubtypeSmartAlbumBursts:
+                    case PHAssetCollectionSubtypeSmartAlbumPanoramas:
+                        [group addObject:groupModel];
+                        break;
+                    default:
+                        break;
+                }
             }
-            switch (assetCollection.assetCollectionSubtype) {
-                case PHAssetCollectionSubtypeSmartAlbumUserLibrary:
-                    [group insertObject:groupModel atIndex:0];
-                    break;
-                case PHAssetCollectionSubtypeSmartAlbumFavorites:
-                case PHAssetCollectionSubtypeSmartAlbumRecentlyAdded:
-                case PHAssetCollectionSubtypeSmartAlbumSelfPortraits:
-                case PHAssetCollectionSubtypeSmartAlbumScreenshots:
-                case PHAssetCollectionSubtypeSmartAlbumBursts:
-                case PHAssetCollectionSubtypeSmartAlbumPanoramas:
-                    [group addObject:groupModel];
-                    break;
-                default:
-                    break;
-            }
-        }
+        }];
         dispatch_async(dispatch_get_main_queue(), ^{
             callBack(group);
         });
     });
 }
-
+/** 异步获取相册中第一张图片 */
+- (void)getGroupNormalPhoto:(PHAssetCollection *)assetCollection complete:(void(^)(UIImage *image))handler {
+    PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+    if (assets.count > 0) {
+        PHAsset *asset = assets.firstObject;
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.resizeMode = PHImageRequestOptionsResizeModeFast;
+        //异步获得图片, 只会返回1张图片
+        options.synchronous = NO;
+        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(kAlbumRowWidth, kAlbumRowHeight) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (handler) {
+                    handler(result);
+                }
+            });
+        }];
+    } else {
+        if (handler) {
+            handler([UIImage imageNamed:@"blank"]);
+        }
+    }
+}
 /** 遍历相簿中的全部图片 */
 - (void)enumerateAssetsInAssetCollection:(PHAssetCollection *)assetCollection pickerDatasCallBack:(PickerDatasCallBack)callBack {
     /**
@@ -123,20 +133,48 @@
     PHImageRequestOptionsDeliveryModeHighQualityFormat //制定的同步返回一个结果，返回的图片质量是比我们设定的size会好一点(实际上与PHImageRequestOptions的resizeMode枚举相关)
     PHImageRequestOptionsDeliveryModeFastFormat//仅返回一次，效率较高之余获得的图质量不太好
     */
-    
     NSMutableArray *assetsArray = [NSMutableArray array];
     // 获得某个相簿中的所有PHAsset对象
     PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
     for (PHAsset *asset in assets) {
         if (asset.mediaType == PHAssetMediaTypeImage) {
             // 从asset中获得图片
-            [assetsArray addObject:asset];
+            XYPhotoPickerAsset *assetModel = [[XYPhotoPickerAsset alloc]init];
+            assetModel.asset = asset;
+            [self getImageFromPHAsset:asset synchronous:YES size:CGSizeZero complete:^(UIImage *image) {
+                assetModel.defaultImage = image;
+            }];
+            [assetsArray addObject:assetModel];
         }
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         callBack(assetsArray);
     });
 }
+/** 获取指定大小的图片 */
+- (void)getImageFromPHAsset:(PHAsset *)asset synchronous:(BOOL)synchronous size:(CGSize)size complete:(void(^)(UIImage *image))handler {
+    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+    options.resizeMode = PHImageRequestOptionsResizeModeFast;
+    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    // 同步获得图片, 只会返回1张图片
+    options.synchronous = synchronous;
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        if (handler) {
+            handler(result);
+        }
+    }];
+}
+
+
+
+
+
+
+
+
+
+
+
 /** 获取PHAsset指定大小的图片 */
 - (UIImage *)getImageFromPHAsset:(PHAsset *)asset withSize:(CGSize)size {
     NSMutableArray *images = [NSMutableArray array];
@@ -161,10 +199,14 @@
     options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     // 同步获得图片, 只会返回1张图片
     options.synchronous = YES;
-    for (PHAsset *asset in assetArr) {
-        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-            [images addObject:result];
-        }];
+    for (XYPhotoPickerAsset *assetModel in assetArr) {
+        if (assetModel.image) {
+            [images addObject:assetModel.image];
+        } else {
+            [[PHImageManager defaultManager] requestImageForAsset:assetModel.asset targetSize:CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                [images addObject:result];
+            }];
+        }
     }
     return images;
 }

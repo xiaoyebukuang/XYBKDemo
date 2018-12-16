@@ -24,14 +24,41 @@ typedef void(^PickerDatasCallBack)(id obj);
  */
 - (void)getAllGroupWithPhotos:(PickerDatasCallBack)callBack;
 
+
+/**
+ 异步获取相册中第一张图片
+
+ @param assetCollection 相册
+ @param handler 回调
+ */
+- (void)getGroupNormalPhoto:(PHAssetCollection *)assetCollection
+                   complete:(void(^)(UIImage *image))handler;
+
 /**
  遍历相簿中的全部图片
-
+ 
  @param assetCollection 相簿
  @param callBack 获取图片组，返回array<XYPhotoPickerGroup *>
  */
 - (void)enumerateAssetsInAssetCollection:(PHAssetCollection *)assetCollection
                      pickerDatasCallBack:(PickerDatasCallBack)callBack;
+
+/**
+ 获取指定大小的图片
+
+ @param asset 数据源
+ @param synchronous 是否同步
+ @param size size
+ @param handler 回调
+ */
+- (void)getImageFromPHAsset:(PHAsset *)asset synchronous:(BOOL)synchronous size:(CGSize)size complete:(void(^)(UIImage *image))handler;
+
+
+
+
+
+
+
 
 /**
  获取PHAsset指定大小的图片
