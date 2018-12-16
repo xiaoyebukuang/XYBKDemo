@@ -85,25 +85,25 @@
             if (image) {
                 weakSelf.photoBrowserImageView.image = image;
             }else{
-                [self.photoBrowserImageView removeScaleBigTap];
+                [weakSelf.photoBrowserImageView removeScaleBigTap];
             }
             [weakSelf displayImage];
         }];
     } else if ([model isKindOfClass:[PHAsset class]]) {
         self.photoBrowserImageView.image = nil;
         [MBProgressHUD showToView:self];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            PHAsset *asset = model;
-            UIImage *image = [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:asset withSize:CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT)];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self];
-                self.photoBrowserImageView.image = image;
-            });
-        });
+        PHAsset *asset = model;
+        [MBProgressHUD showToView:self];
+        [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:asset synchronous:NO size:CGSizeMake(MAIN_SCREEN_WIDTH*2, MAIN_SCREEN_HEIGHT*2) complete:^(UIImage *image) {
+            [MBProgressHUD hideHUDForView:self];
+            self.photoBrowserImageView.image = image;
+            [self displayImage];
+        }];
     } else if ([model isKindOfClass:[XYPhotoPickerAsset class]]) {
         XYPhotoPickerAsset *assetModel = model;
         if (assetModel.image) {
             self.photoBrowserImageView.image = assetModel.image;
+            [self displayImage];
         } else {
             self.photoBrowserImageView.image = nil;
             [MBProgressHUD showToView:self];
@@ -111,6 +111,7 @@
                 [MBProgressHUD hideHUDForView:self];
                 assetModel.image = image;
                 self.photoBrowserImageView.image = image;
+                [self displayImage];
             }];
         }   
     } else {

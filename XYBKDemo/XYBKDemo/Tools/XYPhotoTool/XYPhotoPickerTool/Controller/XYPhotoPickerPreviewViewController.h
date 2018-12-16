@@ -10,7 +10,8 @@
 #import "XYPhotoPickerAsset.h"
 @interface XYPhotoPickerPreviewViewController : RootViewController
 /** 数据源 */
-@property (nonatomic, strong) NSArray <XYPhotoPickerAsset *>*assetsArray;
+//@property (nonatomic, strong) NSArray <XYPhotoPickerAsset *>*assetsArray;
+@property (nonatomic, strong) NSArray *assetsArray;
 /** 选中的数据 */
 @property (nonatomic, strong) NSMutableArray <XYPhotoPickerAsset *>*selectPickerAssets;
 /** 当前page */

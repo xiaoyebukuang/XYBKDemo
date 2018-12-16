@@ -10,6 +10,9 @@
 #import "XYPhotoPickerAssetsCollectionViewCell.h"
 #import "XYPhotoPickerPreviewViewController.h"
 #import "XYPhotoPickerAsset.h"
+
+#import "XYPhotoBrowserViewController.h"
+
 /** 一行的个数 */
 static const NSInteger assets_cell_number = 4;
 /** 内边距 */
