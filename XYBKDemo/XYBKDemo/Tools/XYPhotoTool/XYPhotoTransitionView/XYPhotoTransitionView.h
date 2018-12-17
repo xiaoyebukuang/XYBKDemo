@@ -10,7 +10,9 @@
 @protocol XYPhotoTransitionViewDelegate <NSObject>
 
 /** 获取当前的图片在原始view中的位置 */
--(CGRect)getFrameWithCurrentPage:(NSInteger)currentPage sourceView:(UIView *)sourceView;
+- (CGRect)getFrameWithCurrentPage:(NSInteger)currentPage sourceView:(UIView *)sourceView;
+/** 消失 */
+- (void)dismissWithCurrentPage:(NSInteger)currentPage;
 
 @end
 @interface XYPhotoTransitionView : UIView
@@ -27,12 +29,12 @@
 
 /**
  显示动画
- 
  @param currentPage 当前的page
  @param image 当前的image
  @param photosArr 图片数组
  */
 - (void)showPhotoBrowerViewWithCurrentPage:(NSInteger)currentPage
                                      image:(UIImage *)image
+                               contentMode:(UIViewContentMode)contentMode
                                  photosArr:(NSArray *)photosArr;
 @end

@@ -17,7 +17,7 @@
     self.delegate = self;
     self.navigationBar.translucent = NO;
     self.interactivePopGestureRecognizer.delegate = self;
-    self.navigationBar.titleTextAttributes = @{NSFontAttributeName: SYSTEM_FONT_24,NSForegroundColorAttributeName: [UIColor color_333333]};
+    self.navigationBar.titleTextAttributes = @{NSFontAttributeName: SYSTEM_FONT_24,NSForegroundColorAttributeName: [UIColor color_FFFFFF]};
     self.navigationBar.barTintColor = [UIColor color_232323];
 }
 

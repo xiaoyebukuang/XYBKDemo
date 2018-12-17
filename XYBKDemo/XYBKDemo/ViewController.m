@@ -10,9 +10,10 @@
 #import "XYPhotoPickerViewController.h"
 #import "XYPhotoBrowserViewController.h"
 #import "XYPhotoToolMacros.h"
+#import "XYPhotoTransitionView.h"
 
 
-@interface ViewController ()<XYBannerViewDelegate>
+@interface ViewController ()<XYBannerViewDelegate,XYPhotoTransitionViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -28,6 +29,7 @@
     [super viewDidLoad];
 
     self.bannerViewTool = [[XYBannerView alloc]init];
+    self.bannerViewTool.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview: self.bannerViewTool];
     [self.bannerViewTool mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.width.equalTo(self.view);
@@ -35,7 +37,7 @@
         make.height.mas_equalTo(300);
     }];
     self.bannerViewTool.delegate = self;
-    self.images = @[@"broswerPic0.jpg",@"broswerPic1.jpg",@"broswerPic2.jpg",@"broswerPic3.jpg",@"broswerPic4.jpg",@"broswerPic5.jpg"];
+    self.images = @[@"broswerPic0.jpg",@"broswerPic1.jpg",@"broswerPic2.jpg",@"broswerPic3.jpg",@"broswerPic4.jpg",@"broswerPic5.jpg",@"broswerPic6.jpg"];
     [self.bannerViewTool reloadViewWithArr:self.images isRunning:NO];
     [self.bannerViewTool scrollToPage:3];
     
@@ -77,10 +79,6 @@
 //        XYPhotoBrowserModel *photo = [[XYPhotoBrowserModel alloc] initWithObj:[UIImage imageNamed:[NSString stringWithFormat:@"broswerPic%d.jpg",i]]];
 //        [array addObject:photo];
 //    }
-    
-//
-//
-//
 //    XYPhotoBrowserModel *photo = [[XYPhotoBrowserModel alloc] init];
 //    photo.photoURL = [NSURL URLWithString:@"http://img.ivsky.com/img/bizhi/slides/201511/11/december.jpg"];
 //    [array addObject:photo];
@@ -105,8 +103,6 @@
 //    vc.photosArr = array;
 //    vc.currentPage = 2;
 //    [self presentViewController:vc animated:YES completion:nil];
-
-    
     
     
 //    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
@@ -127,12 +123,18 @@
 //
 //    }];
 }
-- (void)didSelectIndex:(NSInteger)index bannerView:(XYBannerView *)bannerView {
+- (void)didSelectIndex:(NSInteger)index imageView:(UIImageView *)imageView {
     NSLog(@"index = %ld",index);
-    XYPhotoBrowserViewController *browservc = [[XYPhotoBrowserViewController alloc]init];
-    browservc.photosArr = self.images;
-    browservc.currentPage = index;
-    [self.navigationController pushViewController:browservc animated:YES];
+    XYPhotoTransitionView *transitionView = [[XYPhotoTransitionView alloc]init];
+    transitionView.delegate = self;
+    [transitionView showPhotoBrowerViewWithCurrentPage:index image:imageView.image contentMode:imageView.contentMode photosArr:self.images];
+}
+- (CGRect)getFrameWithCurrentPage:(NSInteger)currentPage sourceView:(UIView *)sourceView {
+    CGRect frame = [self.view convertRect:self.bannerViewTool.frame toView:sourceView];
+    return frame;
+}
+- (void)dismissWithCurrentPage:(NSInteger)currentPage {
+    [self.bannerViewTool scrollToPage:currentPage];
 }
 
 

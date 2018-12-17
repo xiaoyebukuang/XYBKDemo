@@ -250,7 +250,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     self.btnView.frame = CGRectMake(0, CGRectGetHeight(self.dialogView.frame) - btn_height, CGRectGetWidth(self.dialogView.frame), btn_height);
     //添加按钮
     [self addButtons];
-    [[[[UIApplication sharedApplication] windows] firstObject] addSubview:self];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     [self addSubview:self.dialogView];
     [self.dialogView addSubview:self.containerView];
     [self.dialogView addSubview:self.btnView];

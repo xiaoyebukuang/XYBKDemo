@@ -22,6 +22,7 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
 
 @property (nonatomic, strong) UILabel          *pageLabel;
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, assign) UIViewContentMode contentMode;
 
 @end
 @implementation XYPhotoTransitionView
@@ -56,27 +57,28 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
     }
 }
 /** 显示动画 */
-- (void)showPhotoBrowerViewWithCurrentPage:(NSInteger)currentPage image:(UIImage *)image photosArr:(NSArray *)photosArr {
+- (void)showPhotoBrowerViewWithCurrentPage:(NSInteger)currentPage image:(UIImage *)image contentMode:(UIViewContentMode)contentMode photosArr:(NSArray *)photosArr {
+    self.contentMode = contentMode;
     self.photosArr = photosArr;
     self.currentPage = currentPage;
     self.pageLabel.text =  [NSString stringWithFormat:@"%ld/%ld",currentPage + 1, self.photosArr.count];
     UIWindow *window = kKeyWindow;
     if ([self.delegate respondsToSelector:@selector(getFrameWithCurrentPage:sourceView:)]) {
         CGRect frame = [self.delegate getFrameWithCurrentPage:currentPage sourceView:self];
+        //黑色背景
         UIView *backView = [[UIView alloc]initWithFrame:window.bounds];
         backView.backgroundColor = [UIColor blackColor];
         backView.alpha = 0;
         [window addSubview:backView];
-        
+        //过渡动画
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:frame];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.contentMode = contentMode;
         imageView.image = image;
         imageView.clipsToBounds = YES;
         [window addSubview:imageView];
-        
+        CGRect imageV_frame = [self getImageViewSize:image];
         [UIView animateWithDuration:rootViewAnimations animations:^{
-            imageView.center = self.center;
-            imageView.bounds = self.bounds;
+            imageView.frame = imageV_frame;
             backView.alpha = 1;
         } completion:^(BOOL finished) {
             [imageView removeFromSuperview];
@@ -88,19 +90,49 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
         [window addSubview:self];
     }
 }
+- (CGRect)getImageViewSize:(UIImage *)img {
+    //设置缩放
+    CGSize boundsSize = self.bounds.size;
+    CGSize imageSize = img.size;
+    //宽度缩放比例
+    CGFloat xScale = boundsSize.width/imageSize.width;
+    //高度缩放比例
+    CGFloat yScale = boundsSize.height/imageSize.height;
+    
+    CGFloat imageV_width;
+    CGFloat imageV_height;
+    CGRect frame;
+    if (xScale < yScale) {
+        //高度缩放不满屏，宽度缩放满屏
+        imageV_width = boundsSize.width;
+        imageV_height = xScale*imageSize.height;
+        frame = CGRectMake(0, (boundsSize.height - imageV_height)/2, imageV_width, imageV_height);
+    }else{
+        //高度缩放超屏，宽度缩放满屏
+        imageV_height = boundsSize.height;
+        imageV_width = yScale*imageSize.width;
+        frame = CGRectMake((boundsSize.width - imageV_width)/2, 0, imageV_width, imageV_height);
+    }
+    return frame;
+}
 /** 消失动画 */
 - (void) dismiss{
     [self removeFromSuperview];
+    if ([self.delegate respondsToSelector:@selector(dismissWithCurrentPage:)]) {
+        [self.delegate dismissWithCurrentPage:self.currentPage];
+    }
     if ([self.delegate respondsToSelector:@selector(getFrameWithCurrentPage:sourceView:)]) {
         UIWindow *window = kKeyWindow;
+        //黑色背景
         CGRect sourceFrame = [self.delegate getFrameWithCurrentPage:self.currentPage sourceView:self];
         UIView *backView = [[UIView alloc]initWithFrame:window.bounds];
         backView.backgroundColor = [UIColor blackColor];
         [window addSubview:backView];
+        //过渡动画
         XYPhotoBrowserCollectionViewCell *cell = (XYPhotoBrowserCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPage inSection:0]];
         UIImageView *sourceImageV = (UIImageView *)cell.photoBrowserScrollView.photoBrowserImageView;
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:sourceImageV.frame];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.contentMode = self.contentMode;
         imageView.clipsToBounds = YES;
         imageView.image = sourceImageV.image;
         [window addSubview:imageView];

@@ -106,6 +106,7 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
         if (self.selectPickerAssets.count >= self.maxCount) {
             NSString *title = [NSString stringWithFormat:@"你最多只能选择%ld张照片",(long)self.maxCount];
             [UIAlertViewTool showTitle:title message:nil titlesArr:@[@"我知道了"] alertBlock:^(NSString *mes, NSInteger index) {
+                
             }];
         } else {
             [self.selectPickerAssets addObject:assetModel];

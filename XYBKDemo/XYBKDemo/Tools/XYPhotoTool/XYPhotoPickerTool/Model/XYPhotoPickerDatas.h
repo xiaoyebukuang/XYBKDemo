@@ -54,23 +54,6 @@ typedef void(^PickerDatasCallBack)(id obj);
 - (void)getImageFromPHAsset:(PHAsset *)asset synchronous:(BOOL)synchronous size:(CGSize)size complete:(void(^)(UIImage *image))handler;
 
 
-
-
-
-
-
-
-/**
- 获取PHAsset指定大小的图片
-
- @param asset 指定PHAsset
- @param size size
- @return image
- */
-- (UIImage *)getImageFromPHAsset:(PHAsset *)asset
-                        withSize:(CGSize)size;
-
-
 /**
  获取PHAsset全屏的图片数组
 

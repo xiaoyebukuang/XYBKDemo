@@ -35,7 +35,7 @@ const static CGFloat kXYBannerViewDefaultDuration           = 3.0f;
 }
 - (void)setupUI {
     self.duration = kXYBannerViewDefaultDuration;
-    self.contentMode = UIViewContentModeScaleAspectFill;
+    self.contentMode = UIViewContentModeScaleToFill;
     [self addSubview:[UIView new]];
     [self addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -85,6 +85,7 @@ const static CGFloat kXYBannerViewDefaultDuration           = 3.0f;
     UIImageView *imageV;
     for (int i = 0; i < self.imagesArray.count; i++) {
         UIImageView *imageView = [[UIImageView alloc]init];
+        imageView.userInteractionEnabled = YES;
         id temp = self.imagesArray[i];
         if ([temp isKindOfClass:[NSString class]]) {
             imageView.image = [UIImage imageNamed:(NSString *)temp];
@@ -97,6 +98,8 @@ const static CGFloat kXYBannerViewDefaultDuration           = 3.0f;
         }
         imageView.contentMode = self.contentMode;
         imageView.clipsToBounds = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureEvent:)];
+        [imageView addGestureRecognizer:tapGesture];
         [self.scrollView addSubview:imageView];
         if (imageV) {
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -136,8 +139,8 @@ const static CGFloat kXYBannerViewDefaultDuration           = 3.0f;
 //手势点击
 - (void)tapGestureEvent:(UITapGestureRecognizer *)tap {
     if (self.imagesArray.count > 0) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectIndex:bannerView:)]) {
-            [self.delegate didSelectIndex:self.pageControl.currentPage bannerView:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectIndex:imageView:)]) {
+            [self.delegate didSelectIndex:self.pageControl.currentPage imageView:(UIImageView *)tap.view];
         }
     }
 }
@@ -223,8 +226,6 @@ const static CGFloat kXYBannerViewDefaultDuration           = 3.0f;
         _scrollView.pagingEnabled = YES;
         _scrollView.delegate = self;
         _scrollView.showsHorizontalScrollIndicator = NO;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureEvent:)];
-        [_scrollView addGestureRecognizer:tapGesture];
     }
     return _scrollView;
 }

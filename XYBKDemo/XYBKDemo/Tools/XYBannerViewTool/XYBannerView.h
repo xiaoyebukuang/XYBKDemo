@@ -12,7 +12,7 @@
 
 @protocol XYBannerViewDelegate <NSObject>
 
--(void)didSelectIndex:(NSInteger)index bannerView:(XYBannerView *)bannerView;
+-(void)didSelectIndex:(NSInteger)index imageView:(UIImageView *)imageView;
 
 @end
 

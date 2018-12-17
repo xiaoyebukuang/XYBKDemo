@@ -139,7 +139,6 @@
     self.zoomScale = 1;
     UIImage *img = self.photoBrowserImageView.image;
     if (img) {
-        self.photoBrowserImageView.image = img;
         //设置缩放
         CGSize boundsSize = self.bounds.size;
         CGSize imageSize = img.size;
@@ -147,27 +146,31 @@
         CGFloat xScale = boundsSize.width/imageSize.width;
         //高度缩放比例
         CGFloat yScale = boundsSize.height/imageSize.height;
+        
+        CGFloat imageV_width;
+        CGFloat imageV_height;
+        CGFloat max_scale = 2;
         if (xScale < yScale) {
             //高度缩放不满屏，宽度缩放满屏
-            self.photoBrowserImageView.contentMode = UIViewContentModeScaleAspectFit;
+            imageV_width = boundsSize.width;
+            imageV_height = xScale*imageSize.height;
+            if (imageV_height*2 < boundsSize.height + IPHONEX_TOP_HEIGHT + IPHONEX_BOTTOW_HEIGHT) {
+                max_scale = (boundsSize.height + IPHONEX_TOP_HEIGHT + IPHONEX_BOTTOW_HEIGHT)/imageV_height;
+            }
         }else{
             //高度缩放超屏，宽度缩放满屏
-            self.photoBrowserImageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageV_height = boundsSize.height;
+            imageV_width = yScale*imageSize.width;
+            if (imageV_width*2 < boundsSize.width) {
+                max_scale = boundsSize.width/imageV_width;
+            }
         }
-        if (xScale > 1) {
-            xScale = 1;
-        }
-        // Set
         self.minScale = 1;
-        if (imageSize.height*xScale*2 < boundsSize.height) {
-            self.maxScale = boundsSize.height/(imageSize.height*xScale);
-        }else{
-            self.maxScale = 2;
-        }
+        self.maxScale = max_scale;
         self.maximumZoomScale = self.maxScale;
         self.minimumZoomScale = self.minScale;
         self.zoomScale = self.minScale;
-        self.photoBrowserImageView.frame = CGRectMake(0, 0, self.width, imageSize.height*xScale);
+        self.photoBrowserImageView.frame = CGRectMake(0, 0, imageV_width, imageV_height);
         self.baseSize = self.photoBrowserImageView.frame.size;
         self.contentSize = self.baseSize;
     }

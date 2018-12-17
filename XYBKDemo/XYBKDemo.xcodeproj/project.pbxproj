@@ -50,6 +50,7 @@
 		656FB3C42091AB6E00C07A3F /* UIView+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C32091AB6E00C07A3F /* UIView+Helper.m */; };
 		656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C82091AEF700C07A3F /* NSDate+Helper.m */; };
 		6579C09C21C659070054EE66 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579C09B21C659070054EE66 /* CustomNavigationController.m */; };
+		6579C09E21C7818C0054EE66 /* broswerPic6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6579C09D21C7818B0054EE66 /* broswerPic6.jpg */; };
 		65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */; };
 		65F7ECFE218A00C5008ABDDD /* assets_finish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */; };
 		65F7ECFF218A00C5008ABDDD /* assets_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC8218A00C4008ABDDD /* assets_back@3x.png */; };
@@ -166,6 +167,7 @@
 		656FB3C82091AEF700C07A3F /* NSDate+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
 		6579C09A21C659070054EE66 /* CustomNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
 		6579C09B21C659070054EE66 /* CustomNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
+		6579C09D21C7818B0054EE66 /* broswerPic6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic6.jpg; sourceTree = "<group>"; };
 		65D0CA8B21536FF700A3DB66 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_finish@3x.png"; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				655F62762174824400A51D91 /* lock@2x.png */,
+				6579C09D21C7818B0054EE66 /* broswerPic6.jpg */,
 				655F628C217489DC00A51D91 /* broswerPic5.jpg */,
 				655F62772174824400A51D91 /* broswerPic4.jpg */,
 				655F62782174824400A51D91 /* broswerPic3.jpg */,
@@ -763,6 +766,7 @@
 			files = (
 				656FB3AF2091700700C07A3F /* LaunchScreen.storyboard in Resources */,
 				65F7ED07218A00C5008ABDDD /* assets_selected@3x.png in Resources */,
+				6579C09E21C7818C0054EE66 /* broswerPic6.jpg in Resources */,
 				655F62892174824400A51D91 /* checkbox_pic_non@3x.png in Resources */,
 				65F7ED00218A00C5008ABDDD /* assets_preview@2x.png in Resources */,
 				65F7ED02218A00C5008ABDDD /* assets_preview@3x.png in Resources */,

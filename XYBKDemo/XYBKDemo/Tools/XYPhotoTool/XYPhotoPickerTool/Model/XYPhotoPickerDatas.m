@@ -165,32 +165,6 @@
     }];
 }
 
-
-
-
-
-
-
-
-
-
-
-/** 获取PHAsset指定大小的图片 */
-- (UIImage *)getImageFromPHAsset:(PHAsset *)asset withSize:(CGSize)size {
-    NSMutableArray *images = [NSMutableArray array];
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsResizeModeFast;
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    // 同步获得图片, 只会返回1张图片
-    options.synchronous = YES;
-    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-        [images addObject:result];
-    }];
-    if (images.count > 0) {
-        return [images firstObject];
-    }
-    return nil;
-}
 /** 获取PHAsset全屏的图片数组 */
 - (NSArray *)getImagesFromPHAsset:(NSArray *)assetArr {
     NSMutableArray *images = [NSMutableArray array];
