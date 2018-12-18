@@ -51,6 +51,8 @@
 		656FB3C92091AEF700C07A3F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 656FB3C82091AEF700C07A3F /* NSDate+Helper.m */; };
 		6579C09C21C659070054EE66 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579C09B21C659070054EE66 /* CustomNavigationController.m */; };
 		6579C09E21C7818C0054EE66 /* broswerPic6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6579C09D21C7818B0054EE66 /* broswerPic6.jpg */; };
+		6579C0A221C7D2ED0054EE66 /* XYBottomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579C0A121C7D2ED0054EE66 /* XYBottomAlertView.m */; };
+		6579C0A621C7D5480054EE66 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6579C0A421C7D5480054EE66 /* BaseTableViewCell.m */; };
 		65D0CA8D21536FF800A3DB66 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */; };
 		65F7ECFE218A00C5008ABDDD /* assets_finish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */; };
 		65F7ECFF218A00C5008ABDDD /* assets_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F7ECC8218A00C4008ABDDD /* assets_back@3x.png */; };
@@ -168,6 +170,10 @@
 		6579C09A21C659070054EE66 /* CustomNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
 		6579C09B21C659070054EE66 /* CustomNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
 		6579C09D21C7818B0054EE66 /* broswerPic6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = broswerPic6.jpg; sourceTree = "<group>"; };
+		6579C0A021C7D2ED0054EE66 /* XYBottomAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYBottomAlertView.h; sourceTree = "<group>"; };
+		6579C0A121C7D2ED0054EE66 /* XYBottomAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYBottomAlertView.m; sourceTree = "<group>"; };
+		6579C0A421C7D5480054EE66 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		6579C0A521C7D5480054EE66 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		65D0CA8B21536FF700A3DB66 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		65D0CA8C21536FF700A3DB66 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		65F7ECC7218A00C4008ABDDD /* assets_finish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "assets_finish@3x.png"; sourceTree = "<group>"; };
@@ -258,6 +264,7 @@
 		6529D746209963C30019DC03 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				6579C09F21C7D2DD0054EE66 /* XYBottomAlertViewTool */,
 				6544C44021C58ED200ED0436 /* XYJudgeTool */,
 				6544C43D21C58ED100ED0436 /* XYTextFieldTool */,
 				655F624A2170731400A51D91 /* XYBannerViewTool */,
@@ -542,6 +549,7 @@
 		6579C09821C658F30054EE66 /* SRC */ = {
 			isa = PBXGroup;
 			children = (
+				6579C0A321C7D5480054EE66 /* BaseView */,
 				6579C09921C658F30054EE66 /* BaseViewController */,
 			);
 			path = SRC;
@@ -554,6 +562,24 @@
 				6579C09B21C659070054EE66 /* CustomNavigationController.m */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		6579C09F21C7D2DD0054EE66 /* XYBottomAlertViewTool */ = {
+			isa = PBXGroup;
+			children = (
+				6579C0A021C7D2ED0054EE66 /* XYBottomAlertView.h */,
+				6579C0A121C7D2ED0054EE66 /* XYBottomAlertView.m */,
+			);
+			path = XYBottomAlertViewTool;
+			sourceTree = "<group>";
+		};
+		6579C0A321C7D5480054EE66 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				6579C0A521C7D5480054EE66 /* BaseTableViewCell.h */,
+				6579C0A421C7D5480054EE66 /* BaseTableViewCell.m */,
+			);
+			path = BaseView;
 			sourceTree = "<group>";
 		};
 		65D0CA8A21536FF700A3DB66 /* UIColor+Helper */ = {
@@ -856,6 +882,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6579C0A621C7D5480054EE66 /* BaseTableViewCell.m in Sources */,
 				655FA604216B3BD4009625B0 /* UIAlertViewToolModel.m in Sources */,
 				6544C44721C58F7500ED0436 /* XYBannerView.m in Sources */,
 				65F7ED23218A090C008ABDDD /* XYPhotoPickerViewController.m in Sources */,
@@ -887,6 +914,7 @@
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,
 				65F7ED13218A00C5008ABDDD /* XYPhotoPickerGroupViewController.m in Sources */,
 				65F7ED11218A00C5008ABDDD /* XYPhotoPickerAssetsViewController.m in Sources */,
+				6579C0A221C7D2ED0054EE66 /* XYBottomAlertView.m in Sources */,
 				65F7ED10218A00C5008ABDDD /* XYPhotoPickerPreviewViewController.m in Sources */,
 				656FB3B22091700700C07A3F /* main.m in Sources */,
 				6544C40E21C5764300ED0436 /* XYNetworkingHandle.m in Sources */,

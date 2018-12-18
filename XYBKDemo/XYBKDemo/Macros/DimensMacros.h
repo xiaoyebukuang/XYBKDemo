@@ -41,13 +41,15 @@
 
 
 #define kApplication            [UIApplication sharedApplication]
-//获取appDelegate
+/** 取appDelegate */
 #define kApplicationDelegate    (AppDelegate *)[UIApplication sharedApplication].delegate
-//获取keyWindow
+/** 获取appDelegate的window */
+#define kAppDelegateWindow      [UIApplication sharedApplication].delegate.window
+/** 获取keyWindow */
 #define kKeyWindow              [UIApplication sharedApplication].keyWindow
-//获取本地存储
+/** 获取本地存储 */
 #define kUserDefaults           [NSUserDefaults standardUserDefaults]
-//获取通知
+/** 获取通知 */
 #define kNotificationCenter     [NSNotificationCenter defaultCenter]
 
 

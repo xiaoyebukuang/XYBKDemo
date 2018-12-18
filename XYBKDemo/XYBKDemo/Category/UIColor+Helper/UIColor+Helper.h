@@ -22,6 +22,12 @@
 
 + (UIColor *)color_000000;
 
++ (UIColor *)color_000000_3;
+
++ (UIColor *)color_F7F7F7;
+
++ (UIColor *)color_F0F0F0;
+
 + (UIColor *)color_232323;
 
 

@@ -31,12 +31,14 @@
 #import "UIDevice+Helper.h"
 #import "MBProgressHUD+Helper.h"
 /** 工具 */
-#import "XYTextField.h"
+#import "XYBottomAlertView.h"
 #import "XYJudge.h"
+#import "XYTextField.h"
 #import "XYBannerView.h"
-
-
+/** 待优化 */
 #import "UIAlertViewTool.h"
+/** 公共view */
+#import "BaseTableViewCell.h"
 /** 三方库 */
 #import "UIImageView+WebCache.h"
 #import <Masonry.h>

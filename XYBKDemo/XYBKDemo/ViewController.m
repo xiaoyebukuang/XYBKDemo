@@ -11,7 +11,7 @@
 #import "XYPhotoBrowserViewController.h"
 #import "XYPhotoToolMacros.h"
 #import "XYPhotoTransitionView.h"
-
+#import "XYBottomAlertView.h"
 
 @interface ViewController ()<XYBannerViewDelegate,XYPhotoTransitionViewDelegate>
 
@@ -67,11 +67,17 @@
     [self.bannerViewTool reloadViewWithArr:self.images isRunning:NO];
 }
 - (void)btnEvent:(UIButton *)sender {
-    //照片选择器
-    XYPhotoPickerViewController *vc = [[XYPhotoPickerViewController alloc]init];
-    vc.maxCount = 12;
-    vc.status = PickerViewShowStatusCameraRoll;
-    [self presentViewController:vc animated:YES completion:nil];
+    
+    [XYBottomAlertView showWithCancelTitle:@"取消" options:@[@"1",@"2",@"3",@"4"] bottomSelectBlock:^(NSInteger index) {
+        NSLog(@"index = %ld",index);
+    }];
+    
+    
+//    //照片选择器
+//    XYPhotoPickerViewController *vc = [[XYPhotoPickerViewController alloc]init];
+//    vc.maxCount = 12;
+//    vc.status = PickerViewShowStatusCameraRoll;
+//    [self presentViewController:vc animated:YES completion:nil];
     
     //照片
 //    NSMutableArray *array = [[NSMutableArray alloc] init];
