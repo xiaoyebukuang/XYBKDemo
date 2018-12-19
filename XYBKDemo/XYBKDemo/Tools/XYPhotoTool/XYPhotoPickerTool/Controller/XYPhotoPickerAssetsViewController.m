@@ -152,7 +152,7 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
         [MBProgressHUD hideHUD];
         /** 发送通知 */
         [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:obj];
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
 #pragma mark -- push
