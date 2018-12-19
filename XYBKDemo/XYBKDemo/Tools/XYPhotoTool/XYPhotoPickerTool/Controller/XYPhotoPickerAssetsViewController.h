@@ -15,5 +15,7 @@
 @property (nonatomic, assign) NSInteger maxCount;
 /** 赋值group */
 @property (nonatomic ,strong) XYPhotoPickerGroup *pickerGroup;
+/** 相册类型 */
+@property (nonatomic, assign) PHAssetCollectionSubtype subtype;
 
 @end

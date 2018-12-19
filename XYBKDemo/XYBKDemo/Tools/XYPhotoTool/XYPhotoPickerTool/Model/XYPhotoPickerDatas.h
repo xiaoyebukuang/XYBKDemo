@@ -34,6 +34,17 @@ typedef void(^PickerDatasCallBack)(id obj);
 - (void)getGroupNormalPhoto:(PHAssetCollection *)assetCollection
                    complete:(void(^)(UIImage *image))handler;
 
+
+
+/**
+ 遍历指定相簿中的图片
+
+ @param subtype 相簿类型
+ @param callBack 回调
+ */
+- (void)enumeratePHAssetCollectionSubtype:(PHAssetCollectionSubtype)subtype
+                      pickerDatasCallBack:(PickerDatasCallBack)callBack;
+
 /**
  遍历相簿中的全部图片
  
@@ -53,13 +64,12 @@ typedef void(^PickerDatasCallBack)(id obj);
  */
 - (void)getImageFromPHAsset:(PHAsset *)asset synchronous:(BOOL)synchronous size:(CGSize)size complete:(void(^)(UIImage *image))handler;
 
-
 /**
  获取PHAsset全屏的图片数组
 
  @param assetArr PHAsset数组
- @return 图片数组
+ @param callBack 回调
  */
-- (NSArray *)getImagesFromPHAsset:(NSArray *)assetArr;
+- (void)getImagesFromPHAsset:(NSArray *)assetArr pickerDatasCallBack:(PickerDatasCallBack)callBack;
 
 @end

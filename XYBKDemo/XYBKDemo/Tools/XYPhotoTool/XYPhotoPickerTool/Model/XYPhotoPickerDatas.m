@@ -76,7 +76,9 @@
                 groupModel.defaultImage = [UIImage imageNamed:@"blank"];
                 switch (assetCollection.assetCollectionSubtype) {
                     case PHAssetCollectionSubtypeSmartAlbumUserLibrary:
+                    {
                         [group insertObject:groupModel atIndex:0];
+                    }
                         break;
                     case PHAssetCollectionSubtypeSmartAlbumFavorites:
                     case PHAssetCollectionSubtypeSmartAlbumRecentlyAdded:
@@ -118,6 +120,18 @@
         }
     }
 }
+/**
+ 遍历指定相簿中的全部图片
+ 
+ @param subtype 相簿类型
+ @param callBack 回调
+ */
+- (void)enumeratePHAssetCollectionSubtype:(PHAssetCollectionSubtype)subtype
+                      pickerDatasCallBack:(PickerDatasCallBack)callBack {
+    // 获得相机胶卷
+    PHAssetCollection *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:subtype options:nil].lastObject;
+    [self enumerateAssetsInAssetCollection:cameraRoll pickerDatasCallBack:callBack];
+}
 /** 遍历相簿中的全部图片 */
 - (void)enumerateAssetsInAssetCollection:(PHAssetCollection *)assetCollection pickerDatasCallBack:(PickerDatasCallBack)callBack {
     /**
@@ -133,22 +147,24 @@
     PHImageRequestOptionsDeliveryModeHighQualityFormat //制定的同步返回一个结果，返回的图片质量是比我们设定的size会好一点(实际上与PHImageRequestOptions的resizeMode枚举相关)
     PHImageRequestOptionsDeliveryModeFastFormat//仅返回一次，效率较高之余获得的图质量不太好
     */
-    NSMutableArray *assetsArray = [NSMutableArray array];
-    // 获得某个相簿中的所有PHAsset对象
-    PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-    for (PHAsset *asset in assets) {
-        if (asset.mediaType == PHAssetMediaTypeImage) {
-            // 从asset中获得图片
-            XYPhotoPickerAsset *assetModel = [[XYPhotoPickerAsset alloc]init];
-            assetModel.asset = asset;
-            [self getImageFromPHAsset:asset synchronous:YES size:CGSizeZero complete:^(UIImage *image) {
-                assetModel.defaultImage = image;
-            }];
-            [assetsArray addObject:assetModel];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableArray *assetsArray = [NSMutableArray array];
+        // 获得某个相簿中的所有PHAsset对象
+        PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+        for (PHAsset *asset in assets) {
+            if (asset.mediaType == PHAssetMediaTypeImage) {
+                // 从asset中获得图片
+                XYPhotoPickerAsset *assetModel = [[XYPhotoPickerAsset alloc]init];
+                assetModel.asset = asset;
+                [self getImageFromPHAsset:asset synchronous:YES size:CGSizeZero complete:^(UIImage *image) {
+                    assetModel.defaultImage = image;
+                }];
+                [assetsArray addObject:assetModel];
+            }
         }
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        callBack(assetsArray);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callBack(assetsArray);
+        });
     });
 }
 /** 获取指定大小的图片 */
@@ -166,23 +182,27 @@
 }
 
 /** 获取PHAsset全屏的图片数组 */
-- (NSArray *)getImagesFromPHAsset:(NSArray *)assetArr {
-    NSMutableArray *images = [NSMutableArray array];
-    PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-    options.resizeMode = PHImageRequestOptionsResizeModeFast;
-    options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-    // 同步获得图片, 只会返回1张图片
-    options.synchronous = YES;
-    for (XYPhotoPickerAsset *assetModel in assetArr) {
-        if (assetModel.image) {
-            [images addObject:assetModel.image];
-        } else {
-            [[PHImageManager defaultManager] requestImageForAsset:assetModel.asset targetSize:CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                [images addObject:result];
-            }];
+- (void)getImagesFromPHAsset:(NSArray *)assetArr pickerDatasCallBack:(PickerDatasCallBack)callBack {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableArray *images = [NSMutableArray array];
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.resizeMode = PHImageRequestOptionsResizeModeFast;
+        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        // 同步获得图片, 只会返回1张图片
+        options.synchronous = YES;
+        for (XYPhotoPickerAsset *assetModel in assetArr) {
+            if (assetModel.image) {
+                [images addObject:assetModel.image];
+            } else {
+                [[PHImageManager defaultManager] requestImageForAsset:assetModel.asset targetSize:CGSizeMake(MAIN_SCREEN_WIDTH*2, MAIN_SCREEN_HEIGHT*2) contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                    [images addObject:result];
+                }];
+            }
         }
-    }
-    return images;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callBack(images);
+        });
+    });
 }
 
 @end

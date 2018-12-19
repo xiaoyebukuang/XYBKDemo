@@ -36,9 +36,10 @@ static NSString * const XYPhotoPickerGroupTableViewCellID = @"XYPhotoPickerGroup
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor color_FFFFFF];
-    self.title = @"选择相册";
+    self.title = @"相册";
     [self setNavigation];
     [self setupUI];
+    [self gotoHistoryGroup];
     [self setImages];
 }
 - (void)setNavigation {
@@ -57,34 +58,23 @@ static NSString * const XYPhotoPickerGroupTableViewCellID = @"XYPhotoPickerGroup
 }
 #pragma mark -- setdata
 - (void)setImages {
+    [MBProgressHUD showToView:self.view];
     [[XYPhotoPickerDatas defaultPicker]getAllGroupWithPhotos:^(id obj) {
+        [MBProgressHUD hideHUDForView:self.view];
         self.dataGroups = obj;
-        [self gotoHistoryGroup];
         [self.tableView reloadData];
     }];
 }
 - (void)gotoHistoryGroup {
-    XYPhotoPickerGroup *gp = nil;
-    for (XYPhotoPickerGroup *group in self.dataGroups) {
-        switch (self.status) {
-            case PickerViewShowStatusCameraRoll:
-            {
-                if (group.assetSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
-                    gp = group;
-                }
-            }
-                break;
-            default:
-                break;
-        }
-    }
-    if (gp) {
-        [self setupAssetsVCWithGroup:gp animation:NO];
+    if (self.status == PickerViewShowStatusCameraRoll) {
+        /** 相机胶卷 */
+        [self setupAssetsVCWithGroup:nil subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary animation:NO];
     }
 }
-- (void)setupAssetsVCWithGroup:(XYPhotoPickerGroup *)pickerGroup animation:(BOOL)animated{
+- (void)setupAssetsVCWithGroup:(XYPhotoPickerGroup *)pickerGroup subtype:(PHAssetCollectionSubtype)subtype  animation:(BOOL)animated{
     XYPhotoPickerAssetsViewController* assetsVC = [[XYPhotoPickerAssetsViewController alloc]init];
     assetsVC.pickerGroup = pickerGroup;
+    assetsVC.subtype = subtype;
     assetsVC.maxCount = self.maxCount;
     [self.navigationController pushViewController:assetsVC animated:animated];
 }
@@ -102,7 +92,8 @@ static NSString * const XYPhotoPickerGroupTableViewCellID = @"XYPhotoPickerGroup
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self setupAssetsVCWithGroup:self.dataGroups[indexPath.row] animation:YES];
+    XYPhotoPickerGroup *pickerGroup = self.dataGroups[indexPath.row];
+    [self setupAssetsVCWithGroup:pickerGroup subtype:pickerGroup.assetSubtype animation:YES];
 }
 #pragma mark -- setup
 - (UITableView *)tableView {

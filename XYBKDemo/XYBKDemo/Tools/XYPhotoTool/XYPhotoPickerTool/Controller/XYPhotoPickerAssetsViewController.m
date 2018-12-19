@@ -56,7 +56,12 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor color_FFFFFF];
     self.selectPickerAssets = [NSMutableArray array];
-    self.title = self.pickerGroup.groupName;
+    if (self.pickerGroup) {
+        self.title = self.pickerGroup.groupName;
+    }
+    if (self.subtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
+        self.title = @"相机胶卷";
+    }
     self.assets_cell_size = (MAIN_SCREEN_WIDTH - assets_inset_left - assets_inset_right - (assets_cell_number - 1)*assets_interitem_spacing)/assets_cell_number;
     [self setupUI];
     [self setNavigationBar];
@@ -109,14 +114,23 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 /** 获取数据源 */
 - (void)setImages {
     [MBProgressHUD showToView:self.view];
-    [[XYPhotoPickerDatas defaultPicker]enumerateAssetsInAssetCollection:self.pickerGroup.assetCollection pickerDatasCallBack:^(id obj) {
-        [MBProgressHUD hideHUDForView:self.view];
-        self.assetsArray = obj;
-        [self.collectionView reloadData];
-        if (self.assetsArray.count > 0) {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.assetsArray.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
-        }
-    }];
+    if (self.pickerGroup) {
+        [[XYPhotoPickerDatas defaultPicker]enumerateAssetsInAssetCollection:self.pickerGroup.assetCollection pickerDatasCallBack:^(id obj) {
+            [self handlerWithArray:obj];
+        }];
+    } else {
+        [[XYPhotoPickerDatas defaultPicker]enumeratePHAssetCollectionSubtype:self.subtype pickerDatasCallBack:^(id obj) {
+            [self handlerWithArray:obj];
+        }];
+    }
+}
+- (void)handlerWithArray:(NSArray *)obj {
+    [MBProgressHUD hideHUDForView:self.view];
+    self.assetsArray = obj;
+    [self.collectionView reloadData];
+    if (self.assetsArray.count > 0) {
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.assetsArray.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+    }
 }
 #pragma mark -- event
 /** 点击取消 */
@@ -134,15 +148,12 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 /** 点击完成 */
 - (void)finishBtnBtnEvent:(UIButton *)sender {
     [MBProgressHUD showWindow];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *images = [[XYPhotoPickerDatas defaultPicker]getImagesFromPHAsset:self.selectPickerAssets];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUD];
-            /** 发送通知 */
-            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:images];
-            [self dismissViewControllerAnimated:NO completion:nil];
-        });
-    });
+    [[XYPhotoPickerDatas defaultPicker]getImagesFromPHAsset:self.selectPickerAssets pickerDatasCallBack:^(id obj) {
+        [MBProgressHUD hideHUD];
+        /** 发送通知 */
+        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:obj];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
 }
 #pragma mark -- push
 /** 跳转预览页面 */

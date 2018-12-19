@@ -11,7 +11,7 @@
 // 状态组
 typedef NS_ENUM(NSInteger , PickerViewShowStatus) {
     PickerViewShowStatusGroup = 0, //默认相册组
-    PickerViewShowStatusCameraRoll //所有照片
+    PickerViewShowStatusCameraRoll //相机胶卷
 };
 
 @interface XYPhotoPickerViewController : RootViewController

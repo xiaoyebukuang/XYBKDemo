@@ -117,15 +117,12 @@ static NSString * const XYPhotoBrowserCollectionViewCellID = @"XYPhotoBrowserCol
 /** 完成按钮 */
 - (void)finishBtnBtnEvent:(UIButton *)sender {
     [MBProgressHUD showWindow];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *images = [[XYPhotoPickerDatas defaultPicker]getImagesFromPHAsset:self.selectPickerAssets];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUD];
-            /** 发送通知 */
-            [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:images];
-            [self dismissViewControllerAnimated:NO completion:nil];
-        });
-    });
+    [[XYPhotoPickerDatas defaultPicker]getImagesFromPHAsset:self.selectPickerAssets pickerDatasCallBack:^(id obj) {
+        [MBProgressHUD hideHUD];
+        /** 发送通知 */
+        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:obj];
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }];
 }
 #pragma mark -- XYPhotoBrowserScrollViewDelegate
 //单击调用
