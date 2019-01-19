@@ -1,18 +1,18 @@
 //
-//  RootViewController.m
+//  XYPhotoRootViewController.m
 //  XYBKDemo
 //
-//  Created by 陈晓 on 2018/11/1.
-//  Copyright © 2018年 XYBK. All rights reserved.
+//  Created by 陈晓 on 2019/1/19.
+//  Copyright © 2019年 XYBK. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "XYPhotoRootViewController.h"
 
-@interface RootViewController ()
+@interface XYPhotoRootViewController ()
 
 @end
 
-@implementation RootViewController
+@implementation XYPhotoRootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +23,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 - (void)dealloc {
     NSLog(@"dealloc>>>>>>%@",[self class]);
 }

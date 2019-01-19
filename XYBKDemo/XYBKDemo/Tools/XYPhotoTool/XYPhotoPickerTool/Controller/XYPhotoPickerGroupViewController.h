@@ -6,10 +6,10 @@
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "XYPhotoRootViewController.h"
 #import "XYPhotoPickerViewController.h"
 
-@interface XYPhotoPickerGroupViewController : RootViewController
+@interface XYPhotoPickerGroupViewController : XYPhotoRootViewController
 /**
  需要push到的内容控制器
  默认为Groups

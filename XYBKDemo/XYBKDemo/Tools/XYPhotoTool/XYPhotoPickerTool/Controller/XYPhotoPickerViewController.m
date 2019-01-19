@@ -7,7 +7,7 @@
 //
 
 #import "XYPhotoPickerViewController.h"
-#import "CustomNavigationController.h"
+#import "XYPhotoNavigationController.h"
 #import "XYPhotoPickerGroupViewController.h"
 
 @interface XYPhotoPickerViewController ()
@@ -35,7 +35,7 @@
 - (void)createNavigationController{
     XYPhotoPickerGroupViewController* groupVc = [[XYPhotoPickerGroupViewController alloc]init];
     /** 可以自己定位导航控制器 */
-    CustomNavigationController* nvc = [[CustomNavigationController alloc]initWithRootViewController:groupVc];
+    XYPhotoNavigationController* nvc = [[XYPhotoNavigationController alloc]initWithRootViewController:groupVc];
     groupVc.maxCount = self.maxCount;
     groupVc.status = self.status;
     nvc.view.frame = self.view.frame;

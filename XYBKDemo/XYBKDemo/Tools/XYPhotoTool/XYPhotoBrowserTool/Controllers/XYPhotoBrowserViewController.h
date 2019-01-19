@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XYPhotoRootViewController.h"
 /** 相册浏览器 */
-@interface XYPhotoBrowserViewController : UIViewController
+@interface XYPhotoBrowserViewController : XYPhotoRootViewController
 /** 原数组 */
 @property (nonatomic ,strong) NSArray *photosArr;
 

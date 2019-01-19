@@ -6,10 +6,10 @@
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "XYPhotoRootViewController.h"
 #import "XYPhotoPickerGroup.h"
 #import "XYPhotoToolMacros.h"
-@interface XYPhotoPickerAssetsViewController : RootViewController
+@interface XYPhotoPickerAssetsViewController : XYPhotoRootViewController
 
 /** 最大选择数 */
 @property (nonatomic, assign) NSInteger maxCount;

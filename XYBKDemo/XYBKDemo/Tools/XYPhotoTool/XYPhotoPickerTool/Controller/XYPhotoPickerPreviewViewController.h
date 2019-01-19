@@ -6,9 +6,9 @@
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "XYPhotoRootViewController.h"
 #import "XYPhotoPickerAsset.h"
-@interface XYPhotoPickerPreviewViewController : RootViewController
+@interface XYPhotoPickerPreviewViewController : XYPhotoRootViewController
 /** 数据源 */
 //@property (nonatomic, strong) NSArray <XYPhotoPickerAsset *>*assetsArray;
 @property (nonatomic, strong) NSArray *assetsArray;

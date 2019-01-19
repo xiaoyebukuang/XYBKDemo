@@ -12,6 +12,8 @@
 #import "XYPhotoToolMacros.h"
 #import "XYPhotoTransitionView.h"
 #import "XYBottomAlertView.h"
+#import "SecondViewController.h"
+#import "FirstModel.h"
 
 @interface ViewController ()<XYBannerViewDelegate,XYPhotoTransitionViewDelegate>
 
@@ -21,19 +23,32 @@
 
 @property (nonatomic, strong) NSArray *images;
 
+@property (nonatomic, strong) NSMutableArray *array;
+
 @end
 
 @implementation ViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"viewController = %@",self.array);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.array = [NSMutableArray array];
+    for (int i = 0; i < 10; i ++) {
+        FirstModel *model = [[FirstModel alloc]init];
+        model.indexStr = [NSString stringWithFormat:@"%d",i + 1];
+        [self.array addObject:model];
+    }
+    
     self.bannerViewTool = [[XYBannerView alloc]init];
     self.bannerViewTool.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview: self.bannerViewTool];
     [self.bannerViewTool mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.width.equalTo(self.view);
-        make.top.equalTo(self.view).mas_offset(100);
+        make.top.equalTo(self.view).mas_offset(200);
         make.height.mas_equalTo(300);
     }];
     self.bannerViewTool.delegate = self;
@@ -47,7 +62,7 @@
 
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = [UIColor redColor];
-    btn.frame = CGRectMake(0, 0, 100, 100);
+    btn.frame = CGRectMake(0, 100, 100, 100);
     [btn addTarget:self action:@selector(btnEvent:) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"点击" forState:UIControlStateNormal];
     [self.view addSubview:btn];
@@ -68,16 +83,19 @@
 }
 - (void)btnEvent:(UIButton *)sender {
     
-    [XYBottomAlertView showWithCancelTitle:@"取消" options:@[@"1",@"2",@"3",@"4"] bottomSelectBlock:^(NSInteger index) {
-        NSLog(@"index = %ld",index);
-    }];
+  
     
     
-//    //照片选择器
-//    XYPhotoPickerViewController *vc = [[XYPhotoPickerViewController alloc]init];
-//    vc.maxCount = 12;
-//    vc.status = PickerViewShowStatusCameraRoll;
-//    [self presentViewController:vc animated:YES completion:nil];
+//    [XYBottomAlertView showWithCancelTitle:@"取消" options:@[@"1",@"2",@"3",@"4"] bottomSelectBlock:^(NSInteger index) {
+//        NSLog(@"index = %ld",index);
+//    }];
+    
+    
+    //照片选择器
+    XYPhotoPickerViewController *vc = [[XYPhotoPickerViewController alloc]init];
+    vc.maxCount = 12;
+    vc.status = PickerViewShowStatusCameraRoll;
+    [self presentViewController:vc animated:YES completion:nil];
     
     //照片
 //    NSMutableArray *array = [[NSMutableArray alloc] init];

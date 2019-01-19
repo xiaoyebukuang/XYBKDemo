@@ -62,7 +62,7 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
     self.photosArr = photosArr;
     self.currentPage = currentPage;
     self.pageLabel.text =  [NSString stringWithFormat:@"%ld/%ld",currentPage + 1, self.photosArr.count];
-    UIWindow *window = kKeyWindow;
+    UIWindow *window = kAppDelegateWindow;
     if ([self.delegate respondsToSelector:@selector(getFrameWithCurrentPage:sourceView:)]) {
         CGRect frame = [self.delegate getFrameWithCurrentPage:currentPage sourceView:self];
         //黑色背景
@@ -122,7 +122,7 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
         [self.delegate dismissWithCurrentPage:self.currentPage];
     }
     if ([self.delegate respondsToSelector:@selector(getFrameWithCurrentPage:sourceView:)]) {
-        UIWindow *window = kKeyWindow;
+        UIWindow *window = kAppDelegateWindow;
         //黑色背景
         CGRect sourceFrame = [self.delegate getFrameWithCurrentPage:self.currentPage sourceView:self];
         UIView *backView = [[UIView alloc]initWithFrame:window.bounds];
