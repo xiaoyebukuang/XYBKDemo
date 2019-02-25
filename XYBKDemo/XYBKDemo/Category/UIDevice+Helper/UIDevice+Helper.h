@@ -28,6 +28,7 @@
 /** 打开设置 */
 + (void)openSetting;
 
-
+/** 缓存 */
++ (void)cleanCacheAndCookie;
 
 @end

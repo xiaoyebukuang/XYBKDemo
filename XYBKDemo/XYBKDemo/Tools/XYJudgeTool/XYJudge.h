@@ -18,6 +18,9 @@
 
 
 
+/** 网络 */
++ (BOOL)checkNetworking;
+
 
 /** 定位 */
 + (void)checkLocationAuthorizationStatus:(void(^)(BOOL handler))handler;

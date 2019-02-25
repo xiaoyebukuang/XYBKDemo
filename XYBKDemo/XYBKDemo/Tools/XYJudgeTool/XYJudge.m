@@ -9,7 +9,7 @@
 #import "XYJudge.h"
 #import <Photos/Photos.h>
 #import <CoreLocation/CLLocationManager.h>
-
+#import "Reachability.h"
 @implementation XYJudge
 
 #pragma mark -- 判断
@@ -27,6 +27,18 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
     BOOL isMatch = [pred evaluateWithObject:temp];
     return isMatch;
+}
+
+#pragma mark -- 网络
+/** 检查网络状态 */
++ (BOOL)checkNetworking {
+    Reachability * reachbility = [Reachability reachabilityWithHostName:@"www.baidu.com"];
+    NetworkStatus status=[reachbility currentReachabilityStatus];
+    if (status == ReachableViaWiFi || status == ReachableViaWWAN) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 #pragma mark -- 定位

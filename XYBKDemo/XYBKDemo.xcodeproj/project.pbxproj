@@ -299,12 +299,12 @@
 		6529D746209963C30019DC03 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				65F7ECC5218A00C4008ABDDD /* XYPhotoTool */,
 				6579C09F21C7D2DD0054EE66 /* XYBottomAlertViewTool */,
 				6544C44021C58ED200ED0436 /* XYJudgeTool */,
 				6544C43D21C58ED100ED0436 /* XYTextFieldTool */,
 				655F624A2170731400A51D91 /* XYBannerViewTool */,
 				655F62752174824400A51D91 /* Resource */,
-				65F7ECC5218A00C4008ABDDD /* XYPhotoTool */,
 				6529D74B209996F60019DC03 /* UIAlertViewTool */,
 			);
 			path = Tools;

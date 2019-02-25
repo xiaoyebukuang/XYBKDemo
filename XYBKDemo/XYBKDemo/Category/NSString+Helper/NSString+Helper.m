@@ -51,22 +51,53 @@
 /** 获取准确的数字字符串 */
 + (NSString *)safe_numStr:(id)obj {
     NSString *number = [NSString safe_string:obj];
-    
-    NSDecimalNumber *number01 = [NSDecimalNumber decimalNumberWithString:number];
-    NSLog(@"%@",number01.stringValue);
-    NSString *numStr = [self safe_twoDecimal:obj];
-    NSInteger decimal = (NSInteger)((numStr.floatValue - numStr.integerValue)*100);
-    if (decimal > 0) {
-        return numStr;
-    } else {
-        NSInteger num = numStr.integerValue;
-        if (num == 0) {
-            return @"";
-        }
-        return [NSString stringWithFormat:@"%ld",num];
+    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:number];
+    NSString *numberStr = decimalNumber.stringValue;
+    if (decimalNumber.stringValue.length == 0) {
+        return @"0";
     }
+    return numberStr;
 }
-
-
+/** 添加删除线 */
++ (NSMutableAttributedString *)orderPriceDeleteHandleWithStr:(NSString *)str {
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:str];
+    NSUInteger length = [str length];
+    [attriStr addAttributes:@{ NSStrikethroughStyleAttributeName:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle),NSBaselineOffsetAttributeName:@(0)} range:NSMakeRange(0, length)];
+    return attriStr;
+}
+/** 获取NSMutableAttributedString(字体) */
++ (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
+                                        leftFont:(UIFont *)leftFont
+                                        rightStr:(NSString *)rightStr
+                                       rightFont:(UIFont *)rightFont {
+    NSString *str = [NSString stringWithFormat:@"%@%@",leftStr,rightStr];
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:str];
+    NSRange leftRange = {0 ,leftStr.length};
+    NSRange rightRange = {leftStr.length, rightStr.length};
+    [attriStr addAttribute:NSFontAttributeName value:leftFont range:leftRange];
+    [attriStr addAttribute:NSFontAttributeName value:rightFont range:rightRange];
+    return attriStr;
+}
+/** 获取NSMutableAttributedString(颜色) */
++ (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
+                                       leftColor:(UIColor *)leftColor
+                                        rightStr:(NSString *)rightStr
+                                      rightColor:(UIColor *)rightColor {
+    NSString *str = [NSString stringWithFormat:@"%@%@",leftStr,rightStr];
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:str];
+    NSRange leftRange = {0 ,leftStr.length};
+    NSRange rightRange = {leftStr.length, rightStr.length};
+    [attriStr addAttribute:NSForegroundColorAttributeName value:leftColor range:leftRange];
+    [attriStr addAttribute:NSForegroundColorAttributeName value:rightColor range:rightRange];
+    return attriStr;
+}
+/** 获取字符串的宽度 */
+- (CGFloat)getStrWidthWithFont:(UIFont *)font {
+    return [self boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil].size.width;
+}
+/** 获取字符串的高度 */
+- (CGFloat)getStrHeightWithWidth:(CGFloat)width font:(UIFont *)font {
+    return [self boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil].size.height;
+}
 
 @end
