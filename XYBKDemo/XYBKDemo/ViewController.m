@@ -36,6 +36,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"%@",[NSString safe_numStr:@"1.00"]);
+    NSLog(@"%@",[NSString safe_numStr:@"1.0"]);
+    NSLog(@"%@",[NSString safe_numStr:@"1.01"]);
+    NSLog(@"%@",[NSString safe_numStr:@"0.10"]);
+    NSLog(@"%@",[NSString safe_numStr:@"0.00"]);
+    
     self.array = [NSMutableArray array];
     for (int i = 0; i < 10; i ++) {
         FirstModel *model = [[FirstModel alloc]init];

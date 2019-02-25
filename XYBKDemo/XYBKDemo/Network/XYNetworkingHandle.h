@@ -21,4 +21,9 @@
 /** jsonData转dic */
 + (NSDictionary *)dictionaryWithJsonData:(NSData *)jsonData;
 
+/** VC操作 */
++ (CustomTabBarViewController *)getCurrentCustomTab;
++ (CustomNavigationController *)getCurrentCustomNav;
++ (UIViewController *)getCurrentVC;
+
 @end

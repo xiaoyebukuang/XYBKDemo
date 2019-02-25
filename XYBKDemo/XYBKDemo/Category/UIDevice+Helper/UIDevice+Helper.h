@@ -21,4 +21,13 @@
 + (NSString *)getDeviceIPAddress:(BOOL)preferIPv4;
 /** 拨打电话 */
 + (void)callTel:(NSString *)tel;
+
+
+/** 打开链接 */
++ (void)openURLStr:(NSString *)urlStr;
+/** 打开设置 */
++ (void)openSetting;
+
+
+
 @end

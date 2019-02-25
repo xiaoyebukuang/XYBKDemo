@@ -15,6 +15,9 @@
 #import "PathMacros.h"
 #import "RequestMacros.h"
 #import "NotificationMacros.h"
+/** 基类 */
+#import "CustomNavigationController.h"
+#import "CustomTabBarViewController.h"
 /** 请求工具 */
 #import "XYHttpRequest.h"
 #import "XYNetworkingHandle.h"
@@ -26,6 +29,7 @@
 #import "UIColor+Helper.h"
 #import "UIScrollView+Helper.h"
 #import "NSDictionary+DeUTF.h"
+#import "NSMutableDictionary+Extention.h"
 #import "NSString+Helper.h"
 #import "NSDate+Helper.h"
 #import "UIDevice+Helper.h"

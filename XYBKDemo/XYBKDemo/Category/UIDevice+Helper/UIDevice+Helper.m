@@ -101,5 +101,13 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:telStr]];
     }
 }
-
+/** 打开链接 */
++ (void)openURLStr:(NSString *)urlStr {
+    if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:urlStr]]) {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlStr]];
+    }
+}
++ (void)openSetting {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+}
 @end

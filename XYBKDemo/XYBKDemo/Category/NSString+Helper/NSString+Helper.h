@@ -31,7 +31,7 @@
 /** 判断字符串是否为空 */
 + (BOOL)isEmpty:(id)obj;
 
-/** 验证手机号码及固定电话 */
-+ (BOOL)validatePhoneNumber:(NSString *)mobileNum;
+/** 获取准确的数字字符串 */
++ (NSString *)safe_numStr:(id)obj;
 
 @end

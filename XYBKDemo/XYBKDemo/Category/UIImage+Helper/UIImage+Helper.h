@@ -12,7 +12,7 @@
 
 /** 压缩图片到指定大小 */
 - (NSData *)compressWithMaxLength:(NSUInteger)maxLength;
-/** 裁剪图片到指定比例 */
+/** 裁剪图片到指定比例 width/height */
 - (UIImage *)cutOutImageWithScale:(CGFloat)imageScale;
 
 @end

@@ -79,7 +79,7 @@
             textField.text= [toBeString substringToIndex:self.maxCount];
         }
     }
-    if ([self.tool_delegate respondsToSelector:@selector(textChange:textViewTool:)]) {
+    if ([self.tool_delegate respondsToSelector:@selector(textChange:textView:)]) {
         [self.tool_delegate textChange:textField.text textView:self];
     }
 }
