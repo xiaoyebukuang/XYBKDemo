@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIColor (Helper)
+/** 十六进制颜色值 */
++ (UIColor *)color_hex:(NSString *)hex;
 
 + (UIColor *)color_random;
 

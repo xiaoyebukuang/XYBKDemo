@@ -8,7 +8,7 @@
 
 #import "UIImage+Helper.h"
 @implementation UIImage (Helper)
-/** 压缩图片到指定大小 */
+/** 压缩图片到指定data */
 - (NSData *)compressWithMaxLength:(NSUInteger)maxLength {
     CGFloat compression = 1;
     NSData *data = UIImageJPEGRepresentation(self, compression);
@@ -41,6 +41,11 @@
         data = UIImageJPEGRepresentation(resultImage, compression);
     }
     return data;
+}
+/** 压缩图片指定image */
+- (UIImage *)getImageWithMaxLength:(NSUInteger)maxLength {
+    NSData *imageData = [self compressWithMaxLength:maxLength];
+    return [UIImage imageWithData:imageData];
 }
 /** 裁剪图片到指定比例 */
 - (UIImage *)cutOutImageWithScale:(CGFloat)imageScale {

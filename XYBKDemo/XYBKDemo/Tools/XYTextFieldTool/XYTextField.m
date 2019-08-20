@@ -25,7 +25,6 @@
     if (self) {
         if (placeHolder) {
             self.placeholder = placeHolder;
-            self.maxCount = NSIntegerMax;
         }
         self.fieldType = filedType;
         [self setData];
@@ -33,11 +32,13 @@
     return self;
 }
 - (void)setData {
-    self.delegate = self;
+    self.placeholderColor = [UIColor grayColor];
+    self.titleFont = [UIFont systemFontOfSize:15];
+    self.maxCount = NSIntegerMax;
     self.autocorrectionType = UITextAutocorrectionTypeNo;
     self.borderStyle = UITextBorderStyleRoundedRect;
-    self.font = [UIFont systemFontOfSize:15];
     self.textColor = [UIColor blackColor];
+    self.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewEditChanged:) name:UITextFieldTextDidChangeNotification object:self];
 }
 - (void)dealloc {
@@ -147,6 +148,21 @@
             }
         }
             break;
+        case UITextFieldToolNonChinese:
+        {
+            //输入字母+数据+特殊字符
+            NSUInteger length = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+            for (int loopIndex = 0; loopIndex < length; loopIndex ++) {
+                unichar character = [string characterAtIndex:loopIndex];
+                if (character < 33) return NO;
+                if (character > 126) return NO;
+            }
+            NSUInteger proposeLength = textField.text.length - range.length + string.length;
+            if (proposeLength > self.maxCount) {
+                return NO;
+            }
+        }
+            break;
         default:
             break;
     }
@@ -170,15 +186,20 @@
             break;
         case XYTextFieldCharacter:
         case XYTextFieldNumberCharacter:
+        case UITextFieldToolNonChinese:
         {
             self.keyboardType = UIKeyboardTypeASCIICapable;
         }
             break;
     }
 }
-- (void)setPlaceholder:(NSString *)placeholder {
-    [super setPlaceholder:placeholder];
-    [self setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
+- (void)setPlaceholderColor:(UIColor *)placeholderColor {
+    _placeholderColor = placeholderColor;
+    [self setValue:placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
+}
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont;
+    self.font = titleFont;
 }
 
 @end

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6529D745209962A60019DC03 /* MBProgressHUD+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */; };
 		6529D75B209C29CA0019DC03 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6529D75A209C29CA0019DC03 /* CoreTelephony.framework */; };
+		653824F5230BC4EB003A204D /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 653824F3230BC4EB003A204D /* KeyChainStore.m */; };
+		653824FB230BEA8E003A204D /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 653824FA230BEA8E003A204D /* NSString+URL.m */; };
 		6544C40821C5752600ED0436 /* XYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C40721C5752600ED0436 /* XYNetworking.m */; };
 		6544C40B21C5753700ED0436 /* XYHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C40A21C5753700ED0436 /* XYHttpRequest.m */; };
 		6544C40E21C5764300ED0436 /* XYNetworkingHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6544C40D21C5764300ED0436 /* XYNetworkingHandle.m */; };
@@ -113,6 +115,10 @@
 		6529D743209962A60019DC03 /* MBProgressHUD+Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Helper.h"; sourceTree = "<group>"; };
 		6529D744209962A60019DC03 /* MBProgressHUD+Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Helper.m"; sourceTree = "<group>"; };
 		6529D75A209C29CA0019DC03 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		653824F3230BC4EB003A204D /* KeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
+		653824F4230BC4EB003A204D /* KeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
+		653824F9230BEA8E003A204D /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URL.h"; sourceTree = "<group>"; };
+		653824FA230BEA8E003A204D /* NSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URL.m"; sourceTree = "<group>"; };
 		6544C40321C574C900ED0436 /* RequestMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestMacros.h; sourceTree = "<group>"; };
 		6544C40421C574DB00ED0436 /* NotificationMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationMacros.h; sourceTree = "<group>"; };
 		6544C40621C5752600ED0436 /* XYNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYNetworking.h; sourceTree = "<group>"; };
@@ -408,6 +414,8 @@
 			children = (
 				6544C42A21C57BC200ED0436 /* UIDevice+Helper.h */,
 				6544C42B21C57BC200ED0436 /* UIDevice+Helper.m */,
+				653824F4230BC4EB003A204D /* KeyChainStore.h */,
+				653824F3230BC4EB003A204D /* KeyChainStore.m */,
 			);
 			path = "UIDevice+Helper";
 			sourceTree = "<group>";
@@ -546,18 +554,18 @@
 		656FB3BC20919FC200C07A3F /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				656FB3C12091AB6E00C07A3F /* UIView+Helper */,
-				655FA5C4216544EF009625B0 /* UILabel+Helper */,
-				655FA5C021653CBC009625B0 /* UIButton+Helper */,
+				6594BF042223994200D5B0B5 /* NSDecimalNumber+Helper */,
 				6544C42121C57A7700ED0436 /* UIImage+Helper */,
-				65D0CA8A21536FF700A3DB66 /* UIColor+Helper */,
-				6544C42D21C57CF400ED0436 /* UIScrollView+Helper */,
 				6544C42521C57BA200ED0436 /* NSDictionary+Helper */,
+				6544C42921C57BC200ED0436 /* UIDevice+Helper */,
+				6544C42D21C57CF400ED0436 /* UIScrollView+Helper */,
+				655FA5C021653CBC009625B0 /* UIButton+Helper */,
+				655FA5C4216544EF009625B0 /* UILabel+Helper */,
+				656FB3C12091AB6E00C07A3F /* UIView+Helper */,
+				6529D742209961D70019DC03 /* MBProgressHUD+Helper */,
+				65D0CA8A21536FF700A3DB66 /* UIColor+Helper */,
 				656FB3BD20919FE100C07A3F /* NSString+Helper */,
 				656FB3C52091ABAC00C07A3F /* NSDate+Helper */,
-				6544C42921C57BC200ED0436 /* UIDevice+Helper */,
-				6529D742209961D70019DC03 /* MBProgressHUD+Helper */,
-				6594BF042223994200D5B0B5 /* NSDecimalNumber+Helper */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -567,6 +575,8 @@
 			children = (
 				656FB3BE20919FF500C07A3F /* NSString+Helper.h */,
 				656FB3BF20919FF500C07A3F /* NSString+Helper.m */,
+				653824F9230BEA8E003A204D /* NSString+URL.h */,
+				653824FA230BEA8E003A204D /* NSString+URL.m */,
 			);
 			path = "NSString+Helper";
 			sourceTree = "<group>";
@@ -951,6 +961,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6579C0A621C7D5480054EE66 /* BaseTableViewCell.m in Sources */,
+				653824FB230BEA8E003A204D /* NSString+URL.m in Sources */,
 				655FA604216B3BD4009625B0 /* UIAlertViewToolModel.m in Sources */,
 				6544C44721C58F7500ED0436 /* XYBannerView.m in Sources */,
 				65F7ED23218A090C008ABDDD /* XYPhotoPickerViewController.m in Sources */,
@@ -981,6 +992,7 @@
 				65F7ED1C218A00C5008ABDDD /* XYPhotoBrowserCollectionViewCell.m in Sources */,
 				6544C41221C5779F00ED0436 /* Reachability.m in Sources */,
 				6594BF072223994200D5B0B5 /* NSDecimalNumber+Helper.m in Sources */,
+				653824F5230BC4EB003A204D /* KeyChainStore.m in Sources */,
 				6544C42821C57BA200ED0436 /* NSDictionary+DeUTF.m in Sources */,
 				6544C40821C5752600ED0436 /* XYNetworking.m in Sources */,
 				656FB3A72091700600C07A3F /* ViewController.m in Sources */,

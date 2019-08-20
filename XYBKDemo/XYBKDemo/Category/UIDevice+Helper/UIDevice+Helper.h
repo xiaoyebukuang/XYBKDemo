@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @interface UIDevice (Helper)
+/** 获取广告标识符 */
++ (NSString *)getIDFA;
 /** 设备唯一id ->UUID */
 + (NSString *)getDeviceOnlyUUID;
+/** 获取设备IP地址 */
++ (NSString *)getDeviceIPAddress;
 /** 获取app版本号 */
 + (NSString *)getAppVersion;
 /** 获取app名称 */
 + (NSString *)getAppName;
 /** 获取buildId */
 + (NSString *)getAppBuildID;
-/** 获取设备IP地址 */
-+ (NSString *)getDeviceIPAddress:(BOOL)preferIPv4;
 /** 拨打电话 */
 + (void)callTel:(NSString *)tel;
-
-
 /** 打开链接 */
 + (void)openURLStr:(NSString *)urlStr;
 /** 打开设置 */
@@ -30,5 +30,6 @@
 
 /** 缓存 */
 + (void)cleanCacheAndCookie;
++ (void)clearAnyeLocalCache;
 
 @end

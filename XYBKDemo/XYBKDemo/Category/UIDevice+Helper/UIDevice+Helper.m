@@ -11,6 +11,8 @@
 #include <arpa/inet.h>
 #include <net/if.h>
 
+#import <AdSupport/AdSupport.h>
+
 #define IOS_VPN         @"utun0"
 #define IOS_WIFI        @"en0"
 #define IOS_WIFI_MAC    @"en5"
@@ -19,40 +21,30 @@
 #define IP_ADDR_IPv6    @"ipv6"
 
 @implementation UIDevice (Helper)
++ (NSString *)getIDFA {
+    // 获取IDFA
+    NSString * IDFA = [NSString safe_string:[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]];
+    NSString *tempIDFA = [IDFA stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    tempIDFA = [tempIDFA stringByReplacingOccurrencesOfString:@"0" withString:@""];
+    if (tempIDFA.length == 0) {
+        return @"";
+    }
+    return IDFA;
+}
 /** 设备唯一id ->UUID */
 + (NSString *)getDeviceOnlyUUID {
     NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
     return [NSString safe_string:identifierForVendor];
 }
-/** 获取app版本号 */
-+ (NSString *)getAppVersion {
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    return [NSString safe_string:app_Version];
-}
-/** 获取app名称 */
-+ (NSString *)getAppName {
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
-    return [NSString safe_string:app_Name];
-}
-/** 获取buildId */
-+ (NSString *)getAppBuildID {
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_buildId = [infoDictionary objectForKey:@"CFBundleIdentifier"];
-    return [NSString safe_string:app_buildId];
-}
 /** 获取设备IP地址 */
-+ (NSString *)getDeviceIPAddress:(BOOL)preferIPv4 {
-    NSArray *searchArray = preferIPv4 ?
-    @[ /*IOS_VPN @"/" IP_ADDR_IPv4, IOS_VPN @"/" IP_ADDR_IPv6,*/ IOS_WIFI @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6 ] :
-    @[ /*IOS_VPN @"/" IP_ADDR_IPv6, IOS_VPN @"/" IP_ADDR_IPv4,*/ IOS_WIFI @"/" IP_ADDR_IPv6, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv6, IOS_CELLULAR @"/" IP_ADDR_IPv4 ] ;
++ (NSString *)getDeviceIPAddress {
+    NSArray *searchArray = @[IOS_VPN @"/" IP_ADDR_IPv4, IOS_WIFI @"/" IP_ADDR_IPv4, IOS_WIFI_MAC @"/" IP_ADDR_IPv4, IOS_CELLULAR @"/" IP_ADDR_IPv4];
     NSDictionary *addresses = [self getIPAddresses];
     __block NSString *address;
     [searchArray enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
-         address = addresses[key];
-         if(address) *stop = YES;
-     } ];
+        address = addresses[key];
+        if(address) *stop = YES;
+    } ];
     return address ? address : @"0.0.0.0";
 }
 + (NSDictionary *)getIPAddresses {
@@ -92,6 +84,25 @@
     }
     return [addresses count] ? addresses : nil;
 }
+/** 获取app版本号 */
++ (NSString *)getAppVersion {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    return [NSString safe_string:app_Version];
+}
+/** 获取app名称 */
++ (NSString *)getAppName {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_Name = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    return [NSString safe_string:app_Name];
+}
+/** 获取buildId */
++ (NSString *)getAppBuildID {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *app_buildId = [infoDictionary objectForKey:@"CFBundleIdentifier"];
+    return [NSString safe_string:app_buildId];
+}
+/** 拨打电话 */
 + (void)callTel:(NSString *)tel {
     NSString *telStr = [NSString stringWithFormat:@"tel://%@",tel];
     /// 大于等于10.0系统使用此openURL方法
@@ -107,10 +118,10 @@
         [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlStr]];
     }
 }
+/** 打开设置 */
 + (void)openSetting {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
 }
-
 #pragma mark -- 缓存
 /** 清除网络缓存 */
 + (void)cleanCacheAndCookie {
@@ -127,5 +138,22 @@
     [cache removeAllCachedResponses];
     [cache setDiskCapacity:0];
     [cache setMemoryCapacity:0];
+}
++ (void)clearAnyeLocalCache {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask,YES);
+    NSString *path = [paths lastObject];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        NSArray *childrenFiles = [fileManager subpathsAtPath:path];
+        for (NSString *fileName in childrenFiles) {
+            // 拼接路径
+            NSString *absolutePath = [path stringByAppendingPathComponent:fileName];
+            // 将文件删除
+            [fileManager removeItemAtPath:absolutePath error:nil];
+        }
+    }
+    //SDWebImage的清除功能
+    [self cleanCacheAndCookie];
+    [[SDImageCache sharedImageCache] clearMemory];
 }
 @end

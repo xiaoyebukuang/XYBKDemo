@@ -10,8 +10,12 @@
 
 @interface UIImage (Helper)
 
-/** 压缩图片到指定大小 */
+/** 压缩图片到指定data */
 - (NSData *)compressWithMaxLength:(NSUInteger)maxLength;
+/** 压缩图片指定image */
+- (UIImage *)getImageWithMaxLength:(NSUInteger)maxLength;
+
+
 /** 裁剪图片到指定比例 width/height */
 - (UIImage *)cutOutImageWithScale:(CGFloat)imageScale;
 

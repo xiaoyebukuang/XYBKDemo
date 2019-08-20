@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, XYTextFieldType) {
     XYTextFieldNumber,          //限制数字
     XYTextFieldCharacter,       //限制字母
     XYTextFieldNumberCharacter, //限制数字+字母
-    XYTextFieldChineseWord      //中文+英文+数字
+    XYTextFieldChineseWord,     //限制中文+英文+数字
+    UITextFieldToolNonChinese,  //限制字母+数据+特殊字符
 };
 
 @class XYTextField;
@@ -24,9 +25,14 @@ typedef NS_ENUM(NSInteger, XYTextFieldType) {
 
 
 @interface XYTextField : UITextField
-
+/** 提示语句颜色 默认999999 */
+@property (nonatomic, strong) UIColor *placeholderColor;
+/** 字体大小 默认15 */
+@property (nonatomic, strong) UIFont *titleFont;
 /** 最大限制个数 */
 @property (nonatomic, assign) NSInteger maxCount;
+
+
 
 @property (nonatomic, weak) id<XYTextFieldDelegate> tool_delegate;
 

@@ -9,7 +9,6 @@
 #import "NSString+Helper.h"
 
 @implementation NSString (Helper)
-
 /** 返回安全的字符串 */
 + (NSString *)safe_string:(id)obj {
     if ([obj isEqual:[NSNull null]]||obj == nil) {
@@ -34,6 +33,10 @@
 + (NSInteger)safe_integer:(id)obj {
     return [NSString safe_string:obj].integerValue;
 }
+/** 返回int型 */
++ (int)safe_int:(id)obj {
+    return [NSString safe_string:obj].intValue;
+}
 /** 返回bool型 */
 + (BOOL)safe_bool:(id)obj {
     return [NSString safe_string:obj].boolValue;
@@ -51,15 +54,16 @@
 /** 获取准确的数字字符串 */
 + (NSString *)safe_numStr:(id)obj {
     NSString *number = [NSString safe_string:obj];
-    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:number];
-    NSString *numberStr = decimalNumber.stringValue;
-    if (decimalNumber.stringValue.length == 0) {
+    if (number.length == 0) {
         return @"0";
     }
+    NSDecimalNumber *decimalNumber = [NSDecimalNumber decimalNumberWithString:number];
+    NSString *numberStr = decimalNumber.stringValue;
     return numberStr;
 }
+
 /** 添加删除线 */
-+ (NSMutableAttributedString *)orderPriceDeleteHandleWithStr:(NSString *)str {
++ (NSMutableAttributedString *)getAttDeleteHandleWithStr:(NSString *)str {
     NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:str];
     NSUInteger length = [str length];
     [attriStr addAttributes:@{ NSStrikethroughStyleAttributeName:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle),NSBaselineOffsetAttributeName:@(0)} range:NSMakeRange(0, length)];
@@ -91,6 +95,48 @@
     [attriStr addAttribute:NSForegroundColorAttributeName value:rightColor range:rightRange];
     return attriStr;
 }
+/** 获取NSMutableAttributedString(颜色) */
++ (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
+                                       leftColor:(UIColor *)leftColor
+                                       centerStr:(NSString *)centerStr
+                                     centerColor:(UIColor *)centerColor
+                                        rightStr:(NSString *)rightStr
+                                      rightColor:(UIColor *)rightColor {
+    NSString *str = [NSString stringWithFormat:@"%@%@%@",leftStr,centerStr,rightStr];
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:str];
+    NSRange leftRange = {0 ,leftStr.length};
+    NSRange centerRange = {leftStr.length, centerStr.length};
+    NSRange rightRange = {leftStr.length + centerStr.length, rightStr.length};
+    [attriStr addAttribute:NSForegroundColorAttributeName value:leftColor range:leftRange];
+    [attriStr addAttribute:NSForegroundColorAttributeName value:centerColor range:centerRange];
+    [attriStr addAttribute:NSForegroundColorAttributeName value:rightColor range:rightRange];
+    return attriStr;
+}
+/** 获取NSMutableAttributedString(颜色 + 字体) 注：leftColorStr+rightColorStr = leftFontStr+rightFontStr */
++ (NSMutableAttributedString *)getAttWithLeftColorStr:(NSString *)leftColorStr
+                                            leftColor:(UIColor *)leftColor
+                                        rightColorStr:(NSString *)rightColorStr
+                                           rightColor:(UIColor *)rightColor
+                                          leftFontStr:(NSString *)leftFontStr
+                                             leftFont:(UIFont *)leftFont
+                                         rightFontStr:(NSString *)rightFontStr
+                                            rightFont:(UIFont *)rightFont {
+    NSString *text = [NSString stringWithFormat:@"%@%@",leftColorStr,rightColorStr];
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:text];
+    
+    NSRange leftColorRange = {0 ,leftColorStr.length};
+    NSRange rightColorRange = {leftColorStr.length, rightColorStr.length};
+    [attriStr addAttribute:NSForegroundColorAttributeName value:leftColor range:leftColorRange];
+    [attriStr addAttribute:NSForegroundColorAttributeName value:rightColor range:rightColorRange];
+    
+    NSRange leftFontRange = {0 ,leftFontStr.length};
+    NSRange rightFontRange = {leftFontStr.length, rightFontStr.length};
+    [attriStr addAttribute:NSFontAttributeName value:leftFont range:leftFontRange];
+    [attriStr addAttribute:NSFontAttributeName value:rightFont range:rightFontRange];
+    return attriStr;
+}
+
+//TODO:字符宽度&高度
 /** 获取字符串的宽度 */
 - (CGFloat)getStrWidthWithFont:(UIFont *)font {
     return [self boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil].size.width;

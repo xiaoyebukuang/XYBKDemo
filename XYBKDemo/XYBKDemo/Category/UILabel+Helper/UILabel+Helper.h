@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (Helper)
-
-
 /**
  创建UILabel
 
@@ -60,6 +58,20 @@
                textAlignment:(NSTextAlignment)textAlignment
                         font:(UIFont *)font;
 
-
+/**
+ 创建UILabel
+ 
+ @param text 标题
+ @param textColor 标题颜色
+ @param textAlignment 排版方式
+ @param font 标题大小
+ @param lineSpacing 行间距
+ @return label
+ */
+- (instancetype)initWithText:(NSString *)text
+                   textColor:(UIColor *)textColor
+               textAlignment:(NSTextAlignment)textAlignment
+                        font:(UIFont *)font
+                 lineSpacing:(CGFloat)lineSpacing;
 
 @end
