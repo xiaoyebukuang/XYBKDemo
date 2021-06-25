@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define  KEY_USERNAME_PASSWORD @"com.kata.cwz51.changxiche"
 
 NS_ASSUME_NONNULL_BEGIN
 

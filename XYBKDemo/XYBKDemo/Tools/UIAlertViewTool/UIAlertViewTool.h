@@ -70,4 +70,5 @@
 + (void)showView:(UIView *)view
        titlesArr:(NSArray *)titlesArr
       alertBlock:(void(^)(NSString *mes, NSInteger index))alertBlock;
+
 @end

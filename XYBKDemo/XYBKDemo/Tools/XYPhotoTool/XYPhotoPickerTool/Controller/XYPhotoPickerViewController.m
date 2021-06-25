@@ -7,7 +7,7 @@
 //
 
 #import "XYPhotoPickerViewController.h"
-#import "XYPhotoNavigationController.h"
+
 #import "XYPhotoPickerGroupViewController.h"
 
 @interface XYPhotoPickerViewController ()
@@ -24,7 +24,11 @@
 }
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    if (@available(iOS 13.0, *)) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDarkContent;
+    } else {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    }
 }
 
 - (void)viewDidLoad {
@@ -35,7 +39,10 @@
 - (void)createNavigationController{
     XYPhotoPickerGroupViewController* groupVc = [[XYPhotoPickerGroupViewController alloc]init];
     /** 可以自己定位导航控制器 */
-    XYPhotoNavigationController* nvc = [[XYPhotoNavigationController alloc]initWithRootViewController:groupVc];
+    UINavigationController* nvc = [[UINavigationController alloc]initWithRootViewController:groupVc];
+    nvc.navigationBar.titleTextAttributes = @{NSFontAttributeName: SYSTEM_FONT_18,NSForegroundColorAttributeName: [UIColor color_FFFFFF]};
+    nvc.navigationBar.barTintColor = [UIColor color_232323];
+    nvc.navigationBar.translucent = NO;
     groupVc.maxCount = self.maxCount;
     groupVc.status = self.status;
     nvc.view.frame = self.view.frame;

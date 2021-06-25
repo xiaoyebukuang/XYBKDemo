@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
-typedef void(^PickerDatasCallBack)(id obj);
-
+#import "XYPhotoPickerGroup.h"
 @interface XYPhotoPickerDatas : NSObject
 
 /**
@@ -22,54 +21,49 @@ typedef void(^PickerDatasCallBack)(id obj);
 
  @param callBack 获取图片组，返回array<XYPhotoPickerGroup *>
  */
-- (void)getAllGroupWithPhotos:(PickerDatasCallBack)callBack;
-
+- (void)loadAlbumGroupCompletionHandler:(void(^)(NSArray <XYPhotoPickerGroup *>* group))callBack;
 
 /**
- 异步获取相册中第一张图片
+ 遍历相簿分组的全部图片
 
- @param assetCollection 相册
- @param handler 回调
+ @param assetCollection 相簿
+ @param callBack 获取图片组，返回array<PHAsset *>
  */
-- (void)getGroupNormalPhoto:(PHAssetCollection *)assetCollection
-                   complete:(void(^)(UIImage *image))handler;
-
-
+- (void)fetchAssetsInAssetCollection:(PHAssetCollection *)assetCollection
+                            callBack:(void(^)(NSArray <PHAsset *>* assets))callBack;
 
 /**
- 遍历指定相簿中的图片
+ 获取PHAsset指定大小的图片
 
- @param subtype 相簿类型
+ @param asset 指定PHAsset
+ @param size size
+ @param callBack 获取图片，返回Image
+ */
+- (void)requestImageForAsset:(PHAsset *)asset
+                    withSize:(CGSize)size
+                    callBack:(void(^)(UIImage *image))callBack;
+
+/**
+ 获取PHAsset指定大小的图片并缓存
+
+ @param asset 指定PHAsset
+ @param size size
  @param callBack 回调
  */
-- (void)enumeratePHAssetCollectionSubtype:(PHAssetCollectionSubtype)subtype
-                      pickerDatasCallBack:(PickerDatasCallBack)callBack;
-
-/**
- 遍历相簿中的全部图片
- 
- @param assetCollection 相簿
- @param callBack 获取图片组，返回array<XYPhotoPickerGroup *>
- */
-- (void)enumerateAssetsInAssetCollection:(PHAssetCollection *)assetCollection
-                     pickerDatasCallBack:(PickerDatasCallBack)callBack;
-
-/**
- 获取指定大小的图片
-
- @param asset 数据源
- @param synchronous 是否同步
- @param size size
- @param handler 回调
- */
-- (void)getImageFromPHAsset:(PHAsset *)asset synchronous:(BOOL)synchronous size:(CGSize)size complete:(void(^)(UIImage *image))handler;
+- (void)cachingImageForAsset:(PHAsset *)asset
+                  targetSize:(CGSize)size
+                    callBack:(void(^)(UIImage *image))callBack;
 
 /**
  获取PHAsset全屏的图片数组
 
  @param assetArr PHAsset数组
- @param callBack 回调
+ @param callBack 图片数组，返回array<UIImage *>
  */
-- (void)getImagesFromPHAsset:(NSArray *)assetArr pickerDatasCallBack:(PickerDatasCallBack)callBack;
+- (void)getImagesFromPHAsset:(NSArray *)assetArr
+                    callBack:(void(^)(NSArray <UIImage *>* images))callBack;
 
+
+/** 存储相册 */
+- (void)loadImageFinished:(UIImage *)image callBack:(void(^_Nullable)(BOOL success, NSError * _Nullable error))callBack;
 @end

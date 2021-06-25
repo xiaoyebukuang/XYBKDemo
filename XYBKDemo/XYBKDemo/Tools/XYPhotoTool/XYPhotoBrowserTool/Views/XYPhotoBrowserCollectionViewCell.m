@@ -7,16 +7,10 @@
 //
 
 #import "XYPhotoBrowserCollectionViewCell.h"
-#import "XYPhotoPickerAsset.h"
+
 @implementation XYPhotoBrowserCollectionViewCell
 
-- (instancetype)init{
-    self = [super init];
-    if (self) {
-        [self setupUI];
-    }
-    return self;
-}
+
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -28,7 +22,10 @@
     [self.contentView addSubview:self.photoBrowserScrollView];
 }
 - (void)reloadViewWithPhotosArr:(NSArray *)photosArr andIndexPath:(NSInteger)row {
-    self.photoBrowserScrollView.model = photosArr[row];
+    [self reloadViewWithPhotosArr:photosArr andIndexPath:row placeholderImage:nil];
+}
+- (void)reloadViewWithPhotosArr:(NSArray *)photosArr andIndexPath:(NSInteger)row placeholderImage:(UIImage *)placeholderImage {
+    [self.photoBrowserScrollView reloadViewWithModel:photosArr[row] placeholderImage:placeholderImage];
 }
 #pragma mark -- setup
 - (XYPhotoBrowserScrollView *)photoBrowserScrollView {

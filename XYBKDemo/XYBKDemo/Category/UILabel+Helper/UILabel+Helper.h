@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (Helper)
+
+@property (nonatomic, assign) CGFloat xy_LineSpace;
+
 /**
  创建UILabel
 
@@ -58,9 +61,10 @@
                textAlignment:(NSTextAlignment)textAlignment
                         font:(UIFont *)font;
 
+
 /**
  创建UILabel
- 
+
  @param text 标题
  @param textColor 标题颜色
  @param textAlignment 排版方式
@@ -73,5 +77,21 @@
                textAlignment:(NSTextAlignment)textAlignment
                         font:(UIFont *)font
                  lineSpacing:(CGFloat)lineSpacing;
+
+/**
+ 创建UILabel
+
+ @param textColor 标题颜色
+ @param font 标题大小
+ @param lineSpacing 行间距
+ @return label
+ */
+- (instancetype)initWithTextColor:(UIColor *)textColor
+                             font:(UIFont *)font
+                      lineSpacing:(CGFloat)lineSpacing;
+
+- (void)reloadTitleWithTitle:(NSString *)title;
+- (void)reloadTitleWithTitle:(NSString *)title lineSpacing:(CGFloat)lineSpacing;
+- (void)reloadTitleWithTitle:(NSString *)title lineSpacing:(CGFloat)lineSpacing textAlignment:(NSTextAlignment)textAlignment;
 
 @end

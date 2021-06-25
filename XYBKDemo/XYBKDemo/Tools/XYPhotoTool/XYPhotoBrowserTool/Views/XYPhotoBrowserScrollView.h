@@ -12,7 +12,7 @@
 
 @protocol XYPhotoBrowserScrollViewDelegate <NSObject>
 @optional
-//单击调用
+// 单击调用
 - (void) pickerPhotoScrollViewDidSingleClick:(XYPhotoBrowserScrollView *)photoScrollView;
 //双击
 - (void) pickerPhotoScrollViewDidDoubleClick:(XYPhotoBrowserScrollView *)photoScrollView;
@@ -27,7 +27,10 @@
 @property (nonatomic ,weak) id<XYPhotoBrowserScrollViewDelegate>photoScrollViewDelegate;
 
 /** 数据源 */
-@property (nonatomic ,strong) id model;
+- (void)reloadViewWithModel:(id)model placeholderImage:(UIImage *)placeholderImage;
+
+
+
 
 
 @end

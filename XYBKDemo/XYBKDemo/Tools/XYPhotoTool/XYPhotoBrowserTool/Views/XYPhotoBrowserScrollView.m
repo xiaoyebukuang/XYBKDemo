@@ -9,7 +9,6 @@
 #import "XYPhotoBrowserScrollView.h"
 #import "XYPhotoBrowserView.h"
 #import "XYPhotoToolMacros.h"
-#import "XYPhotoPickerAsset.h"
 @interface XYPhotoBrowserScrollView()<XYPhotoBrowserViewDelegate, XYPhotoBrowserImageViewDelegate, UIScrollViewDelegate>
 /** 最大缩放 */
 @property (nonatomic, assign) CGFloat maxScale;
@@ -26,18 +25,13 @@
 @property (nonatomic ,strong) MBProgressHUD* progressView;
 /** 设置进度 */
 @property (nonatomic ,assign) CGFloat progress;
+
+@property (nonatomic ,strong) id model;
 @end
 
 
 @implementation XYPhotoBrowserScrollView
 #pragma mark -- init
-- (instancetype)init{
-    self = [super init];
-    if (self) {
-        [self setupUI];
-    }
-    return self;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -55,67 +49,48 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:self.photoBrowserView];
     [self addSubview:self.photoBrowserImageView];
-    [self addSubview:self.progressView];
+//    [self addSubview:self.progressView];
 }
 #pragma mark -- setData
-- (void)setModel:(id)model {
-    _model = model;
+- (void)reloadViewWithModel:(id)model placeholderImage:(UIImage *)placeholderImage {
+    self.model = model;
     WeakSelf;
-    if ([model isKindOfClass:[NSString class]]) {
-        //string
-        NSString *imageStr = model;
-        UIImage *image = [UIImage imageNamed:imageStr];
-        self.progress = 1;
-        self.photoBrowserImageView.image = image;
-        [self displayImage];
-    } else if ([model isKindOfClass:[UIImage class]]) {
+    if ([model isKindOfClass:[UIImage class]]) {
         //图片
         UIImage *image = model;
         self.progress = 1;
         self.photoBrowserImageView.image = image;
         [self displayImage];
-    } else if ([model isKindOfClass:[NSURL class]]) {
+    } else if ([model isKindOfClass:[NSString class]]) {
         //url
-        NSURL *url = model;
+        NSString *urlStr = model;
         [self.progressView showAnimated:YES];
-        [self.photoBrowserImageView sd_setImageWithURL:url placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        self.photoBrowserImageView.image = placeholderImage;
+        [weakSelf displayImage];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        [self.photoBrowserImageView sd_setImageWithURL:url placeholderImage:placeholderImage options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             [weakSelf setProgress:(double)receivedSize / expectedSize];
         } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             weakSelf.progress = 1.0;
             if (image) {
                 weakSelf.photoBrowserImageView.image = image;
             }else{
-                [weakSelf.photoBrowserImageView removeScaleBigTap];
+                [self.photoBrowserImageView removeScaleBigTap];
             }
             [weakSelf displayImage];
         }];
     } else if ([model isKindOfClass:[PHAsset class]]) {
         self.photoBrowserImageView.image = nil;
-        [MBProgressHUD showToView:self];
-        PHAsset *asset = model;
-        [MBProgressHUD showToView:self];
-        [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:asset synchronous:NO size:CGSizeMake(MAIN_SCREEN_WIDTH*2, MAIN_SCREEN_HEIGHT*2) complete:^(UIImage *image) {
-            [MBProgressHUD hideHUDForView:self];
-            self.photoBrowserImageView.image = image;
-            [self displayImage];
-        }];
-    } else if ([model isKindOfClass:[XYPhotoPickerAsset class]]) {
-        XYPhotoPickerAsset *assetModel = model;
-        if (assetModel.image) {
-            self.photoBrowserImageView.image = assetModel.image;
-            [self displayImage];
-        } else {
-            self.photoBrowserImageView.image = nil;
-            [MBProgressHUD showToView:self];
-            [[XYPhotoPickerDatas defaultPicker]getImageFromPHAsset:assetModel.asset synchronous:NO size:CGSizeMake(MAIN_SCREEN_WIDTH*2, MAIN_SCREEN_HEIGHT*2) complete:^(UIImage *image) {
-                [MBProgressHUD hideHUDForView:self];
-                assetModel.image = image;
-                self.photoBrowserImageView.image = image;
-                [self displayImage];
+        [MBProgressHUD showMessage:@"" ToView:self];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PHAsset *asset = model;
+            [[XYPhotoPickerDatas defaultPicker]cachingImageForAsset:asset targetSize:CGSizeMake(MAIN_SCREEN_WIDTH, MAIN_SCREEN_HEIGHT) callBack:^(UIImage *image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self];
+                    self.photoBrowserImageView.image = image;
+                });
             }];
-        }   
-    } else {
-        NSLog(@"错误类型");
+        });
     }
 }
 /** 设置进度条 */
@@ -139,6 +114,7 @@
     self.zoomScale = 1;
     UIImage *img = self.photoBrowserImageView.image;
     if (img) {
+        self.photoBrowserImageView.image = img;
         //设置缩放
         CGSize boundsSize = self.bounds.size;
         CGSize imageSize = img.size;
@@ -146,31 +122,27 @@
         CGFloat xScale = boundsSize.width/imageSize.width;
         //高度缩放比例
         CGFloat yScale = boundsSize.height/imageSize.height;
-        
-        CGFloat imageV_width;
-        CGFloat imageV_height;
-        CGFloat max_scale = 2;
         if (xScale < yScale) {
             //高度缩放不满屏，宽度缩放满屏
-            imageV_width = boundsSize.width;
-            imageV_height = xScale*imageSize.height;
-            if (imageV_height*2 < boundsSize.height + IPHONEX_TOP_HEIGHT + IPHONEX_BOTTOW_HEIGHT) {
-                max_scale = (boundsSize.height + IPHONEX_TOP_HEIGHT + IPHONEX_BOTTOW_HEIGHT)/imageV_height;
-            }
+            self.photoBrowserImageView.contentMode = UIViewContentModeScaleAspectFit;
         }else{
             //高度缩放超屏，宽度缩放满屏
-            imageV_height = boundsSize.height;
-            imageV_width = yScale*imageSize.width;
-            if (imageV_width*2 < boundsSize.width) {
-                max_scale = boundsSize.width/imageV_width;
-            }
+            self.photoBrowserImageView.contentMode = UIViewContentModeScaleAspectFill;
         }
+        if (xScale > 1) {
+            xScale = 1;
+        }
+        // Set
         self.minScale = 1;
-        self.maxScale = max_scale;
+        if (imageSize.height*xScale*2 < boundsSize.height) {
+            self.maxScale = boundsSize.height/(imageSize.height*xScale);
+        }else{
+            self.maxScale = 2;
+        }
         self.maximumZoomScale = self.maxScale;
         self.minimumZoomScale = self.minScale;
         self.zoomScale = self.minScale;
-        self.photoBrowserImageView.frame = CGRectMake(0, 0, imageV_width, imageV_height);
+        self.photoBrowserImageView.frame = CGRectMake(0, 0, self.width, imageSize.height*xScale);
         self.baseSize = self.photoBrowserImageView.frame.size;
         self.contentSize = self.baseSize;
     }
@@ -221,7 +193,7 @@
 }
 //单击实现
 - (void)photoScrollViewDidSingleClick {
-    if ([self.photoScrollViewDelegate respondsToSelector:@selector(pickerPhotoScrollViewDidSingleClick:)]) {
+    if (self.photoScrollViewDelegate && [self.photoScrollViewDelegate respondsToSelector:@selector(pickerPhotoScrollViewDidSingleClick:)]) {
         [self.photoScrollViewDelegate performSelector:@selector(pickerPhotoScrollViewDidSingleClick:) withObject:self];
     }
 }

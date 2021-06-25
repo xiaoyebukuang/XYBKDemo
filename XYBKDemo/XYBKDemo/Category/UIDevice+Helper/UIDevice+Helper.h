@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface UIDevice (Helper)
-/** 获取广告标识符 */
+/** 获取手机广告标识符 */
 + (NSString *)getIDFA;
-/** 设备唯一id ->UUID */
+/** 设备手机唯一id ->UUID */
 + (NSString *)getDeviceOnlyUUID;
-/** 获取设备IP地址 */
-+ (NSString *)getDeviceIPAddress;
+/** 获取手机设备IP地址 */
++ (NSString *)getDeviceIPAddress:(BOOL)preferIPv4;
+/** 获取手机设备型号 */
++ (NSString *)getCurrentDeviceModel;
+/** 获取手机设备系统名称 */
++ (NSString *)getCurrentDeviceSystemVersion;
 /** 获取app版本号 */
 + (NSString *)getAppVersion;
 /** 获取app名称 */
@@ -23,13 +27,11 @@
 + (NSString *)getAppBuildID;
 /** 拨打电话 */
 + (void)callTel:(NSString *)tel;
-/** 打开链接 */
-+ (void)openURLStr:(NSString *)urlStr;
+/** 拨打电话 */
++ (void)callCompleteTel:(NSString *)tel;
 /** 打开设置 */
 + (void)openSetting;
-
-/** 缓存 */
-+ (void)cleanCacheAndCookie;
-+ (void)clearAnyeLocalCache;
+/** 打开链接 */
++ (void)openURLStr:(NSString *)urlStr;
 
 @end

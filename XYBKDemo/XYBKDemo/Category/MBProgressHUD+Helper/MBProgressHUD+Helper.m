@@ -7,6 +7,7 @@
 //
 
 #import "MBProgressHUD+Helper.h"
+#import "FLAnimatedImage.h"
 typedef NS_ENUM(NSInteger, ProgressHUDType) {
     ProgressHUDTypeLoading,
     ProgressHUDTypeError,
@@ -22,7 +23,7 @@ typedef NS_ENUM(NSInteger, ProgressHUDType) {
     [self showMessage:message ToView:nil];
 }
 + (void)showToView:(UIView *)view {
-    [self showMessage:@"加载中..." ToView:view];
+    [self showMessage:nil ToView:view];
 }
 + (void)showMessage:(NSString *)message ToView:(UIView *)view {
     [self showMessage:message ToView:view HUDType:ProgressHUDTypeLoading completeBlcok:nil];
@@ -34,7 +35,7 @@ typedef NS_ENUM(NSInteger, ProgressHUDType) {
 + (void)showError:(NSString *)error completeBlcok:(MBProgressHUDCompletionBlock)completionBlock {
     [self showError:error ToView:nil completeBlcok:completionBlock];
 }
-+ (void)showError:(NSString *)error ToView:(UIView *)view{
++ (void)showError:(NSString *)error ToView:(UIView *)view {
     [self showError:error ToView:view completeBlcok:nil];
 }
 + (void)showError:(NSString *)error ToView:(UIView *)view completeBlcok:(MBProgressHUDCompletionBlock)completionBlock {
@@ -62,32 +63,67 @@ typedef NS_ENUM(NSInteger, ProgressHUDType) {
     }
     // 快速显示一个提示信息
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.label.numberOfLines = 0;
     switch (HUDType) {
         case ProgressHUDTypeLoading:
-            hud.mode = MBProgressHUDModeIndeterminate;
+        {
+            FLAnimatedImageView *loadImageV = [[FLAnimatedImageView alloc]init];
+            hud.customView = loadImageV;
+            hud.mode = MBProgressHUDModeCustomView;
+            FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"loading" ofType:@"gif"]]];
+            loadImageV.animatedImage = image;
+            hud.margin = 0;
+            [loadImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(60);
+                make.height.mas_equalTo(60);
+            }];
+            hud.bezelView.color = [UIColor color_FFFFFF];
+            hud.bezelView.alpha = 1;
+            hud.contentColor = [UIColor whiteColor];
+            hud.layer.cornerRadius = 10;
+            hud.layer.shadowColor = [UIColor color_CBCBCB].CGColor;
+            hud.layer.shadowOffset = CGSizeMake(0,3);
+            hud.layer.shadowOpacity = 1;
+            hud.layer.shadowRadius = 7;
+        }
             break;
         case ProgressHUDTypeError:
+        {
+            CGFloat delay = [self getMessageAfterDelayWithMessage:message];
             hud.mode = MBProgressHUDModeCustomView;
-            //此处填写错误图标
-            hud.customView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"request_error"]];
-            [hud hideAnimated:YES afterDelay:1];
+            [hud hideAnimated:YES afterDelay:delay];
+            hud.label.font = SYSTEM_FONT_14;
+            hud.bezelView.color = [UIColor blackColor];
+            hud.bezelView.alpha = 0.7;
+        }
             break;
         case ProgressHUDTypeSuccess:
+        {
+            CGFloat delay = [self getMessageAfterDelayWithMessage:message];
             hud.mode = MBProgressHUDModeCustomView;
-            //此处填写成功图标
-            hud.customView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"request_success"]];
-            [hud hideAnimated:YES afterDelay:1];
+            [hud hideAnimated:YES afterDelay:delay];
+            hud.label.font = SYSTEM_FONT_14;
+            hud.bezelView.color = [UIColor blackColor];
+            hud.bezelView.alpha = 0.7;
+        }
             break;
     }
     if (completionBlock) {
         hud.completionBlock = completionBlock;
     }
-    hud.label.text = message;
-    hud.label.font = [UIFont systemFontOfSize:15];
-    hud.bezelView.color = [UIColor blackColor];
+    if (message) {
+        hud.label.text = message;
+    }
     hud.contentColor = [UIColor whiteColor];
     // 隐藏时候从父控件中移除
     hud.removeFromSuperViewOnHide = YES;
+    [hud layoutIfNeeded];
+    hud.offset = CGPointMake(0, -hud.bezelView.height/2);
+}
++ (CGFloat)getMessageAfterDelayWithMessage:(NSString *)message {
+    NSInteger ten_number = message.length/10;
+    NSInteger bit_number = message.length%10;
+    return ten_number + (bit_number == 0 ? 0 : 1);
 }
 #pragma mark -- 消失
 + (void)hideHUD{

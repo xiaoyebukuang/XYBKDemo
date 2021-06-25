@@ -22,6 +22,9 @@
 /** 返回float型 */
 + (float)safe_float:(id)obj;
 
+/** 返回float型 */
++ (float)safe_towFloat:(id)obj;
+
 /** 返回intefer型 */
 + (NSInteger)safe_integer:(id)obj;
 
@@ -37,65 +40,61 @@
 /** 获取准确的数字字符串 */
 + (NSString *)safe_numStr:(id)obj;
 
+
+/** 业务相关，获取评价除去空格和换行符后的数据 */
++ (NSString *)getEvaluateStrWith:(NSString *)evaluateStr;
+
+
+/** 获取uUTF8编码的str */
+- (NSString *)getUTF8Str;
+/** 获取字符串的宽度 */
+- (CGFloat)getStrWidthWithFont:(UIFont *)font;
+
+- (CGFloat)getActualStrWidthWithFont:(UIFont *)font;
+/** 获取字符串的高度 */
+- (CGFloat)getStrHeightWithWidth:(CGFloat)width font:(UIFont *)font;
+/** 计算带有行间距的高度 */
+- (CGFloat)getSpaceLabelHeightWithWidth:(CGFloat)width font:(UIFont *)font lineSpace:(NSInteger)linespace;
+
+
+
+/** 查看联想的字段中带有搜索词的数组<NSString<NSRange格式>> */
++ (NSMutableArray*)calculateSubStringCount:(NSString *)content str:(NSString *)tab;
 /** 添加删除线 */
-+ (NSMutableAttributedString *)getAttDeleteHandleWithStr:(NSString *)str;
++ (NSMutableAttributedString *)orderPriceDeleteHandleWithStr:(NSString *)str;
++ (NSMutableAttributedString *)orderPriceDeleteHandleWithLeftStr:(NSString *)leftStr priceStr:(NSString *)priceStr;
 
 /**
- 获取NSMutableAttributedString(字体)
- 
- @param leftStr 左边字体
- @param leftFont 左边字体font
- @param rightStr 右边字体
- @param rightFont 右边字体font
- @return NSMutableAttributedString
+ 获取NSMutableAttributedString(字体:左右)
  */
 + (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
                                         leftFont:(UIFont *)leftFont
                                         rightStr:(NSString *)rightStr
                                        rightFont:(UIFont *)rightFont;
-/**
- 获取NSMutableAttributedString(颜色)
- 
- @param leftStr 左边字体
- @param leftColor 左边字体Color
- @param rightStr 右边字体
- @param rightColor 右边字体Color
- @return NSMutableAttributedString
- */
+
+/** 获取NSMutableAttributedString(字体：左中右) */
++ (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
+                                        leftFont:(UIFont *)leftFont
+                                       centerStr:(NSString *)centerStr
+                                      centerFont:(UIFont *)centerFont
+                                        rightStr:(NSString *)rightStr
+                                       rightFont:(UIFont *)rightFont;
+
+/** 获取NSMutableAttributedString(颜色:左右) */
 + (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
                                        leftColor:(UIColor *)leftColor
                                         rightStr:(NSString *)rightStr
                                       rightColor:(UIColor *)rightColor;
-/**
- 获取NSMutableAttributedString(颜色)
 
- @param leftStr 左边字体
- @param leftColor 左边字体Color
- @param centerStr 中间字体
- @param centerColor 中间字体颜色
- @param rightStr 右边字体
- @param rightColor 右边字体颜色
- @return NSMutableAttributedString
- */
+/** 获取NSMutableAttributedString(颜色:左中右) */
 + (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
                                        leftColor:(UIColor *)leftColor
                                        centerStr:(NSString *)centerStr
                                      centerColor:(UIColor *)centerColor
                                         rightStr:(NSString *)rightStr
                                       rightColor:(UIColor *)rightColor;
-/**
- 获取NSMutableAttributedString(颜色 + 字体) 注：leftColorStr+rightColorStr = leftFontStr+rightFontStr
- 
- @param leftColorStr 左边颜色字体
- @param leftColor 左边颜色
- @param rightColorStr 右边颜色字体
- @param rightColor 右边颜色
- @param leftFontStr 左边字体
- @param leftFont 左边字体大小
- @param rightFontStr 右边字体
- @param rightFont 右边字体大小
- @return NSMutableAttributedString
- */
+
+/** 获取NSMutableAttributedString(颜色 + 字体:左右) 注：leftColorStr+rightColorStr = leftFontStr+rightFontStr */
 + (NSMutableAttributedString *)getAttWithLeftColorStr:(NSString *)leftColorStr
                                             leftColor:(UIColor *)leftColor
                                         rightColorStr:(NSString *)rightColorStr
@@ -106,10 +105,26 @@
                                             rightFont:(UIFont *)rightFont;
 
 
+/** 获取NSMutableAttributedString(颜色:左中右，字体:左中右) */
++ (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
+                                       leftColor:(UIColor *)leftColor
+                                        leftFont:(UIFont *)leftFont
+                                       centerStr:(NSString *)centerStr
+                                     centerColor:(UIColor *)centerColor
+                                      centerFont:(UIFont *)centerFont
+                                        rightStr:(NSString *)rightStr
+                                      rightColor:(UIColor *)rightColor
+                                       rightFont:(UIFont *)rightFont;
 
-/** 获取字符串的宽度 */
-- (CGFloat)getStrWidthWithFont:(UIFont *)font;
-/** 获取字符串的高度 */
-- (CGFloat)getStrHeightWithWidth:(CGFloat)width font:(UIFont *)font;
+/** 获取NSMutableAttributedString(颜色:左右，字体:左右) */
++ (NSMutableAttributedString *)getAttWithLeftStr:(NSString *)leftStr
+                                       leftColor:(UIColor *)leftColor
+                                        leftFont:(UIFont *)leftFont
+                                        rightStr:(NSString *)rightStr
+                                      rightColor:(UIColor *)rightColor
+                                       rightFont:(UIFont *)rightFont;
+
++ (NSString *)getDistanceDesWithDistance:(NSString *)distance;
+
 
 @end

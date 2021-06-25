@@ -23,17 +23,10 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
 @property (nonatomic, strong) UILabel          *pageLabel;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, assign) UIViewContentMode contentMode;
+@property (nonatomic, strong) UIImage          *currentImage;
 
 @end
 @implementation XYPhotoTransitionView
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setupUI];
-    }
-    return self;
-}
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -61,9 +54,10 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
     self.contentMode = contentMode;
     self.photosArr = photosArr;
     self.currentPage = currentPage;
+    self.currentImage = image;
     self.pageLabel.text =  [NSString stringWithFormat:@"%ld/%ld",currentPage + 1, self.photosArr.count];
     UIWindow *window = kAppDelegateWindow;
-    if ([self.delegate respondsToSelector:@selector(getFrameWithCurrentPage:sourceView:)]) {
+    if ([self.delegate respondsToSelector:@selector(getFrameWithCurrentPage:sourceView:)] && image) {
         CGRect frame = [self.delegate getFrameWithCurrentPage:currentPage sourceView:self];
         //黑色背景
         UIView *backView = [[UIView alloc]initWithFrame:window.bounds];
@@ -180,7 +174,11 @@ static const NSTimeInterval rootViewAnimations = 0.2f;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     XYPhotoBrowserCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:XYPhotoBrowserCollectionViewCellID forIndexPath:indexPath];
     cell.photoBrowserScrollView.photoScrollViewDelegate = self;
-    [cell reloadViewWithPhotosArr:self.photosArr andIndexPath:indexPath.row];
+    UIImage *placeholderImage;
+    if (self.currentPage == indexPath.row) {
+        placeholderImage = self.currentImage;
+    }
+    [cell reloadViewWithPhotosArr:self.photosArr andIndexPath:indexPath.row placeholderImage:self.currentImage];
     return cell;
 }
 

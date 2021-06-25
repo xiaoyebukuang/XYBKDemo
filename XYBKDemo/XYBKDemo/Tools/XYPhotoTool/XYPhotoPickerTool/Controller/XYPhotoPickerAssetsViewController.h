@@ -6,16 +6,14 @@
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "XYPhotoRootViewController.h"
+#import "BaseViewController.h"
 #import "XYPhotoPickerGroup.h"
 #import "XYPhotoToolMacros.h"
-@interface XYPhotoPickerAssetsViewController : XYPhotoRootViewController
+@interface XYPhotoPickerAssetsViewController : BaseViewController
 
 /** 最大选择数 */
 @property (nonatomic, assign) NSInteger maxCount;
 /** 赋值group */
 @property (nonatomic ,strong) XYPhotoPickerGroup *pickerGroup;
-/** 相册类型 */
-@property (nonatomic, assign) PHAssetCollectionSubtype subtype;
 
 @end

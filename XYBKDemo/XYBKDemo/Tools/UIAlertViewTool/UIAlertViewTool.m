@@ -9,13 +9,15 @@
 #import "UIAlertViewTool.h"
 #import "UIAlertViewToolModel.h"
 /** 按钮高度 */
-const static CGFloat kUIAlertViewToolDefaultButtonHeight            = 50;
+const static CGFloat kUIAlertViewToolDefaultButtonHeight            = 40;
 /** 线条高度 */
 const static CGFloat kUIAlertViewToolDefaultButtonSpacerHeight      = 0.5;
 /** 圆角 */
 const static CGFloat kUIAlertViewToolDefaultCornerRadius            = 7;
 /** 弹窗宽度 */
-const static CGFloat kUIAlertViewToolDefaultWidth                   = 300;
+const static CGFloat kUIAlertViewToolDefaultWidth                   = 270;
+/** 弹窗高度 */
+const static CGFloat kUIAlertViewToolContentDefaultHeight           = 80;
 /** scroll滑动高度 */
 const static CGFloat kUIAlertViewScrollDefaultHeight                = 300;
 
@@ -57,10 +59,11 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     dispatch_once(&onceToken, ^{
         _alertViewTool = [[self alloc]initWithFrame:CGRectMake(0, 0, ALERT_TOOL_WIDTH, ALERT_TOOL_HEIGHT)];
         _alertViewTool.toolModelArr = [[NSMutableArray alloc]init];
-        _alertViewTool.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        _alertViewTool.backgroundColor = [UIColor color_main];
         //取消多次渲染
         _alertViewTool.layer.shouldRasterize = YES;
         _alertViewTool.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        _alertViewTool.alpha = 0.96;
     });
     return _alertViewTool ;
 }
@@ -185,25 +188,37 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     self.titleLabel.text = self.currectModel.title;
     self.messageLabel.text = self.currectModel.message;
     self.messageLabel.textAlignment = NSTextAlignmentCenter;
+    
     //设置frame
     CGFloat sideMargin = 15.0;
-    CGFloat topBottomMargin = 20.0;
+    CGFloat topBottomMargin = 10.0;
     CGFloat labelWidth = toolWidth - (sideMargin * 2.0);
-    CGFloat yOffset = topBottomMargin;
+    CGFloat titleViewHeight = 0;
+    
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(sideMargin, 0, labelWidth, 0)];
     if (self.currectModel.title) {
         CGSize sizeThatFits = [self.titleLabel sizeThatFits:CGSizeMake(labelWidth, MAXFLOAT)];
-        self.titleLabel.frame = CGRectMake(sideMargin, topBottomMargin, labelWidth, sizeThatFits.height);
-        yOffset += CGRectGetHeight(self.titleLabel.frame) + topBottomMargin;
+        self.titleLabel.frame = CGRectMake(0, 0, labelWidth, sizeThatFits.height);
+        titleViewHeight += CGRectGetHeight(self.titleLabel.frame);
+        [titleView addSubview:self.titleLabel];
     }
     if (self.currectModel.message) {
         CGSize sizeThatFits = [self.messageLabel sizeThatFits:CGSizeMake(labelWidth, MAXFLOAT)];
-        self.messageLabel.frame = CGRectMake(sideMargin, yOffset, labelWidth, sizeThatFits.height);
-        yOffset += CGRectGetHeight(self.messageLabel.frame) + topBottomMargin;
+        self.messageLabel.frame = CGRectMake(0, titleViewHeight + topBottomMargin, labelWidth, sizeThatFits.height);
+        titleViewHeight += CGRectGetHeight(self.messageLabel.frame) + topBottomMargin;
+        [titleView addSubview:self.messageLabel];
     }
-    self.containerView.frame = CGRectMake(0, 0, toolWidth, yOffset);
+    CGRect tempFrame = titleView.frame;
+    tempFrame.size.height = titleViewHeight;
+    titleViewHeight = titleViewHeight + 2*topBottomMargin;
+    if (titleViewHeight < kUIAlertViewToolContentDefaultHeight) {
+        titleViewHeight = kUIAlertViewToolContentDefaultHeight;
+    }
+    tempFrame.origin.y = (titleViewHeight -tempFrame.size.height)/2;
+    titleView.frame = tempFrame;
+    self.containerView.frame = CGRectMake(0, 0, toolWidth, titleViewHeight);
     //添加视图
-    [self.containerView addSubview:self.titleLabel];
-    [self.containerView addSubview:self.messageLabel];
+    [self.containerView addSubview:titleView];
     //动画
     [self showAnimation];
 }
@@ -258,7 +273,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     self.dialogView.layer.opacity = 0.5f;
     self.dialogView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.3f, 1.3f);
     [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4f];
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3f];
         self.dialogView.layer.opacity = 1.0f;
         self.dialogView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
     } completion:^(BOOL finished) {
@@ -270,8 +285,8 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
     for (UIView *subView in self.btnView.subviews) {
         [subView removeFromSuperview];
     }
-    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.btnView.frame), buttonSpacerHeight)];
-    lineV.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
+    UIView *lineV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.btnView.frame), 0.5)];
+    lineV.backgroundColor = [UIColor color_F0F0F0];
     [self.btnView addSubview:lineV];
     
     CGFloat buttonWidth = CGRectGetWidth(self.btnView.frame)/self.currectModel.btnTitles.count;
@@ -281,9 +296,8 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         [closeButton addTarget:self action:@selector(closeButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
         [closeButton setTag:ALERT_TOOL_CLOSE_BTN_TAG + i];
         [closeButton setTitle:self.currectModel.btnTitles[i] forState:UIControlStateNormal];
-        [closeButton setTitleColor:[UIColor colorWithRed:0.0f green:0.5f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
-        [closeButton setTitleColor:[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:0.5f] forState:UIControlStateHighlighted];
-        [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15.0f]];
+        [closeButton setTitleColor:[UIColor color_2C7BFC] forState:UIControlStateNormal];
+        [closeButton.titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
         closeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.btnView addSubview:closeButton];
     }
@@ -291,7 +305,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         CGFloat space = CGRectGetWidth(self.btnView.frame)/self.currectModel.btnTitles.count;
         for (int i = 1; i < self.currectModel.btnTitles.count; i++) {
             UIView *lineVertical = [[UIView alloc]initWithFrame:CGRectMake(i * space, 0, buttonSpacerHeight, CGRectGetHeight(self.btnView.frame))];
-            lineVertical.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
+            lineVertical.backgroundColor = [UIColor color_F0F0F0];
             [self.btnView addSubview:lineVertical];
         }
     }
@@ -370,21 +384,17 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         _dialogView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
         CGFloat cornerRadius = kUIAlertViewToolDefaultCornerRadius;
         _dialogView.layer.cornerRadius = cornerRadius;
-        _dialogView.layer.borderColor = [[UIColor colorWithRed:198.0/255.0 green:198.0/255.0 blue:198.0/255.0 alpha:1.0f] CGColor];
-        _dialogView.layer.borderWidth = 1;
         _dialogView.layer.shadowRadius = cornerRadius + 5;
         _dialogView.layer.shadowOpacity = 0.1f;
-        _dialogView.layer.shadowOffset = CGSizeMake(0 - (cornerRadius+5)/2, 0 - (cornerRadius+5)/2);
-        _dialogView.layer.shadowColor = [UIColor blackColor].CGColor;
     }
     return _dialogView;
 }
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.textColor = [UIColor color_222222];
     }
     return _titleLabel;
 }
@@ -393,7 +403,7 @@ CGFloat  toolWidth              = kUIAlertViewToolDefaultWidth;
         _messageLabel = [[UILabel alloc]init];
         _messageLabel.font = [UIFont systemFontOfSize:15];
         _messageLabel.textAlignment = NSTextAlignmentCenter;
-        _messageLabel.textColor = [UIColor grayColor];
+        _messageLabel.textColor = [UIColor color_222222];
         _messageLabel.numberOfLines = 0;
     }
     return _messageLabel;

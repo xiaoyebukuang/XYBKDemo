@@ -21,6 +21,9 @@
     NSDecimalNumber *number02 = [NSDecimalNumber decimalNumberWithString:subtrahend];
     //相减
     NSDecimalNumber *subNmuber = [number01 decimalNumberBySubtracting:number02];
+    if ([self getLessThanOrSameZeroWithNumber:subNmuber.stringValue]) {
+        return @"0";
+    }
     return subNmuber.stringValue;
 }
 /** 加法 */
@@ -50,7 +53,7 @@
     NSDecimalNumber *number02 = [NSDecimalNumber decimalNumberWithString:otherMultiplier];
     //乘法
     NSDecimalNumber *number = [number01 decimalNumberByMultiplyingBy:number02];
-    return number.stringValue;
+    return [[NSString alloc]initWithFormat:@"%.2f",number.stringValue.floatValue];
 }
 
 /** 比较 */
@@ -65,5 +68,17 @@
     NSDecimalNumber *decimalNumber02 = [NSDecimalNumber decimalNumberWithString:number02];
     return [decimalNumber01 compare:decimalNumber02];
 }
-
+/** 是否小于0或等于0 */
++ (BOOL)getLessThanOrSameZeroWithNumber:(NSString *)number {
+    if (number.length == 0) {
+        number = @"0";
+    }
+    NSDecimalNumber *decimalNumber01 = [NSDecimalNumber decimalNumberWithString:number];
+    NSDecimalNumber *decimalNumber02 = [NSDecimalNumber decimalNumberWithString:@"0"];
+    NSComparisonResult result = [decimalNumber01 compare:decimalNumber02];
+    if (result != NSOrderedDescending) {
+        return YES;
+    }
+    return NO;
+}
 @end

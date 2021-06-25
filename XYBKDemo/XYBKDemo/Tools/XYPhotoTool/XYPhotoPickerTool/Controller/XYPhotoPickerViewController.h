@@ -6,15 +6,11 @@
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "XYPhotoRootViewController.h"
+#import "BaseViewController.h"
 #import "XYPhotoToolMacros.h"
-// 状态组
-typedef NS_ENUM(NSInteger , PickerViewShowStatus) {
-    PickerViewShowStatusGroup = 0, //默认相册组
-    PickerViewShowStatusCameraRoll //相机胶卷
-};
 
-@interface XYPhotoPickerViewController : XYPhotoRootViewController
+
+@interface XYPhotoPickerViewController : BaseViewController
 /**
  需要push到的内容控制器
  默认为Groups

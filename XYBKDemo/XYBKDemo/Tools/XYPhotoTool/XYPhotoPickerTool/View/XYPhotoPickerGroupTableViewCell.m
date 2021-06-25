@@ -57,20 +57,13 @@
 }
 - (void)setPickerGroup:(XYPhotoPickerGroup *)pickerGroup {
     _pickerGroup = pickerGroup;
-    if (pickerGroup.thumbImage) {
-        self.imageV.image = pickerGroup.thumbImage;
-    } else {
-        self.imageV.image = pickerGroup.defaultImage;
-        WeakSelf;
-        [[XYPhotoPickerDatas defaultPicker]getGroupNormalPhoto:pickerGroup.assetCollection complete:^(UIImage *image) {
-            weakSelf.pickerGroup.thumbImage = image;
-            weakSelf.imageV.image = image;
-        }];
-    }
+    self.imageV.image = pickerGroup.thumbImage;
     self.titleL.text = pickerGroup.groupName;
     self.countL.text = [NSString stringWithFormat:@"(%ld)",pickerGroup.assetsCount];
 }
+
 #pragma mark -- setupUI
+
 - (UIImageView *)imageV {
     if (!_imageV) {
         _imageV = [[UIImageView alloc]init];
@@ -81,7 +74,7 @@
 }
 - (UILabel *)titleL {
     if (!_titleL) {
-        _titleL = [[UILabel alloc]initWithTextColor:[UIColor color_333333] font:SYSTEM_FONT_14];
+        _titleL = [[UILabel alloc]initWithTextColor:[UIColor color_222222] font:SYSTEM_FONT_14];
     }
     return _titleL;
 }

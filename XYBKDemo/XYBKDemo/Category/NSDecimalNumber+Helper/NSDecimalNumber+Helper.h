@@ -43,5 +43,13 @@
 + (NSComparisonResult)compartWithNumber:(NSString *)number01 number:(NSString *)number02;
 
 
+/**
+ 是否小于0或等于0
+
+ @param number 比较数
+ @return 是否小于0
+ */
++ (BOOL)getLessThanOrSameZeroWithNumber:(NSString *)number;
+
 
 @end

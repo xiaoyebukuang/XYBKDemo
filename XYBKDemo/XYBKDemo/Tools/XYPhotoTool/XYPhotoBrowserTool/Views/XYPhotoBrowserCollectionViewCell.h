@@ -14,4 +14,5 @@
 @property (nonatomic, strong)XYPhotoBrowserScrollView *photoBrowserScrollView;
 
 - (void)reloadViewWithPhotosArr:(NSArray *)photosArr andIndexPath:(NSInteger)row;
+- (void)reloadViewWithPhotosArr:(NSArray *)photosArr andIndexPath:(NSInteger)row placeholderImage:(UIImage *)placeholderImage;
 @end

@@ -19,14 +19,6 @@
 
 @implementation XYPhotoPickerAssetsCollectionViewCell
 
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setupUI];
-    }
-    return self;
-}
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -45,8 +37,11 @@
         make.top.equalTo(self.contentView).mas_offset(5);
     }];
 }
-- (void)reloadDataWithAssetModel:(XYPhotoPickerAsset *)assetModel size:(CGFloat)size indexPath:(NSInteger)index photoPickerAssetsBlock:(XYPhotoPickerAssetsBlock)assetsBlock {
-    BOOL isSelect = index >= 0 ? YES:NO;
+- (void)reloadDataWithPHAssets:(PHAsset *)asset indexPath:(NSUInteger)index photoPickerAssetsBlock:(XYPhotoPickerAssetsBlock)assetsBlock {
+    BOOL isSelect = NO;
+    if (index != NSNotFound) {
+        isSelect = YES;
+    }
     self.selectBtn.selected = isSelect;
     if (isSelect) {
         [self.selectBtn setTitle:[NSString stringWithFormat:@"%ld",index+1] forState:UIControlStateNormal];
@@ -54,22 +49,14 @@
         [self.selectBtn setTitle:@"" forState:UIControlStateNormal];
     }
     self.assetsBlock = assetsBlock;
-    if (assetModel.thumbImage) {
-        self.imageV.image = assetModel.thumbImage;
-    } else {
-        self.imageV.image = assetModel.defaultImage;
-        WeakSelf;
-        [[XYPhotoPickerDatas defaultPicker] getImageFromPHAsset:assetModel.asset synchronous:NO size:CGSizeMake(size*2, size*2) complete:^(UIImage *image) {
-            assetModel.thumbImage = image;
-            weakSelf.imageV.image = image;
-        }];
-    }
+    [[XYPhotoPickerDatas defaultPicker]cachingImageForAsset:asset targetSize:CGSizeMake(kAssetsRowWidth, kAssetsRowHeight) callBack:^(UIImage *image) {
+        self.imageV.image = image;
+    }];
 }
 #pragma mark -- setup
 - (void)selectBtnEvent:(UIButton *)sender {
-    sender.selected = !sender.selected;
     if (self.assetsBlock) {
-        self.assetsBlock(sender.selected);
+        self.assetsBlock(!sender.selected);
     }
 }
 #pragma mark -- setup

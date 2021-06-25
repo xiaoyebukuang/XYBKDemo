@@ -6,14 +6,13 @@
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "XYPhotoRootViewController.h"
-#import "XYPhotoPickerAsset.h"
-@interface XYPhotoPickerPreviewViewController : XYPhotoRootViewController
+#import "BaseViewController.h"
+
+@interface XYPhotoPickerPreviewViewController : BaseViewController
 /** 数据源 */
-//@property (nonatomic, strong) NSArray <XYPhotoPickerAsset *>*assetsArray;
 @property (nonatomic, strong) NSArray *assetsArray;
 /** 选中的数据 */
-@property (nonatomic, strong) NSMutableArray <XYPhotoPickerAsset *>*selectPickerAssets;
+@property (nonatomic, strong) NSMutableArray *selectPickerAssets;
 /** 当前page */
 @property (nonatomic, assign) NSInteger currentPage;
 /** 最大限制数 */

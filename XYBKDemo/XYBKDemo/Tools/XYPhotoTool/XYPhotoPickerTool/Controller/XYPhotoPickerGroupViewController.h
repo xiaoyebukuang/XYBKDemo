@@ -6,10 +6,10 @@
 //  Copyright © 2018年 XYBK. All rights reserved.
 //
 
-#import "XYPhotoRootViewController.h"
+#import "BaseViewController.h"
 #import "XYPhotoPickerViewController.h"
 
-@interface XYPhotoPickerGroupViewController : XYPhotoRootViewController
+@interface XYPhotoPickerGroupViewController : BaseViewController
 /**
  需要push到的内容控制器
  默认为Groups
@@ -20,6 +20,5 @@
  每次选择图片的最大数，默认最大数是9
  */
 @property (nonatomic ,assign) NSInteger maxCount;
-
 
 @end

@@ -1,8 +1,8 @@
 //
 //  NSMutableDictionary+Extention.m
-//  XYBKDemo
+//  cwz51
 //
-//  Created by 陈晓 on 2019/2/25.
+//  Created by 陈晓 on 2019/2/16.
 //  Copyright © 2019年 XYBK. All rights reserved.
 //
 
@@ -28,13 +28,6 @@
     }
     return nil;
 }
-+ (NSDecimalNumber *)reviseNum:(NSNumber *)num{
-    //直接传入精度丢失有问题的Double类型
-    double conversionValue = [num doubleValue];
-    NSString *doubleString = [NSString stringWithFormat:@"%lf", conversionValue];
-    NSDecimalNumber *decNumber = [NSDecimalNumber decimalNumberWithString:doubleString];
-    return decNumber;
-}
 + (NSMutableDictionary *)parseDic:(NSMutableDictionary *)dic{
     NSArray *allKeys=[dic allKeys];
     for (int i=0; i<allKeys.count; i++) {
@@ -48,7 +41,6 @@
             [dic setObject:[self parseArr:mutArr] forKey:key];
         } else if ([v isKindOfClass:[NSNumber class]]) {
             [dic setObject:[self parseNumber:v] forKey:key];
-            
         }
     }
     return dic;
@@ -68,8 +60,14 @@
     }
     return arr;
 }
-
 + (NSDecimalNumber *)parseNumber:(NSNumber *)number{
     return [self reviseNum:number];
+}
++ (NSDecimalNumber *)reviseNum:(NSNumber *)num{
+    //直接传入精度丢失有问题的Double类型
+    double conversionValue = [num doubleValue];
+    NSString *doubleString = [NSString stringWithFormat:@"%lf", conversionValue];
+    NSDecimalNumber *decNumber = [NSDecimalNumber decimalNumberWithString:doubleString];
+    return decNumber;
 }
 @end

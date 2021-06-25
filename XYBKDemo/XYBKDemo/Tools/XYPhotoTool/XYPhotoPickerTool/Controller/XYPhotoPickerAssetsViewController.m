@@ -9,23 +9,22 @@
 #import "XYPhotoPickerAssetsViewController.h"
 #import "XYPhotoPickerAssetsCollectionViewCell.h"
 #import "XYPhotoPickerPreviewViewController.h"
-#import "XYPhotoPickerAsset.h"
-
-#import "XYPhotoBrowserViewController.h"
-
-/** 一行的个数 */
-static const NSInteger assets_cell_number = 4;
+/** cell宽度 */
+static const CGFloat assets_cell_width = 108.0f;
+/** cell高度 */
+static const CGFloat assets_cell_height = 108.0f;
 /** 内边距 */
-static const CGFloat assets_inset_top = 5.0f;
-static const CGFloat assets_inset_left = 5.0f;
-static const CGFloat assets_inset_bottom = 5.0f;
-static const CGFloat assets_inset_right = 5.0f;
+static const CGFloat assets_inset_top = 15.0f;
+static const CGFloat assets_inset_left = 15.0f;
+static const CGFloat assets_inset_bottom = 0.0f;
+static const CGFloat assets_inset_right = 15.0f;
 /** 列间距 */
-static const CGFloat assets_interitem_spacing = 5.0f;
+static const CGFloat assets_interitem_spacing = 10.0f;
 /** 行间距 */
-static const CGFloat assets_line_spacing = 5.0f;
+static const CGFloat assets_line_spacing = 10.0f;
 
 static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPickerAssetsCollectionViewCellID";
+
 
 @interface XYPhotoPickerAssetsViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -36,33 +35,30 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 /** 完成按钮 */
 @property (nonatomic, strong) UIButton *finishBtn;
 /** 数据源 */
-@property (nonatomic, strong) NSArray <XYPhotoPickerAsset *>*assetsArray;
+@property (nonatomic, strong) NSArray *assetsArray;
 /** 选中的数据 */
-@property (nonatomic, strong) NSMutableArray <XYPhotoPickerAsset *>*selectPickerAssets;
+@property (nonatomic, strong) NSMutableArray *selectPickerAssets;
+
+@property (nonatomic, strong) NSMutableArray *selectIndexPaths;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-
-@property (nonatomic, assign) CGFloat assets_cell_size;
 
 @end
 
 @implementation XYPhotoPickerAssetsViewController
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.translucent = NO;
     [self reloadView];
+    [self reloadSelectIndexPaths];
+    [self.collectionView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor color_FFFFFF];
     self.selectPickerAssets = [NSMutableArray array];
-    if (self.pickerGroup) {
-        self.title = self.pickerGroup.groupName;
-    }
-    if (self.subtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
-        self.title = @"相机胶卷";
-    }
-    self.assets_cell_size = (MAIN_SCREEN_WIDTH - assets_inset_left - assets_inset_right - (assets_cell_number - 1)*assets_interitem_spacing)/assets_cell_number;
+    self.selectIndexPaths = [NSMutableArray array];
+    self.title = self.pickerGroup.groupName;
     [self setupUI];
     [self setNavigationBar];
     [self setImages];
@@ -108,29 +104,28 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
         self.finishBtn.enabled = YES;
         [self.finishBtn setTitle:[NSString stringWithFormat:@"完成(%ld)",self.selectPickerAssets.count] forState:UIControlStateNormal];
     }
-    [self.collectionView reloadData];
+}
+- (void)reloadSelectIndexPaths {
+    [self.selectIndexPaths removeAllObjects];
+    for (PHAsset *asset in self.selectPickerAssets) {
+        NSInteger index = [self.assetsArray indexOfObject:asset];
+        if (index != NSNotFound) {
+            [self.selectIndexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+        }
+    }
 }
 #pragma mark -- setdata
 /** 获取数据源 */
 - (void)setImages {
     [MBProgressHUD showToView:self.view];
-    if (self.pickerGroup) {
-        [[XYPhotoPickerDatas defaultPicker]enumerateAssetsInAssetCollection:self.pickerGroup.assetCollection pickerDatasCallBack:^(id obj) {
-            [self handlerWithArray:obj];
-        }];
-    } else {
-        [[XYPhotoPickerDatas defaultPicker]enumeratePHAssetCollectionSubtype:self.subtype pickerDatasCallBack:^(id obj) {
-            [self handlerWithArray:obj];
-        }];
-    }
-}
-- (void)handlerWithArray:(NSArray *)obj {
-    [MBProgressHUD hideHUDForView:self.view];
-    self.assetsArray = obj;
-    [self.collectionView reloadData];
-    if (self.assetsArray.count > 0) {
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.assetsArray.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
-    }
+    [[XYPhotoPickerDatas defaultPicker]fetchAssetsInAssetCollection:self.pickerGroup.assetCollection callBack:^(NSArray<PHAsset *> *assets) {
+        self.assetsArray = assets;
+        [self.collectionView reloadData];
+        if (self.assetsArray.count > 0) {
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.assetsArray.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+        }
+        [MBProgressHUD hideHUDForView:self.view];
+    }];
 }
 #pragma mark -- event
 /** 点击取消 */
@@ -147,13 +142,18 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 }
 /** 点击完成 */
 - (void)finishBtnBtnEvent:(UIButton *)sender {
+    /** 发送通知 */
     [MBProgressHUD showWindow];
-    [[XYPhotoPickerDatas defaultPicker]getImagesFromPHAsset:self.selectPickerAssets pickerDatasCallBack:^(id obj) {
-        [MBProgressHUD hideHUD];
-        /** 发送通知 */
-        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:obj];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[XYPhotoPickerDatas defaultPicker]getImagesFromPHAsset:self.selectPickerAssets callBack:^(NSArray<UIImage *> *images) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUD];
+                /** 发送通知 */
+                [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_PICKER_TAKE_DONE object:images];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+        }];
+    });
 }
 #pragma mark -- push
 /** 跳转预览页面 */
@@ -178,33 +178,29 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 /** 创建cell */
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     XYPhotoPickerAssetsCollectionViewCell *cell = (XYPhotoPickerAssetsCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:XYPhotoPickerAssetsCollectionViewCellID forIndexPath:indexPath];
-    XYPhotoPickerAsset *assetModel = self.assetsArray[indexPath.row];
-    NSInteger index = -1;
-    for (int i = 0; i < self.selectPickerAssets.count; i ++) {
-        XYPhotoPickerAsset *temp = self.selectPickerAssets[i];
-        if ([temp.asset isEqual:assetModel.asset]) {
-            index = i;
-            break;
-        }
-    }
+    PHAsset *asset = self.assetsArray[indexPath.row];
+    NSUInteger index = [self.selectPickerAssets indexOfObject:asset];
     WeakSelf;
-    [cell reloadDataWithAssetModel:assetModel size:self.assets_cell_size indexPath:index photoPickerAssetsBlock:^(BOOL isSelected) {
+    [cell reloadDataWithPHAssets:asset indexPath:index photoPickerAssetsBlock:^(BOOL isSelected) {
         if (isSelected) {
             if (weakSelf.selectPickerAssets.count >= weakSelf.maxCount) {
                 /** 超过限制个数，提示 */
-                NSString *title = [NSString stringWithFormat:@"你最多只能选择%ld张照片",weakSelf.maxCount];
-                [UIAlertViewTool showTitle:title message:nil titlesArr:@[@"我知道了"] alertBlock:^(NSString *mes, NSInteger index) {
-                }];
+                NSString *title = [NSString stringWithFormat:@"图片最多选取%ld张",weakSelf.maxCount];
+                [MBProgressHUD showError:title];
             } else {
                 /** 没有超过限制个数，直接添加 */
-                [weakSelf.selectPickerAssets addObject:assetModel];
+                [weakSelf.selectPickerAssets addObject:asset];
+                [weakSelf.selectIndexPaths addObject:indexPath];
+                [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                [weakSelf reloadView];
             }
         } else {
             /** 从添加的数组中移除 */
-            [weakSelf.selectPickerAssets removeObjectAtIndex:index];
+            [weakSelf.selectPickerAssets removeObject:asset];
+            [collectionView reloadItemsAtIndexPaths:self.selectIndexPaths];
+            [self.selectIndexPaths removeObject:indexPath];
+            [weakSelf reloadView];
         }
-        /** 刷新视图 */
-        [weakSelf reloadView];
     }];
     return cell;
 }
@@ -216,7 +212,7 @@ static NSString * const XYPhotoPickerAssetsCollectionViewCellID = @"XYPhotoPicke
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(self.assets_cell_size, self.assets_cell_size);
+        layout.itemSize = CGSizeMake(assets_cell_width, assets_cell_height);
         layout.sectionInset = UIEdgeInsetsMake(assets_inset_top, assets_inset_left, assets_inset_bottom, assets_inset_right);
         layout.minimumLineSpacing = assets_line_spacing;
         layout.minimumInteritemSpacing = assets_interitem_spacing;

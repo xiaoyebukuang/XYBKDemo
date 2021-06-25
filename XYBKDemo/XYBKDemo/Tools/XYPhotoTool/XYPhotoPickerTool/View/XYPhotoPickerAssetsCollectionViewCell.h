@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XYPhotoPickerAsset.h"
+#import "XYPhotoPickerGroup.h"
 
 typedef void(^XYPhotoPickerAssetsBlock)(BOOL isSelected);
 
 @interface XYPhotoPickerAssetsCollectionViewCell : UICollectionViewCell
 
-- (void)reloadDataWithAssetModel:(XYPhotoPickerAsset *)assetModel size:(CGFloat)size indexPath:(NSInteger)index photoPickerAssetsBlock:(XYPhotoPickerAssetsBlock)assetsBlock;
+- (void)reloadDataWithPHAssets:(PHAsset *)asset indexPath:(NSUInteger)index photoPickerAssetsBlock:(XYPhotoPickerAssetsBlock)assetsBlock;
+
 
 @end

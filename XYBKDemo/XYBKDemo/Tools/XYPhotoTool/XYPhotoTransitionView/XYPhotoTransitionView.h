@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 @protocol XYPhotoTransitionViewDelegate <NSObject>
 
+@optional
 /** 获取当前的图片在原始view中的位置 */
 - (CGRect)getFrameWithCurrentPage:(NSInteger)currentPage sourceView:(UIView *)sourceView;
 /** 消失 */
 - (void)dismissWithCurrentPage:(NSInteger)currentPage;
 
 @end
+
 @interface XYPhotoTransitionView : UIView
 
 /** 原数组 */
@@ -23,9 +25,7 @@
 /** 当前的页码 */
 @property (nonatomic ,assign) NSInteger currentPage;
 
-
 @property (nonatomic, weak) id<XYPhotoTransitionViewDelegate>delegate;
-
 
 /**
  显示动画

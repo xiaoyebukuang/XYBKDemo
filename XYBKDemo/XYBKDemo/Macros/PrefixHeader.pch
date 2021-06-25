@@ -10,40 +10,56 @@
 #define PrefixHeader_pch
 
 /** 宏定义 */
-#import "DimensMacros.h"
+#import <UIKit/UIKit.h>
 #import "UtilsMacros.h"
 #import "PathMacros.h"
 #import "RequestMacros.h"
+#import "DimensMacros.h"
 #import "NotificationMacros.h"
-/** 基类 */
-#import "CustomNavigationController.h"
-#import "CustomTabBarViewController.h"
-/** 请求工具 */
-#import "XYHttpRequest.h"
-#import "XYNetworkingHandle.h"
+/** 请求 */
+#import "XYNetworking.h"
 /** 类别 */
+#import "UIColor+Helper.h"
+#import "NSString+URL.h"
+#import "NSString+Helper.h"
 #import "UIView+Helper.h"
+#import "UIView+Corner.h"
+#import "UIView+Gradient.h"
 #import "UILabel+Helper.h"
 #import "UIButton+Helper.h"
+#import "UIButton+Function.h"
 #import "UIImage+Helper.h"
-#import "UIColor+Helper.h"
-#import "UIScrollView+Helper.h"
-#import "NSDictionary+DeUTF.h"
-#import "NSMutableDictionary+Extention.h"
-#import "NSString+Helper.h"
-#import "NSDate+Helper.h"
+#import "YYAnimatedImageView+Helper.h"
 #import "UIDevice+Helper.h"
+#import "UIImageView+Helper.h"
+#import "UIScrollView+Helper.h"
 #import "MBProgressHUD+Helper.h"
-/** 工具 */
-#import "XYBottomAlertView.h"
-#import "XYJudge.h"
-#import "XYTextField.h"
-#import "XYBannerView.h"
-/** 待优化 */
+
+#import "NSObject+XYModel.h"
+#import "NSNull+NullSafe.h"
+#import "NSMutableDictionary+Extention.h"
+#import "NSDictionary+DeUTF.h"
+#import "NSDictionary+NilSafe.h"
+#import "NSArray+DeUTF.h"
+#import "NSSet+DeUTF.h"
+#import "NSDate+Helper.h"
+#import "NSDecimalNumber+Helper.h"
+#import "NSTimer+NSWeakTimer.h"
+
+/** tools */
 #import "UIAlertViewTool.h"
-/** 公共view */
-#import "BaseTableViewCell.h"
+#import "UIBottomAlertView.h"
+#import "UIJudgeTool.h"
+#import "UITextFieldTool.h"
+#import "UITextViewTool.h"
+#import "XYPageControl.h"
+#import "XYBannerViewTool.h"
+
+
+
 /** 三方库 */
-#import "UIImageView+WebCache.h"
+#import <YYWebImage/YYWebImage.h>
 #import <Masonry.h>
+#import <SDWebImage/SDWebImage.h>
+
 #endif /* PrefixHeader_pch */
